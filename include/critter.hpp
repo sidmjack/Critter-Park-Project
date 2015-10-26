@@ -25,11 +25,11 @@ class Critter{
   float scariness;
   float strangeness;
 
-  // featurs that this Critter has
+  // features that this Critter has
   Cover covering;
   Eye eyes;
   Limb limbs;
   Digit digits;
-
+}
 
 #endif
