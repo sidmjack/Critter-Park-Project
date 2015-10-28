@@ -1,6 +1,6 @@
 Sidney Jackson & Florian Pontani
 sjacks85@jhu.edu flo@jhu.edu
-Last Modified: October 26, 2015
+Last Modified: October 27, 2015
 
 READ_ME FILE:
 *****************************
@@ -10,8 +10,8 @@ SUMMARY:
 ***Critter Class: 
 
 Basically a class containing the characters of the critter (scary, cute,
-strange),  along with the critter data (which we will either use maps or
-ENUMS to interpret the characteristics… which will be printed to the user
+strange),  along with the critter data (which we will use maps
+to interpret the characteristics… which will be printed to the user
 of the program and be accompanied with the feature/parts of the creature).
 
 Also! This class needs an overloaded decode function that is capable of
@@ -19,38 +19,21 @@ calling he decode function from the feature classes.
 
 ***Feature Classes:
  
-[Totally dependent on how many parts we want are critter
-to have…we should probably start with 3 to get the hang of it before
-we work on any more (at least 3 more)]
-
 Feature Details:
+Features:
 
-I want to say that the feature details shouldn't exceed more than 5…but that’s 
-just me. 
-
-Possible Features:
-
-Feature 1: Texture
+Feature 1: Covering
 Feature 2: Eyes
 Feature 3: Limbs
-Feature 4: Hands
+Feature 4: Digits
+
+Pssible Future Implementation:
+
 Feature 5: Shape
-Feature 6: Tail
-Feature 7: Personality
+Feature 6: Personality
 
 There should also be an encode function and a decode function for 
 encoding/decoding the binary “DNA”.
-
-***The DNA, is basically encoded using a very long int.
-Now, to get this very long integer, we need to appropriately decode it 
-from the binary string. Once we get the long int, we’ll use either a bit
-map or ENUMS to define the characteristics.***
-
-Each feature should come with a character number (defining what scary, cute,
-and strange is). There could be a helper function (probably in the critter
-class), that takes the average of each characters number, and fits it to 
-what ever our max scale is... Apparently we don't have to worry about this
-for the assignment though.
 
 Each feature class needs an encode function and a decode function. The encode
 function will, in a sense, create an "array" of bits that 
@@ -59,7 +42,6 @@ bit length associated with them and define the characteristics.
 
 We will then need a decode function that will interpret this into numbers
 that define the characters.
-(This function will be called by the critter class).
 
 We'll need to use bit shift operators to get to the characeristics we 
 want. (Example: If the "limb" of the critter is defined with 4 bits and
@@ -68,18 +50,6 @@ by 15 and start reading after bit 15 for 4 bits. Then we decode those 4 bits
 (say it's 0101) into "5". Then we give the critter whatever "limb" attribute
 is associated with "5". Let's say, 5 = Short. The critter has short legs.
 This is basically how all features will be defined and decoded.)
-
-There is a minimum of 3 features for this assignment.
-Each feature needs two distinct descriptors
-Each descriptor needs four distinct options.
-
-Example of a feature: Eyes:
-2 Descriptors: Number, Type
-Number Descriptors: 1, 2, 4, 8
-Type Descriptors: Slit Pupil, Compound, Large Pupil, Beady
-
-Decoding Eye:
-[1][4] = One Beady Eye
 
 Binary Encoding: This is a lot more ideal for working with pseudo genetics 
 which involve mutations (flipping bits) and also carrying out pseudo-cross
@@ -104,7 +74,10 @@ trying to find its descriptors along the DNA string (the very long
 integer).
 
 Issues/Frustration:
-Not there yet...
+Not entirely sure how to turn each individual feature characteristic
+into one cohesive binary string. Reference offsets inside and outside of 
+the code are needed. Found it difficult to "concatonate" binary strings
+not related to each other. Binary math needed???
 
 Overall Outcome:
 Not there yet...
@@ -114,29 +87,51 @@ Not there yet...
 
 NOTES:
 
-*******************************
-Unit Testing Notes:
+Driver Class:
+Include Menu:
+Functions in Menu:
+Create (Random) Critter (No argument)
+Name Critter (User Input String)
+Make Crtter (Critter_1, Critter 2)
+List Critters (No argument)
+Describe Critter (Critter_1)
 
-//Include static void unitTest(); in the Critter.cpp file
-//Include the unitTest function within the Critter Class:
-//This way, the unit tests has access to the private variables
-//of the class.
+Encoding:
+int [FEATURE] type
+static map <int, string> 
+type String
+"0" - type_1
+"1" - type_2
+"2" - type_3
+"3" - type_4
 
-****************************
-void Critter :: unitTest() {
-std::cout << "Starting unit tests for Critter...\n");
-//TODO
+Convert associated number into a binary value.
+-> Where encoding (genome) class comes in.
+(Interprets bit strings)
+
+Example:
+/*To make defining type simpler*/
+
+typedef unsigned long encoding_type
+
+class encoding {
+	public:
+
+	setBitField(unsigned offset, unsigned width, unsigned value);
+	unsigned ing getBitField(unsigned int offset, unsigned width) const;
+	/*Convert number to binary string*/
+	/*Also, probs a regular string of decimal numbers too*/
+
+	void mutate(double mutateRate = 0.05);
+	Encoding crossOver(const Encoding &other, double crossoverRate = 0.1);
+
+	
+	private:
+	   encoding_type;
 }
-****************************
-EXAMPLE:
-#include <iostream>
-#incldue <critter.hpp>
 
-int main(){
-Critter::unitTest();
-Eyes::unitTest();
-Texture::unitTest()
+Questions: 
 
-return 0;
-}
-*****************************
+How do we account for the offset/width?
+How do we account for the offset "dynamically"?
+
