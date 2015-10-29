@@ -1,30 +1,35 @@
 #include <digits.hpp>
 #include <map>
+#include <vector>
 #include <string>
 #include <bitset>
 
-class Digits{
 	
-	public:
-	/*Information Accessible to the User*/
-		
-	private:
+	/*Feature Maps/Arrays/Vectors*/
+	Digits:Digits(){
 	
-	/*Feature Maps*/
-	std::map<int, std::string> type_map;
-
 	type_map[1] = "paws";
 	type_map[2] = "claws";
 	type_map[3] = "fingers";
 	type_map[4] = "talons";
-
-	std::map<int, std::string> amount_map;
 
 	amount_map[1] = "two";
 	amount_map[2] = "three";
 	amount_map[3] = "five";
 	amount_map[4] = "seven";
 	
+	/*Defines how many descriptors each feature class contains*/
+	num_descriptors = 2;
+	/*Defines the number of bits needed to categorize those features*/
+	length = 2;
+
+	}
+	
+	/*Digits Offset Information: */
+	//Second Segment (4 Bits)
+	//Type Requires 2 bits (1-2)
+	//Amount Requires 2 bits (3-4)
+
 	/*CRITTER GENOME FUNCTIONS*/
 	/*Encodes the integer map values to binary*/
 	unsigned int encode(int decoded_segment){
@@ -32,9 +37,8 @@ class Digits{
 	};
 
 	/*Decodes the binary values to their associated integer map keys*/
-	unsigned int encode(int decoded_segment){
-		return encoded_bits;
+	unsigned int decode(int encoded_segment){
+		return decoded_bits;
 	};
 
-}
 
