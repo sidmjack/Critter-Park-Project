@@ -9,10 +9,9 @@ SUMMARY:
 
 ***Critter Class: 
 
-Basically a class containing the characters of the critter (scary, cute,
-strange),  along with the critter data (which we will use maps
-to interpret the characteristics… which will be printed to the user
-of the program and be accompanied with the feature/parts of the creature).
+The critter class contains the characteristic values of the critter(scary
+,cute, strange),  along with the critter data (binary genome) used to 
+interpret the characteristics of the critter. 
 
 Also! This class needs an overloaded decode function that is capable of
 calling he decode function from the feature classes.
@@ -27,7 +26,7 @@ Feature 2: Eyes
 Feature 3: Limbs
 Feature 4: Digits
 
-Pssible Future Implementation:
+Possible Future Implementation:
 
 Feature 5: Shape
 Feature 6: Personality
@@ -36,12 +35,10 @@ There should also be an encode function and a decode function for
 encoding/decoding the binary “DNA”.
 
 Each feature class needs an encode function and a decode function. The encode
-function will, in a sense, create an "array" of bits that 
-will later be decoded. This "array" of bits define each have a particular
-bit length associated with them and define the characteristics. 
-
-We will then need a decode function that will interpret this into numbers
-that define the characters.
+function will, in a sense, create an array of bits that 
+will later be decoded. This "array" of bits defining the critter have a bit
+length associated with them that will be used to determine the bit shift 
+and offset needed to decode their characteristics. 
 
 We'll need to use bit shift operators to get to the characeristics we 
 want. (Example: If the "limb" of the critter is defined with 4 bits and
@@ -74,10 +71,18 @@ trying to find its descriptors along the DNA string (the very long
 integer).
 
 Issues/Frustration:
-Not entirely sure how to turn each individual feature characteristic
-into one cohesive binary string. Reference offsets inside and outside of 
-the code are needed. Found it difficult to "concatonate" binary strings
-not related to each other. Binary math needed???
+At first wasn't entirely sure how to turn each individual feature
+characteristic into one cohesive binary string. It was later determined
+that using an already declared integer (probably a long int) of zero's
+would be incremented using bit shifts (in accordance with the length of the
+known descriptor and its location in the "genome" segment).
+Further, it was found to be difficult to "concatonate" binary strings
+not related to each other. Bit shifting a single predetermined integer
+resolved this issue as well. 
+
+A map was suggested to be the easiest / "cleanest" means of interpreting
+the descriptors from integers. Arrays/vectors might not be the "cleanest"
+way but found that it was likely the easiest to implement.
 
 Overall Outcome:
 Not there yet...
@@ -132,6 +137,16 @@ class encoding {
 
 Questions: 
 
-How do we account for the offset/width?
-How do we account for the offset "dynamically"?
+How do we account for the offset/width? 
+Let the encode function deal with the feature genome segment offsets.
+The encode/decode functions of feature classes should simply
+be passed the location to start using the binary integer it is passes, and
+work with that.
+
+How do we account for the offset "dynamically"? Not sure if there's a way 
+to "dynamically" account for offset. Will probably just use member
+functions that "grab" the offset information needed from the feature classes
+(since they will contain the total number of bits needed to encode a 
+particular segment) which can be used to determine segement location of
+features relative to each other. 
 
