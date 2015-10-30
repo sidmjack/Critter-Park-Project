@@ -1,4 +1,5 @@
 #include <covering.hpp>
+#include <binary.hpp>
 #include <map>
 #include <vector> 
 #include <string>
@@ -40,7 +41,8 @@
 	 *Decoded Segment = Entire Copy of Critter's Decoded Genome
 	 *Genome Canvas = Basically a long int composed of zeroes.*/
 	/*Encode uses OR operator against zero long int to produce 2b-genome*/
-	unsigned int encode(int genome_canvas, int decoded_segment, int offset){
+
+	unsigned long int encode(int genome_canvas, int decoded_segment, int offset){
 	
 		genome_canvas << offset;
 	
@@ -48,7 +50,8 @@
 		for (i = 0; i < num_descriptors; i++){
 			
 			int temp; //Evaluated integer
-			
+			long int genome_canvas = 0;
+
 			/*Grabs decoded number defining the feature*/
 			temp = (decoded_segment % 10);
 			decoded_segment = (decoded_segment/10);

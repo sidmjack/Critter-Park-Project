@@ -10,9 +10,18 @@
  *     manipulating the binary strings used to store Critter traits.
  *****************************************************************************/
 
-
 #ifndef HW8_BINARY_H
 #define HW8_BINARY_H
+
+   /*FEATURE BYTE OFFSETS)*/
+//Covering Offset
+#define COVERING_OFFSET 1
+//Digits Offset
+#define DIGITS_OFFSET 2
+//Eyes Offset
+#define EYES_OFFSET 3
+//Limbs Offset
+#define LIMBS_OFFSET 4
 
 //// if we need more than a long, change it here: ////
 ///                                                ///
@@ -37,10 +46,12 @@ BINARY_TYPE cross(const BINARY_TYPE n1, const BINARY_TYPE n2, float jitter);
 // function for mutating a given binary string by a given factor
 BINARY_TYPE mutate(const BINARY_TYPE number, float severity);
 
-/*
-class Binary{
-	encode();
-	decode();
-};
-*/
+/*ENCODE/DECODE FUNCTIONS*/
+
+/*Encode Function: Encodes integer values into binary genome*/
+BINARY_TYPE encode(const BINARY_TYPE noncoded_genome); 
+
+/*Decode Function: Decodes single traits from within the encoded genome*/
+BINARY_TYPE decode(const BINARY TYPE genome_canvas);
+
 #endif
