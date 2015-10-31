@@ -22,7 +22,7 @@
 #include <string>
 #include <map>
 
-class Cover{
+class Covering{
 	
 	public:
 	/*Information Accessible to the User*/
@@ -30,7 +30,7 @@ class Cover{
 	private:
 	
 	/*New Feature Map*/
-	std::map<string, std::string[]> covering_map;
+	std::map<std::string, std::string[]> covering_map;
 	
 	/*CRITTER GENOME FUNCTIONS*/
 
@@ -39,6 +39,6 @@ class Cover{
 	/*Defines the number of bits needed to categorize those features*/
 	int length;
 	
-}
+};
 
 #endif

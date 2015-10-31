@@ -18,8 +18,14 @@
 #ifndef HW8_CRITTER_UTILS
 #define HW8_CRITTER_UTILS
 
-#include <string>
+//#include <iostream>
+
 #include "binary.hpp"
+#include "eyes.hpp"
+#include "covering.hpp"
+#include "limbs.hpp"
+#include "digits.hpp"
+
 
 class Critter{
  public:
@@ -35,6 +41,9 @@ class Critter{
   // sets the Binary encoding of the Critter
   void setBinary(Binary newBinary);
 
+  // prints a neatly formatted bio abot this Critter
+  void printCritter();
+
   // default constructor
   Critter();
 
@@ -47,7 +56,15 @@ class Critter{
   // mutation mechanism
   void mutate(float severity);
 
- private:
+  // the Critter class unit test
+  void unitTest();
+
+  // overload the = operator
+  Critter & Critter :: operator= (const Critter &other);
+
+  // overload the == operator
+  bool Critter :: operator== (const Critter &other);
+
   // variables for describing the Critter
   std::string name;
   float cuteness;
@@ -60,9 +77,13 @@ class Critter{
   Limbs limbs;
   Digits digits;
 
+  private:
+
   // the Critter's genes
   Binary binary;
   
 };
+
+#include "critter.cpp"
 
 #endif

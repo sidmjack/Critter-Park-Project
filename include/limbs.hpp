@@ -29,7 +29,7 @@ class Limbs{
 	private:
 	
 	/*New Feature Map*/
-	std::map<string, std::string[]> limbs_map;
+	std::map<std::string, std::string[]> limbs_map;
 	
 	/*CRITTER GENOME FUNCTIONS*/
 
@@ -38,6 +38,6 @@ class Limbs{
 	
 	/*Defines the number of bits needed to categorize those features*/
 	int length;
-}
+};
 
 #endif

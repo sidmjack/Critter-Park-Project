@@ -1,1 +1,1 @@
-obj/limbs.o: limbs.cpp ../include/limbs.hpp
+obj/limbs.o: limbs.cpp ../include/limbs.hpp ../include/binary.hpp

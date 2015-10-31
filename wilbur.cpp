@@ -1,9 +1,8 @@
-#include <iostream>
 #include "critter.hpp"
 
 int main(){
 
-  Critter wilbur = Critter::Critter();
+  Critter wilbur;
 
   std::cout << "I can't believe it's not butter!\n";
  

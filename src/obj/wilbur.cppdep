@@ -1,0 +1,1 @@
+obj/wilbur.o: wilbur.cpp ../include/critter.hpp ../include/binary.hpp
