@@ -5,12 +5,13 @@
  * 
  * EN.600.120
  * Intermediate Programming
- * Homework #6, part 1
+ * Homework #8, part 1
  *
- * binary.hpp - contains definitions for functions used in printing and
+ * Binary.hpp - contains definitions for functions used in printing and
  *     manipulating the binary strings used to store Critter traits.
+ *
+ * Last Modified November 2, 2015
  *****************************************************************************/
-
 
 #ifndef HW8_BINARY_H
 #define HW8_BINARY_H
@@ -31,8 +32,6 @@
 ///                                                ///
 //////////////////////////////////////////////////////
 
-#include "binary.cpp"
-
 #include <vector>
 #include <map>
 #include <cstdlib>
@@ -41,21 +40,28 @@
 
 class Binary{
   public:
+  /***************************************************************************/
+  
   /*ENCODE/DECODE FUNCTIONS*/
 
   /*Encode Function: Encodes integer values into binary genome*/
-  BINARY_TYPE encode(const BINARY_TYPE noncoded_genome); 
+  BINARY_TYPE encode(const BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas); 
 
   /*Decode Function: Decodes single traits from within the encoded genome*/
-  BINARY_TYPE decode(const BINARY TYPE genome_canvas);
+  BINARY_TYPE decode(const BINARY TYPE* genome_canvas);
+
+  /**************************************************************************/
   
+  /*MATE CRITTER FUNCTIONS*/
+
   // wrapper for the cross function
   Binary cross(Binary parent1, Binary parent2, float jitter);
 
   // wrapper for the mutate function
   void mutate(float severity);
 
-  /************** functions used mostly by other functions *******************/
+  /************** Functions used mostly by other functions *******************/
+  
   // function for crossing two binary strings with a given jitter
   BINARY_TYPE cross(const BINARY_TYPE n1, const BINARY_TYPE n2, float jitter);
 
@@ -71,8 +77,7 @@ class Binary{
   // debugging utility for printing the numbers in binary to the console
   void printBinary(const BINARY_TYPE number);
 
-
-
+  /***************************************************************************/
   private:
   
   // the genome data itself, in all its glory

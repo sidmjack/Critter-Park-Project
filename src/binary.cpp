@@ -4,16 +4,15 @@
  * (917) 454-8493 & (386) 956-5577
  * 
  * CS 600.120
- * Homework #6, part 1
+ * Homework #8, part 1
  *
- * binary.cpp - contains utilities for printing and manipulating the binary
+ * Binary.cpp - contains utilities for printing and manipulating the binary
  *      strings used to store Critter traits in this program.
+ *
+ * Last Modified: November 2, 2015
  *****************************************************************************/
 
-
-
 class Binary{
-
 
 // wrapper for the mutate function - mutates a Binary's genome in situ
 //
@@ -23,8 +22,6 @@ void mutate(float severity){
   this->setGenome(mutate(this->getGenome(), severity));
   return;
 }
-
-
 
 // warpper for the cross function - returns a binary from two parent binaries
 //
@@ -40,9 +37,7 @@ Binary cross(Binary parent1, Binary parent2, float jitter){
 }
   
 
-
 /**************** FUNCTIONS USED MOSTLY BY OTHER FUNCTIONS *******************/
-
 
 
 // function for crossing two binary strings with a given jitter
@@ -168,10 +163,58 @@ void printBinary(const BINARY_TYPE number){
   return;
 }
 
-
-
 // this is a hack, for now
 BINARY_TYPE genome;
+
+//ENCODE DECODE FUNCTIONS:
+
+/*Encode Function: Encodes integer values onto a "blank" binary genome canvas*/
+BINARY_TYPE encode(const BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas){
+
+	*genome_canvas = (*genome_canvas << offset);	
+
+	for (int i = 0; i < num_descriptors; i++){
+		int temp; //Evaluated integer
+		//unsigned long int genome_canvas = 0;
+
+		/*Grabs decoded number defining the feature*/
+		temp = (noncoded_genome%10);
+		noncoded_genome = (noncoded_genome/10);
+	
+		/*Adds the binary interpretation of the 
+		 * encoded feature to the genome canvas.*/
+		*genome_canvas = (temp | *genome_canvas);
+			
+		/*Shifts the genome canvas by the number
+		 * of bits previously "used". */
+		if(i < num_descriptors-1){
+			*genome_canvas = (*genome_canvas  << length);
+		}
+	}	
+}
+
+//DECODE STILL NEEDS MAJOR REVISION...How I encoded may actually prove
+//to be problematic...Ugh
+/*Decode Function: Decodes single traits from within the encoded genome*/
+BINARY_TYPE decode(const BINARY TYPE* genome_canvas){
+	
+		/*Specific trait_offset may equals iterator of feature 
+		* multiplied by the length (bits conveying option #'s)*/
+		/*May need a for loop to run through the lengths of each
+		 * of the traits coming before the desired trait to
+		 * get an accurate offset number*/
+
+		*encoded_genome = (*encoded_genome << (offset + trait_offset));
+
+		int mask = ((2^length) -1); //Determines appropriate mask size/
+		int trait_number = 0; //Trait number that serves as descriptor key.
+	  
+		trait_number = (*encoded_genome & mask);
+		
+		return trait_number;
+
+
+}
 
 };//end class
 

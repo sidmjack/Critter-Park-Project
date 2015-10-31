@@ -1,5 +1,25 @@
+/******************************************************************************
+ * Florian Pontani & Sidney Jackson
+ * fpontan1 & sjacks85
+ * (917) 454-8493 & (386) 956-5577
+ * 
+ * EN.600.120
+ * Intermediate Programming
+ * Homework #8, part 1
+ *
+ * Eyes.hpp - Contains declaration for eyes feature/trait map, 
+ * the number of descriptors for the eyes feature, and the bit length
+ * of the traits defining the eyes feature.
+ *
+ * Last Modified: November 2, 2015
+ * *****************************************************************************/
+
 #ifndef HW8_EYES_H
 #define HW8_EYES_H
+
+#include "binary.hpp"
+#include <string>
+#include <map>
 
 class Eyes{
 	
@@ -7,16 +27,10 @@ class Eyes{
 	/*Information Accessible to the User*/
 		
 	private:
-	
-	/*Feature Maps*/
-	std::map<int, std::string> size_map;
 
-	std::map<int, std::string> pupil_map;
+	/*New Feature Map*/
+	std::map<string, std::string[]> eyes_map;
 
-	std::map<int, std::string> color_map;
-
-	std::map<int, std::string> number_map;
-	
 	/*CRITTER GENOME FUNCTIONS*/
 
 	/*Number of descriptors contained in a class*/
@@ -24,11 +38,6 @@ class Eyes{
 	/*Defines the number of bits needed to categorize those features*/
 	int length;
 
-	/*Encodes the integer map values to binary*/
-	unsigned int encode(int decoded_segment);
-
-	/*Decodes the binary values to their associated integer map keys*/
-	unsigned int decode(int encoded_segment);
 }
 
 #endif

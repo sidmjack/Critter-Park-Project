@@ -1,6 +1,23 @@
-/*Modeled from Ben Mitchell's Class Example*/
+/******************************************************************************
+ * Florian Pontani & Sidney Jackson
+ * fpontan1 & sjacks85
+ * (917) 454-8493 & (386) 956-5577
+ * 
+ * EN.600.120
+ * Intermediate Programming
+ * Homework #8, part 1
+ *
+ * Covering.hpp - Defines the map key/store values, the number of descriptors
+ * and the length of the bits required to define the descriptors.
+ * (Modeled from Ben Mitchell's Class Example)
+ *
+ * Last Modified: November 2, 2015
+ * 
+ * *****************************************************************************/
+
 
 #include <iostream>
+#include "critter.hpp"
 
 // default constructor
 Critter::Critter(){
