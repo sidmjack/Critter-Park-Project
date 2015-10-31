@@ -1,152 +1,71 @@
-Sidney Jackson & Florian Pontani
-sjacks85@jhu.edu flo@jhu.edu
-Last Modified: October 27, 2015
+***Sidney Jackson & Florian Pontani***
+***sjacks85@jhu.edu flo@jhu.edu***
+***(917) 454-8493 & (386) 956-5577***
+***EN.600.120***
+***Intermediate Programming***
+***Homework #8, Part 1***
+***Last Modified: October 31, 2015***
 
-READ_ME FILE:
-*****************************
+*******************************************************************************
+				READ_ME FILE:
+*******************************************************************************
 SUMMARY:
 **We should probably consider making a menu for the driver at some point.**
 
 ***Critter Class: 
 
 The critter class contains the characteristic values of the critter(scary
-,cute, strange),  along with the critter data (binary genome) used to 
-interpret the characteristics of the critter. 
-
-Also! This class needs an overloaded decode function that is capable of
-calling he decode function from the feature classes.
+,cute, strange), along with the critter data (binary genome) used to 
+interpret the characteristics of the critter, and other features that
+allow the user to manipulate the critter.
 
 ***Feature Classes:
  
 Feature Details:
-Features:
+   Feature 1: Covering
+   Feature 2: Eyes
+   Feature 3: Limbs
+   Feature 4: Digits
 
-Feature 1: Covering
-Feature 2: Eyes
-Feature 3: Limbs
-Feature 4: Digits
-
-Possible Future Implementation:
-
-Feature 5: Shape
-Feature 6: Personality
-
-There should also be an encode function and a decode function for 
-encoding/decoding the binary “DNA”.
-
-Each feature class needs an encode function and a decode function. The encode
-function will, in a sense, create an array of bits that 
-will later be decoded. This "array" of bits defining the critter have a bit
-length associated with them that will be used to determine the bit shift 
-and offset needed to decode their characteristics. 
-
-We'll need to use bit shift operators to get to the characeristics we 
-want. (Example: If the "limb" of the critter is defined with 4 bits and
-can be found 15 bits into our DNA "array" of bits, we'll need to bit shift
-by 15 and start reading after bit 15 for 4 bits. Then we decode those 4 bits
-(say it's 0101) into "5". Then we give the critter whatever "limb" attribute
-is associated with "5". Let's say, 5 = Short. The critter has short legs.
-This is basically how all features will be defined and decoded.)
-
-Binary Encoding: This is a lot more ideal for working with pseudo genetics 
-which involve mutations (flipping bits) and also carrying out pseudo-cross
-over that is so integral to genetics regarding critter reproduction anyway.
-
-Encoding Class:
-Has the Cross-Over Function.
-Has the Mutation Function.
-
-Decoding Class:
-Decoding function:
-Decodes binary into appropriate numbers.
-Mostly just interprets binary using functions that can tell where they
-need to look to get what it needs to get. This will particularly important to
-creating human readable strings. No matter what new feature we add,
-we can finesse it into a cohesive, human, readable string as long as we place
-the descriptor derived from the binary code into a grammatically sensible 
-paragraph describing each critter.
-
-This suggests that each feature will also need to know where to look when
-trying to find its descriptors along the DNA string (the very long
-integer).
-
+*******************************************************************************
 Issues/Frustration:
-At first wasn't entirely sure how to turn each individual feature
+
+At first, we weren't entirely sure how to turn each individual feature
 characteristic into one cohesive binary string. It was later determined
-that using an already declared integer (probably a long int) of zero's
+that using an already declared integer (a long int) of zero's that
 would be incremented using bit shifts (in accordance with the length of the
-known descriptor and its location in the "genome" segment).
+known descriptor and its location in the "genome" segment) took care of this.
 Further, it was found to be difficult to "concatonate" binary strings
 not related to each other. Bit shifting a single predetermined integer
 resolved this issue as well. 
 
 A map was suggested to be the easiest / "cleanest" means of interpreting
-the descriptors from integers. Arrays/vectors might not be the "cleanest"
-way but found that it was likely the easiest to implement.
+the descriptors from integers. Then arrays/vecors were. We decided to go 
+with maps on account of maps being able to get us the "values" (descriptor)
+strings we wanted using just the name of the trait as our key.
 
+We had a few issues with the makefile. At first it appeared to be working 
+properly, but we determined it was only reporting that it had compiled our
+files when really..it wasn't. By tweeking our code and downloading the
+update magic makefile, this problem was addressed.
+
+Dealing with "Nested functions" and "nested objects" made it difficult to
+keep track of everything, it was sort of a nightmare.
+
+*******************************************************************************
 Overall Outcome:
+
 Not there yet...
 
+*******************************************************************************
 ASSIGNMENT FEEDBACK:
-Not there yet...
 
-NOTES:
+A little more guidance would be much appreciated. It was difficult going from
+completely structures and planned out programming to "Here's a game, make it."
+However, we can't deny it was necessary. Maybe just a more progressive way
+of assigning projects that made us rely on our ability to plan out an entire
+program over time instead of being the first and last 6 week C++ project would
+have made the transition a bit eaier.
 
-Driver Class:
-Include Menu:
-Functions in Menu:
-Create (Random) Critter (No argument)
-Name Critter (User Input String)
-Make Crtter (Critter_1, Critter 2)
-List Critters (No argument)
-Describe Critter (Critter_1)
-
-Encoding:
-int [FEATURE] type
-static map <int, string> 
-type String
-"0" - type_1
-"1" - type_2
-"2" - type_3
-"3" - type_4
-
-Convert associated number into a binary value.
--> Where encoding (genome) class comes in.
-(Interprets bit strings)
-
-Example:
-/*To make defining type simpler*/
-
-typedef unsigned long encoding_type
-
-class encoding {
-	public:
-
-	setBitField(unsigned offset, unsigned width, unsigned value);
-	unsigned ing getBitField(unsigned int offset, unsigned width) const;
-	/*Convert number to binary string*/
-	/*Also, probs a regular string of decimal numbers too*/
-
-	void mutate(double mutateRate = 0.05);
-	Encoding crossOver(const Encoding &other, double crossoverRate = 0.1);
-
-	
-	private:
-	   encoding_type;
-}
-
-Questions: 
-
-How do we account for the offset/width? 
-Let the encode function deal with the feature genome segment offsets.
-The encode/decode functions of feature classes should simply
-be passed the location to start using the binary integer it is passes, and
-work with that.
-
-How do we account for the offset "dynamically"? Not sure if there's a way 
-to "dynamically" account for offset. Will probably just use member
-functions that "grab" the offset information needed from the feature classes
-(since they will contain the total number of bits needed to encode a 
-particular segment) which can be used to determine segement location of
-features relative to each other. 
+*******************************************************************************
 
