@@ -6,10 +6,16 @@
 class Critter{
  public:
   // returns the name of the Critter
-  std::string getName() const;
+  std::string const getName();
 
   // changes the name of the Critter
-  void setName(std::stsring name);
+  void setName(std::string name);
+
+  // returns the Binary encoding of the Critter
+  Binary getBinary();
+
+  // sets the Binary encoding of the Critter
+  void setBinary(Binary newBinary);
 
   // default constructor
   Critter();
@@ -17,6 +23,11 @@ class Critter{
   // destructor
   ~Critter();
 
+  // breeding mechanism
+  void parents(Critter mommy, Critter daddy, float jitter);
+
+  // mutation mechanism
+  void mutate(float severity);
 
  private:
   // variables for describing the Critter
@@ -26,10 +37,13 @@ class Critter{
   float strangeness;
 
   // features that this Critter has
-  Cover covering;
-  Eye eyes;
-  Limb limbs;
-  Digit digits;
-}
+  Covering covering;
+  Eyes eyes;
+  Limbs limbs;
+  Digits digits;
+
+  // the Critter's genes
+  
+};
 
 #endif
