@@ -12,8 +12,7 @@
 
 
 
-
-
+class Binary{
 
 
 // wrapper for the mutate function - mutates a Binary's genome in situ
@@ -21,7 +20,7 @@
 // severity - number within [0,1] that determines the mutation strength
 void mutate(float severity){
   // call the basic mutate() function on this Binary
-  this.genome = mutate(this.genome, severity);
+  this->setGenome(mutate(this->getGenome(), severity));
   return;
 }
 
@@ -33,9 +32,9 @@ void mutate(float severity){
 // jitter - number within [0,1] that determines how "mixed" the result will be
 Binary cross(Binary parent1, Binary parent2, float jitter){
   // create a blank Binary to store the outcome of the cross
-  Binary result = Binary();
+  Binary result;
   // call the basic cross() function
-  Binary.genome = cross(parent1.getGenome(), parent2.getGenome(), jitter);
+  result.setGenome(cross(parent1.getGenome(), parent2.getGenome(), jitter));
   // return the finished Binary
   return result;
 }
@@ -144,12 +143,12 @@ BINARY_TYPE mutate(const BINARY_TYPE number, float severity){
 
 // function for reading the raw binary string
 BINARY_TYPE getGenome(){
-  return this.genome;
+  return this->genome;
 }
 
 // function for setting the genome to a new string
 void setGenome(BINARY_TYPE genome){
-  this.genome = genome;
+  this->genome = genome;
   return;
 }
 
@@ -170,4 +169,9 @@ void printBinary(const BINARY_TYPE number){
 }
 
 
+
+// this is a hack, for now
+BINARY_TYPE genome;
+
+};//end class
 
