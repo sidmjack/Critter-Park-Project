@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Critter.hpp"
+#include "critter.hpp"
 
 int main(){
 

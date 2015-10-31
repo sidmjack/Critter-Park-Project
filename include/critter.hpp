@@ -1,9 +1,25 @@
+/******************************************************************************
+ * Florian Pontani & Sidney Jackson
+ * fpontan1 & sjacks85
+ * (917) 454-8493 & (386) 956-5577
+ * 
+ * EN.600.120
+ * Intermediate Programming
+ * Homework #8, part 1
+ *
+ * Critter.hpp - Contains the functions and variables that allow
+ * the user create/ manipulate (to a point) the critter. Also contains
+ * the variables that ultimately define the critter.
+ *
+ * Last Modified: November 2, 2015
+ * *****************************************************************************/
+
+
 #ifndef HW8_CRITTER_UTILS
 #define HW8_CRITTER_UTILS
 
 #include <string>
 #include "binary.hpp"
-#include "critter.cpp"
 
 class Critter{
  public:
