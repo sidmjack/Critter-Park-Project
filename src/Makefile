@@ -10,15 +10,12 @@
 # out what should be tests and what should be "normal" executables,
 # and compile everything appropriately.
 #
-# It assumes C program files are named *.c, and that C++
-# program files are named *.cpp (it will not detect *.cc files as written)
-#
-# Test source files must end in "Test.c" (for C) or "Test.cpp" (for C++)
-# e.g. "unitTest.cpp" or "myFunctionTest.c"
+# Test source files must end in "Test.c" 
+# e.g. "unitTest.c" or "myFunctionTest.c"
 #
 # Binaries will be placed in ../bin with names that match the source
 # file they were compiled from; e.g. hw6.c will generate ../bin/hw6,
-# and unitTest.cpp will generate ../bin/unitTest
+# and unitTest.c will generate ../bin/unitTest
 #
 # You can change the stuff up top if you want; things like
 # debug mode and file paths and default target are easy to switch.
@@ -41,9 +38,9 @@ default: test
 ###############################
 # paths
 ###############################
-# where to look for .c/cpp files
+# where to look for .c files
 SRC_DIRS = .
-# where to look for .h/hpp files
+# where to look for .h files
 INC_DIRS = ../include
 # where to put .o files
 OBJ_DIR = ./obj
@@ -89,13 +86,20 @@ LIBS = -lm
 # figure out what source files we are using for what
 INCLUDES := $(wildcard $(patsubst %, %/*.h*, $(INC_DIRS))) 
 C_SOURCES := $(wildcard $(patsubst %, %/*.c, $(SRC_DIRS))) 
-CPP_SOURCES := $(wildcard $(patsubst %, %/*.cpp, $(SRC_DIRS))) 
+ifneq ($(strip $(C_SOURCES)),)
+# don't try this if there aren't any C files, as it will hang waiting for input...
 C_MAINS := $(shell grep -l "int main" $(C_SOURCES))
 C_TESTS := $(filter %Test.c,$(C_MAINS)) 
 C_NON_MAINS := $(shell grep -L "int main" $(C_SOURCES))
+endif
+
+CPP_SOURCES := $(wildcard $(patsubst %, %/*.cpp, $(SRC_DIRS))) 
+ifneq ($(strip $(CPP_SOURCES)),)
+# don't try this if there aren't any C++ files, as it will hang waiting for input...
 CPP_MAINS := $(shell grep -l "int main" $(CPP_SOURCES))
 CPP_TESTS := $(filter %Test.cpp,$(CPP_MAINS)) 
 CPP_NON_MAINS := $(shell grep -L "int main" $(CPP_SOURCES))
+endif
 
 # figure out what executables we're going to want to build
 C_EXECUTABLES := $(patsubst %.c, $(BIN_DIR)/%, $(C_MAINS))
@@ -202,10 +206,11 @@ $(OBJ_DIR)/%.cppdep: %.cpp
 # "utility" rules
 ###############################
 # this line says these targets aren't expected to generate files named after the target
-.PHONY: clean checVars test gcov all default
+.PHONY: clean checkVars test gcov all default
 
 # target to check the contenst of our variables
 checkVars:
+	@echo C sources - \"$(C_SOURCES)\"; echo 
 	@echo C mains - $(C_MAINS); echo 
 	@echo C non-mains - $(C_NON_MAINS); echo 
 	@echo C main_objects - $(C_MAIN_OBJECTS); echo 
@@ -213,6 +218,7 @@ checkVars:
 	@echo C executables - $(C_EXECUTABLES); echo 
 	@echo C tests - $(C_TESTS); echo 
 	@echo C test-executables - $(C_TEST_EXECUTABLES); echo 
+	@echo C++ sources - $(CPP_SOURCES); echo 
 	@echo C++ mains - $(CPP_MAINS); echo 
 	@echo C++ non-mains - $(CPP_NON_MAINS); echo 
 	@echo C++ main_objects - $(CPP_MAIN_OBJECTS); echo 
@@ -224,4 +230,4 @@ checkVars:
 # clean up generated files
 clean:
 	@echo removing generated files...
-	@rm -f $(OBJECTS) $(DEPFILES) $(OBJ_DIR)/*.gcda $(OBJ_DIR)/*.gcno *.gcda *.gcno *.gcov 
+	@rm -f $(C_OBJECTS) $(C_DEPFILES) $(CPP_OBJECTS) $(CPP_DEPFILES) $(OBJ_DIR)/*.gcda $(OBJ_DIR)/*.gcno *.gcda *.gcno *.gcov 

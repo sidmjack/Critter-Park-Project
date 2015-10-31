@@ -2,6 +2,8 @@
 #define HW8_CRITTER_UTILS
 
 #include <string>
+#include "binary.hpp"
+#include "critter.cpp"
 
 class Critter{
  public:
@@ -43,6 +45,7 @@ class Critter{
   Digits digits;
 
   // the Critter's genes
+  Binary binary;
   
 };
 

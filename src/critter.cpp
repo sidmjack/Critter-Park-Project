@@ -1,8 +1,6 @@
 /*Modeled from Ben Mitchell's Class Example*/
 
 #include <iostream>
-#include "Critter.hpp"
-
 
 // default constructor
 Critter::Critter(){
