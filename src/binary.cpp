@@ -12,25 +12,45 @@
 
 
 
-// utility for printing bit strings to the console in readable form
-void printBinary(const BINARY_TYPE number){
-  for(int i = (int)sizeof(number)*8-1; i > -1; i--){
-    if((number >> i) % 2 == 0){
-      std::cout << "0";
-    }else{
-      std::cout << "1";
-    }
-  }
+
+
+
+
+// wrapper for the mutate function - mutates a Binary's genome in situ
+//
+// severity - number within [0,1] that determines the mutation strength
+void mutate(float severity){
+  // call the basic mutate() function on this Binary
+  this.genome = mutate(this.genome, severity);
   return;
 }
+
+
+
+// warpper for the cross function - returns a binary from two parent binaries
+//
+// parent1, parent2 - Binary instances to cross
+// jitter - number within [0,1] that determines how "mixed" the result will be
+Binary cross(Binary parent1, Binary parent2, float jitter){
+  // create a blank Binary to store the outcome of the cross
+  Binary result = Binary();
+  // call the basic cross() function
+  Binary.genome = cross(parent1.getGenome(), parent2.getGenome(), jitter);
+  // return the finished Binary
+  return result;
+}
+  
+
+
+/**************** FUNCTIONS USED MOSTLY BY OTHER FUNCTIONS *******************/
+
+
 
 // function for crossing two binary strings with a given jitter
 //
 // n1, n2 - the binary strings that will be crossed
 // jitter - the probability that the next bit will come from the opposite
 //          input string, should be in range [0,1]
-//
-// 
 BINARY_TYPE cross(const BINARY_TYPE n1, const BINARY_TYPE n2, float jitter){
   float random;
   char parent = 'a';
@@ -79,7 +99,14 @@ BINARY_TYPE cross(const BINARY_TYPE n1, const BINARY_TYPE n2, float jitter){
   return baby;
 }
 
+
+
 // function for mutating a given binary string by a given factor
+// 
+// number - the string to mutate
+// severity - controls the strength of the changes, should be within [0,1]
+//
+// returns a mutated version of the first string
 BINARY_TYPE mutate(const BINARY_TYPE number, float severity){
   float random;
   BINARY_TYPE mask = 0;
@@ -113,6 +140,33 @@ BINARY_TYPE mutate(const BINARY_TYPE number, float severity){
 
   // finished
   return mutant;
+}
+
+// function for reading the raw binary string
+BINARY_TYPE getGenome(){
+  return this.genome;
+}
+
+// function for setting the genome to a new string
+void setGenome(BINARY_TYPE genome){
+  this.genome = genome;
+  return;
+}
+
+
+
+// utility for printing bit strings to the console in readable form
+// NOTE: don't use "<<" in combination with this function because I
+// didn't overload the "<<" operator
+void printBinary(const BINARY_TYPE number){
+  for(int i = (int)sizeof(number)*8-1; i > -1; i--){
+    if((number >> i) % 2 == 0){
+      std::cout << "0";
+    }else{
+      std::cout << "1";
+    }
+  }
+  return;
 }
 
 
