@@ -16,9 +16,6 @@
  * *****************************************************************************/
 
 
-#include <iostream>
-#include "critter.hpp"
-
 // default constructor
 Critter::Critter(){
 
@@ -29,14 +26,15 @@ Critter::Critter(){
   strangeness = 0.0;
 
   // initialize features to default feature constructors
-  covering = Covering::Covering();
-  digits = Digits::Digits();
-  eyes = Eyes::Eyes();
-  limbs = Limbs::Limbs();
+  covering;
+  digits;
+  eyes;
+  limbs;
+}
 
 
 // returns the name of this critter
-std::string Critter :: getName() const {
+std::string const Critter :: getName(){
   return name;
 }
 
@@ -46,13 +44,13 @@ void Critter::setName(std::string newname) {
 }
 
 // returns the Binary encoding of this Critter
-Binary getBinary(){
-  return this.Binary;
+Binary Critter::getBinary(){
+  return this->binary;
 }
 
 // sets the Binary encoding of this Critter
-void setBinary(Binary newBinary){
-  this.Binary = newBinary;
+void Critter::setBinary(Binary newBinary){
+  this->binary = newBinary;
 }
 
 // prints a description of this critter
@@ -61,9 +59,8 @@ void Critter :: printCritter() {
 }
 
 // set a critter's name to another critter's
-Critter & Critter :: operator= (const Critter &other) {
+Critter& Critter::operator= (const Critter &other) {
   name = other.name;
-
 }
 
 // check if two critters have the same name
@@ -72,14 +69,14 @@ bool Critter :: operator== (const Critter &other) {
 }
 
 // update the Critter's genome using two parent Critters and a jitter value
-void parents(Critter mommy, Critter daddy, float jitter){
-  this.Binary = Binary.(mommy.getBinary(), daddy.getBinary(), jitter);
+void Critter::parents(Critter mommy, Critter daddy, float jitter){
+  this->binary = Binary::cross(mommy.getBinary(), daddy.getBinary(), jitter);
   return;
 }
 
 // mutate this Critter's genome by a specified amount between [0,1]
-void mutate(float severity){
-  this.Binary = Binary.mutate(this.Binary);
+void Critter::mutate(float severity){
+  this->mutate(severity);
 }
 
 void Critter :: unitTest() {

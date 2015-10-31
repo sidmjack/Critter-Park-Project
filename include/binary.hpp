@@ -36,7 +36,6 @@
 #include <map>
 #include <cstdlib>
 #include <ctime>
-#include <iostream>
 
 class Binary{
   public:
@@ -48,14 +47,14 @@ class Binary{
   BINARY_TYPE encode(const BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas); 
 
   /*Decode Function: Decodes single traits from within the encoded genome*/
-  BINARY_TYPE decode(const BINARY TYPE* genome_canvas);
+  BINARY_TYPE decode(const BINARY_TYPE* genome_canvas);
 
   /**************************************************************************/
   
   /*MATE CRITTER FUNCTIONS*/
 
   // wrapper for the cross function
-  Binary cross(Binary parent1, Binary parent2, float jitter);
+  static Binary cross(Binary parent1, Binary parent2, float jitter);
 
   // wrapper for the mutate function
   void mutate(float severity);

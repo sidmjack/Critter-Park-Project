@@ -29,7 +29,7 @@ class Eyes{
 	private:
 
 	/*New Feature Map*/
-	std::map<string, std::string[]> eyes_map;
+	std::map<std::string, std::string[]> eyes_map;
 
 	/*CRITTER GENOME FUNCTIONS*/
 
@@ -38,6 +38,6 @@ class Eyes{
 	/*Defines the number of bits needed to categorize those features*/
 	int length;
 
-}
+};
 
 #endif
