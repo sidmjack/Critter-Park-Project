@@ -31,12 +31,20 @@ class Eyes{
 	/*New Feature Map*/
 	std::map<std::string, std::array<std::string, 4>>eyes_map;
 
-	/*CRITTER GENOME FUNCTIONS*/
+	/*Vector containing trait strings*/
+	std::vector<std::string> traits;
+
+	/*CRITTER GENOME FUNCTIONS VARIABLES*/
 
 	/*Number of descriptors contained in a class*/
 	int num_descriptors;
+	
 	/*Defines the number of bits needed to categorize those features*/
 	int length;
+
+	/*The offset of the feature..specifies where feature starts in genome.*/
+	int offset; //Feature Offset
+	int trait_offset; //Trait Offset
 
 };
 

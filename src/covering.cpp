@@ -14,7 +14,6 @@
  * *****************************************************************************/
 
 #include "covering.hpp"
-#include "binary.hpp"
 #include <map>
 #include <vector> 
 #include <string>
@@ -22,25 +21,28 @@
 	
 	Cover::Cover() {
 
-	/*NEW FEATURE MAP!*/
-	/* Finally realized that having a single map containing trait string 
-	 * keys that map to an array of their descriptors is probs
-	 * WAYYY more efficient than having a map for each trait.*/
-	
+	/*Defines which trait strings are in the vector*/
+	std::vector<std::string> traits = {"coat", "texture"};
+
 	/*Define which trait stings map to what descriptor string*/		
 	covering_map[coat] = {"pelt","set of scales","layer of plumes","leather hide"};
 	covering_map[texture] = {"smooth","course","slimy","bristly"};
-	
+
 	/*Defines how many descriptors each feature class contains*/
 	num_descriptors = 2;
 	
 	/*Defines the number of bits needed to categorize those features*/
 	length = 2;
-	
-	}
-	
-	/*Covering Offset Information: */
+
+		/*Covering Offset Information (1): */
 	   //First Segment (4 Bits)
   	   //Coat Requires 2 bits (1-2)
 	   //Texture Requires 2 bits (3-4)
+
+	/*The offset of the feature..specifies where feature starts in genome.*/
+	offset = 0;
+	trait_offset = 0;
+
+	}
+	
 

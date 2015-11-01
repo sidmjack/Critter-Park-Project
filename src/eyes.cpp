@@ -16,14 +16,16 @@
 
 #include "eyes.hpp"
 #include <map>
-#include <vectors>
+#include <vector>
 #include <string>
 #include <bitset>
 
-	/*Feature Maps/Vectors/Arrays*/
-	
 	Eyes:Eyes() {
-	
+
+
+	/*Defines which traits are in the vector*/	       
+	std::vector<std::string> traits = {"size", "pupil", "color", "number"};
+	     
 	/*Define which trait stings map to what descriptor string*/		
 	eyes_map["size"] = {"beady","little","large","mammoth"};
 	eyes_map["pupil"] = {"indiscernible","slit","compound","round"};
@@ -35,14 +37,19 @@
 	
 	/*Defines the number of bits needed to categorize those features*/
 	length = 2;
-
-	}
 	
-	/*Eyes Offset Information: */
+		/*Eyes Offset Information (3): */
 	   //Third Segment (8 Bits)
 	   //Size Requires 2 bits (1-2)
 	   //Pupil Requires 2 bits (3-4)
 	   //Color Requires 2 bits (5-6)
 	   //Number Requires 2 bits (7-8)
+
+	/*The offset of the feature..specifies where feature starts in genome.*/
+	offset = 8;
+	trait_offset = 0;
+
+	}
+	
 	
 
