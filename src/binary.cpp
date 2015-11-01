@@ -194,17 +194,38 @@ BINARY_TYPE encode(const BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas
 }
 
 /*Decode Function: Decodes single traits from within the encoded genome*/
-unsigned int decode_trait(const BINARY_TYPE* encoded_genome) {
+int decode_trait(const BINARY_TYPE* encoded_genome) {
 	
-	*encoded_genome = (*encoded_genome >> (offset + trait_offset));
+	long int GENOME_COPY = *encoded_genome;
 
-	int mask = (pow(2,length) -1); //Determines appropriate mask size
-	int trait_number = 0; //Trait number that serves as descriptor key	
+	GENOME_COPY = (*encoded_genome >> (offset + trait_offset));
 
-	trait_number = (*encoded_genome & mask);
+	int mask = (pow(2,length) -1);	
+	int trait_number = 0;	  
+	trait_number = (GENOME_COPY & mask);
 	
 	return trait_number;
 }
+
+/*Get Feature Function*/
+//This one just prints the traits...still working on having it
+//give a critter vector feature trait strings.
+
+void get_Features(){
+	
+	/*"Var" is ONLY a tester variable*/
+	std::string var;
+		
+	for (int i = 0; i < num_descriptors; i++){
+		trait_offset = i*length;
+		cout << "Trait Offset: " << trait_offset << "\n";
+		var = covering_map[traits.at(i)][decode_trait(&encoded_Genome)];
+		cout << "Descriptor " << (i+1) << ":" << var << "\n";
+	}
+	
+	return;
+}
+
 
 };//end class
 

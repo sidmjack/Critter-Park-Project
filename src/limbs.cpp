@@ -13,17 +13,17 @@
  * Last Modified: November 2, 2015
  * *****************************************************************************/
 
-
 #include "limbs.hpp"
 #include <map>
-#include <vectors>
+#include <vector>
 #include <string>
 #include <bitset>
 
-	/*Feature Maps/Vectors/Arrays*/
-	
 	Limbs:Limbs() {
-	
+
+	/*Defines which traits are in the vector*/	       
+	std::vector<std::string> traits = {"number", "shape"};
+	      
 	/*Define which trait stings map to what descriptor string*/	      
 	limbs_map["number"] = {"two","four","six","eight"};
 	limbs_map["shape"] = {"spindles","tentacles","forelegs","stubs"};
@@ -33,11 +33,15 @@
 
 	/*Defines the number of bits needed to categorize those features*/
 	length = 2;
-
-	}
-
-	/*Limbs Offset Information: */
+	
+		/*Limbs Offset Information (4): */
 	   //Fourth Segment (4 Bits)
 	   //Limb_Num Requires 2 bits (1-2)
 	   //Limb_Shape Requires 2 bits (3-4)
+
+	/*The offset of the feature..specifies where feature starts in genome.*/
+	offset = 16;
+	trait_offset = 0;
+
+	}
 

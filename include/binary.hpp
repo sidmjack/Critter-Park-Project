@@ -48,7 +48,11 @@ class Binary{
   BINARY_TYPE encode(const BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas); 
 
   /*Decode Function: Decodes single traits from within the encoded genome*/
-  BINARY_TYPE decode(const BINARY_TYPE* genome_canvas);
+  int decode(const BINARY_TYPE* genome_canvas);
+
+  /*Get Features Functions: stores string features into a vector of critter traits*/
+  void get_Features();
+
 
   /**************************************************************************/
   
@@ -82,6 +86,9 @@ class Binary{
   
   // the genome data itself, in all its glory
   BINARY_TYPE genome;
+
+  // descriptor vector ... still working on this 
+  std::vector<std::string> critter_traits;
 
 };
 
