@@ -29,7 +29,7 @@ class Digits{
 	private:
 	
 	/*NEW FEATURE MAP!*/
-	std::map<std::string, std::string[]> digits_map;
+	std::map<std::string, std::array<std::string, 4>> digits_map;
 		
 	/*CRITTER GENOME FUNCTIONS*/
 

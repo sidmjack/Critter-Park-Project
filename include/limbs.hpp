@@ -29,7 +29,7 @@ class Limbs{
 	private:
 	
 	/*New Feature Map*/
-	std::map<std::string, std::string[]> limbs_map;
+	std::map<std::string, std::array<std::string, 4>> limbs_map;
 	
 	/*CRITTER GENOME FUNCTIONS*/
 

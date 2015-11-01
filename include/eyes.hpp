@@ -29,7 +29,7 @@ class Eyes{
 	private:
 
 	/*New Feature Map*/
-	std::map<std::string, std::string[]> eyes_map;
+	std::map<std::string, std::array<std::string, 4>>eyes_map;
 
 	/*CRITTER GENOME FUNCTIONS*/
 
