@@ -193,27 +193,17 @@ BINARY_TYPE encode(const BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas
 	}	
 }
 
-//DECODE STILL NEEDS MAJOR REVISION...How I encoded may actually prove
-//to be problematic...Ugh
 /*Decode Function: Decodes single traits from within the encoded genome*/
-BINARY_TYPE decode(const BINARY TYPE* genome_canvas){
+unsigned int decode_trait(const BINARY_TYPE* encoded_genome) {
 	
-		/*Specific trait_offset may equals iterator of feature 
-		* multiplied by the length (bits conveying option #'s)*/
-		/*May need a for loop to run through the lengths of each
-		 * of the traits coming before the desired trait to
-		 * get an accurate offset number*/
+	*encoded_genome = (*encoded_genome >> (offset + trait_offset));
 
-		*encoded_genome = (*encoded_genome << (offset + trait_offset));
+	int mask = (pow(2,length) -1); //Determines appropriate mask size
+	int trait_number = 0; //Trait number that serves as descriptor key	
 
-		int mask = ((2^length) -1); //Determines appropriate mask size/
-		int trait_number = 0; //Trait number that serves as descriptor key.
-	  
-		trait_number = (*encoded_genome & mask);
-		
-		return trait_number;
-
-
+	trait_number = (*encoded_genome & mask);
+	
+	return trait_number;
 }
 
 };//end class

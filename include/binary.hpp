@@ -36,6 +36,7 @@
 #include <map>
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
 
 class Binary{
   public:
