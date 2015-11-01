@@ -30,7 +30,7 @@ class Covering{
 	private:
 	
 	/*New Feature Map*/
-	std::map<std::string, std::string[]> covering_map;
+	std::map<std::string, std::array<std::string, 4>> covering_map;
 	
 	/*CRITTER GENOME FUNCTIONS*/
 
