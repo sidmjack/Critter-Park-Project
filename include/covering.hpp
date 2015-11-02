@@ -37,7 +37,17 @@ class Covering{
 	
 	/*Vector containing trait strings*/
 	std::vector<std::string> traits;
+	
+	/*******************************************************************/
+	/*Phenotype (AKA: String of Critter's Unique Traits)*/
+	std::vector<std::stirng> phenotype;
 
+	/* Get_Feature Function uses the phenotype vector above to 
+	 * define the variables (accessible to Critter) containing
+	 * the Critters traits.*/
+
+	void get_Feature(std::vector<std::string>* phenotype);
+	/********************************************************************/
 	
 	/*CRITTER GENOME FUNCTION VARIABLES*/
 
