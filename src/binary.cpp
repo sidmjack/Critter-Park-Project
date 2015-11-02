@@ -194,11 +194,10 @@ void printBinary(const BINARY_TYPE n){
 //ENCODE DECODE FUNCTIONS:
 
 /*Encode Function: Encodes integer values onto a "blank" binary genome canvas*/
-BINARY_TYPE encode(const BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas){
 
-void encode(long int noncoded_genome, long int* genome_canvas){
+void encode(BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas, int descriptor_offset, int num_descriptors, int trait_offset, int length, int offset){
 	
-	long int NON_CODED_COPY = noncoded_genome;
+	BINARY_TYPE NON_CODED_COPY = noncoded_genome;
 
 	/*Shifts the non_coded genome to be ANDED with the appropriate integer*/
 	for (int i = 0; i < descriptor_offset-1; i++){
@@ -207,7 +206,7 @@ void encode(long int noncoded_genome, long int* genome_canvas){
 	
 	/*Loops through and encodes all traits of the feature.*/
 	for (int i = 0; i < num_descriptors; i++){
-		long int temp; //Evaluated integer
+		BINARY_TYPE temp; //Evaluated integer
 	
 		/*Grabs decoded number defining the feature*/
 		temp = (NON_CODED_COPY%10);
@@ -227,9 +226,9 @@ void encode(long int noncoded_genome, long int* genome_canvas){
 }
 
 /*Decode Function: Decodes single traits from within the encoded genome*/
-int decode_trait(const BINARY_TYPE* encoded_genome) {
+int decode_trait(const BINARY_TYPE* encoded_genome, int offset, int trait_offset, int length) {
 	
-	long int GENOME_COPY = *encoded_genome;
+	BINARY_TYPE GENOME_COPY = *encoded_genome;
 
 	GENOME_COPY = (*encoded_genome >> (offset + trait_offset));
 
@@ -245,7 +244,7 @@ int decode_trait(const BINARY_TYPE* encoded_genome) {
 // an easy to access vector containing all of the traits of that feature 
 // for the critter...
 
-void get_Features(std::vector<std::string>* critter_traits){
+void get_Features(std::vector<std::string>* critter_traits, int num_descriptors, int feature_offset, int trait_offset, int length, BINARY_TYPE covering_map, std::vector<std::string> traits, BINARY_TYPE encoded_Genome){
 
 	/*Variable that temporarily holds the string*/	
 	std::string var;
@@ -254,7 +253,7 @@ void get_Features(std::vector<std::string>* critter_traits){
 		/*Keeps track of which decode trait is evaluated*/
 		trait_offset = i*length; 
 		/*Gets trait strings using the encoded genome & trait maps*/
-		var = covering_map[traits.at(i)][decode_trait(&encoded_Genome)];	
+		var = covering_map[traits.at(i)][decode_trait(&encoded_Genome, int feature_offset, int trait_offset, int length)];	
 		/*Pushes the string traits into the critter trait feature vector*/
 		critter_traits->push_back(var);
 	}
