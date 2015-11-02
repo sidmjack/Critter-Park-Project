@@ -1,10 +1,17 @@
 #include "critter.hpp"
+#include "menu.hpp"
+
 using std::cout;
 using std::endl;
 
 int main(){
 
-  Critter wilbur;
+  int param1 = 0;
+  int param2 = 0;
+  int command = 0;
+  std::string name;
+
+  Critter wilbur, mary;
   Binary jenkins;
   
   cout << "jenkins: \n";
@@ -19,17 +26,28 @@ int main(){
 
   // try with a Critter
   cout << "wilbur: " << endl;
+  printBinary(wilbur.getBinary().getGenome());
   Binary WGENES = wilbur.getBinary();
-  cout << "mutating....";
+  cout << "\n mutating....";
   wilbur.mutate(0.5);
   cout << "super wilbur:" << endl;
   printBinary(wilbur.getBinary().getGenome());
   cout << endl;
-
   
+  mary.mutate(0.5);
+  Critter baby;
+  baby.parents(mary, wilbur, 0.5);
+  cout << "baby genes:\n";
+  printBinary(baby.getBinary().getGenome());
+  baby.setName("sophie");
+  cout << "baby's name is "<<baby<<", isn't that sweet?"<<endl;
+
+  cout << "attempting to load the menu" << endl;
+  printMenu();
+  getInput(&command, &param1, &param2, &name);
 
 
-  std::cout << "\n\nI can't believe it's not butter!\n";
+  std::cout << "I can't believe it's not butter!\n";
  
 
   return 0;
