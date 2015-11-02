@@ -30,8 +30,13 @@ Critter::Critter(){
   digits;
   eyes;
   limbs;
+  binary;
 }
 
+// destructor
+Critter::~Critter(){
+  std::cout << "Critter is kill.\n";
+}
 
 // returns the name of this critter
 std::string const Critter :: getName(){
@@ -45,7 +50,8 @@ void Critter::setName(std::string newname) {
 
 // returns the Binary encoding of this Critter
 Binary Critter::getBinary(){
-  return this->binary;
+  Binary out = this->binary;
+  return out;
 }
 
 // sets the Binary encoding of this Critter
@@ -71,8 +77,9 @@ void Critter :: printCritter() {
 }
 
 // set a critter's name to another critter's
-Critter& Critter::operator= (const Critter &other) {
+void Critter::operator= (const Critter &other) {
   name = other.name;
+  return;
 }
 
 // check if two critters have the same name
@@ -82,21 +89,22 @@ bool Critter :: operator== (const Critter &other) {
 
 // update the Critter's genome using two parent Critters and a jitter value
 void Critter::parents(Critter mommy, Critter daddy, float jitter){
-  this->binary = Binary::cross(mommy.getBinary(), daddy.getBinary(), jitter);
+  this->binary.cross(mommy.getBinary(), daddy.getBinary(), jitter);
   return;
 }
 
 // mutate this Critter's genome by a specified amount between [0,1]
 void Critter::mutate(float severity){
-  this->mutate(severity);
+  this->binary.genome = Binary::mutate(binary.genome, severity);
 }
 
 void Critter :: unitTest() {
 }
 
-
-std::ostream & operator<< (std::ostream & os, const Critter &c) {
+// print a name for this critter in an ostream
+std::ostream & operator<< (std::ostream & os, const Critter& c) {
   os << c.name;
-  os << " is a Critter.\n";
+//  os << " is a Critter.\n";  <----- for some reason, uncommenting this causes an error
+//  along the lines of "<< undefined for types osream_basic<char> and const char[16]
   return os;
 }
