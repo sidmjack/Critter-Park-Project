@@ -1,2 +1,2 @@
 obj/covering.o: covering.cpp ../include/covering.hpp \
- ../include/binary.hpp ../include/binary.hpp
+ ../include/binary.hpp

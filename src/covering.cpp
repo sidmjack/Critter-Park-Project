@@ -27,7 +27,18 @@
 	/*Define which trait stings map to what descriptor string*/		
 	covering_map[coat] = {"pelt","set of scales","layer of plumes","leather hide"};
 	covering_map[texture] = {"smooth","course","slimy","bristly"};
-	
+
+	/*****************************************************************/
+	/*Phenotype Vector*/
+	phenotype;
+
+	/*Get Feature Function*/
+	void get_Feature(std::vector<std::string>* phenotype){
+		get_Features(phenotype);
+		return;
+	}
+	/*****************************************************************/
+
 	/*Trait Strings*/
 	coat = " ";
 	texture = " ";
