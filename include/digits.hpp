@@ -24,8 +24,11 @@
 class Digits{
 	
 	public:
+	
 	/*Information Accessible to the User*/
-		
+	std::string type;
+	std::string amount;
+	
 	private:
 	
 	/*NEW FEATURE MAP!*/
@@ -45,6 +48,8 @@ class Digits{
 	/*The offset of the feature..specifies where feature starts in genome.*/
 	int offset; //Feature Offset
 	int trait_offset; //Trait Offset
+	int descriptor_offset; //Trait # of the first feature trait (relative to genome).
+
 
 };
 

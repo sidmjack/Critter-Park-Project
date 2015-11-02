@@ -169,27 +169,34 @@ BINARY_TYPE genome;
 //ENCODE DECODE FUNCTIONS:
 
 /*Encode Function: Encodes integer values onto a "blank" binary genome canvas*/
-BINARY_TYPE encode(const BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas){
 
-	*genome_canvas = (*genome_canvas << offset);	
+void encode(long int noncoded_genome, long int* genome_canvas){
+	
+	long int NON_CODED_COPY = noncoded_genome;
 
+	/*Shifts the non_coded genome to be ANDED with the appropriate integer*/
+	for (int i = 0; i < descriptor_offset-1; i++){
+		NON_CODED_COPY = (NON_CODED_COPY/10); 
+	}
+	
+	/*Loops through and encodes all traits of the feature.*/
 	for (int i = 0; i < num_descriptors; i++){
-		int temp; //Evaluated integer
-		//unsigned long int genome_canvas = 0;
-
+		long int temp; //Evaluated integer
+	
 		/*Grabs decoded number defining the feature*/
-		temp = (noncoded_genome%10);
-		noncoded_genome = (noncoded_genome/10);
+		temp = (NON_CODED_COPY%10);
+		NON_CODED_COPY = (NON_CODED_COPY/10);
+		
+		/*Trait Offset (ie How many traits read in feature)*/
+		trait_offset = i*length;
+
+		//Shifts temp to the appropriate position to be
+		//ANDED with the genome_canvas.
+		temp = ( temp << (offset + trait_offset));
 	
 		/*Adds the binary interpretation of the 
 		 * encoded feature to the genome canvas.*/
-		*genome_canvas = (temp | *genome_canvas);
-			
-		/*Shifts the genome canvas by the number
-		 * of bits previously "used". */
-		if(i < num_descriptors-1){
-			*genome_canvas = (*genome_canvas  << length);
-		}
+		*genome_canvas = (temp | *genome_canvas);		
 	}	
 }
 

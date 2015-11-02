@@ -29,7 +29,11 @@
 	/*Define which trait stings map to what descriptor string*/		       
 	digits_map["type"] = {"toes","claws","fingers","talons"};
 	digits_map["amount"] = {"two","three","five","seven"};
-		
+	
+	/*Trait Strings*/
+	type = " ";
+	amount = " ";
+	
 	/*Defines how many descriptors each feature class contains*/
 	num_descriptors = 2;
 
@@ -44,6 +48,8 @@
 	/*The offset of the feature..specifies where feature starts in genome.*/
 	offset = 4;
 	trait_offset = 0;
+	descriptor_offset = 3;
+
 
 	}
 	

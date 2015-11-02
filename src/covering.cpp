@@ -27,6 +27,10 @@
 	/*Define which trait stings map to what descriptor string*/		
 	covering_map[coat] = {"pelt","set of scales","layer of plumes","leather hide"};
 	covering_map[texture] = {"smooth","course","slimy","bristly"};
+	
+	/*Trait Strings*/
+	coat = " ";
+	texture = " ";
 
 	/*Defines how many descriptors each feature class contains*/
 	num_descriptors = 2;
@@ -42,6 +46,7 @@
 	/*The offset of the feature..specifies where feature starts in genome.*/
 	offset = 0;
 	trait_offset = 0;
+	descriptor_offset = 1;
 
 	}
 	

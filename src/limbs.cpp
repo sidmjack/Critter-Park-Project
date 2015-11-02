@@ -28,6 +28,10 @@
 	limbs_map["number"] = {"two","four","six","eight"};
 	limbs_map["shape"] = {"spindles","tentacles","forelegs","stubs"};
 
+	/*Trait Strings*/
+	number = " ";
+	shape = " ";
+
 	/*Defines how many descriptors each feature class contains*/
 	num_descriptors = 2;
 
@@ -42,6 +46,8 @@
 	/*The offset of the feature..specifies where feature starts in genome.*/
 	offset = 16;
 	trait_offset = 0;
+	descriptor_offset = 1;
+
 
 	}
 

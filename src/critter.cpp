@@ -55,7 +55,19 @@ void Critter::setBinary(Binary newBinary){
 
 // prints a description of this critter
 void Critter :: printCritter() {
-  //TODO Critter Descriptor Function Here!
+	cout << "********************************************";
+	cout << "********************************************\n";
+	cout << "Meet " << this->name << "!\n";	
+	cout << "\tThis particular critter is covererd in a ";
+	cout << this->covering.texture << " " << this->covering.coat;
+	cout << ", has " << this->eyes.number << "\n" << this->eyes.size;
+	cout << " " << this->eyes.color << " eye(s) with " << this->eyes.pupil;
+	cout << " pupils, and " << this->limbs.number << " ";
+	cout << this->limbs.shape << ", each ending in ";
+	cout << this->digits.amount << " " << this->digits.type;
+	cout << "." << "\n";
+	cout << "********************************************";
+	cout << "********************************************\n";
 }
 
 // set a critter's name to another critter's

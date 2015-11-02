@@ -35,6 +35,10 @@ class Limbs{
 	std::vector<std::string> traits;
 	
 	/*CRITTER GENOME FUNCTION VARIABLES*/
+	
+	/*String Traits*/
+	std::string number;
+	std::string shape;
 
 	/*Number of descriptors contained in a class*/
 	int num_descriptors;
@@ -45,6 +49,8 @@ class Limbs{
 	/*The offset of the feature..specifies where feature starts in genome.*/
 	int offset; //Feature Offset
 	int trait_offset; // Trait Offset
+	int descriptor_offset; //Trait # of the first feature trait (relative to genome).
+
 
 };
 

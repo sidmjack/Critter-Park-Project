@@ -32,6 +32,12 @@
 	eyes_map["color"] = {"blood-shot","azure","emerald","golden"};
 	eyes_map["number"] = {"one eye","two eyes","four eyes","eight eyes"};
 
+	/*Trait Strings: */
+	size = " ";
+	pupil = " ";
+	color = " ";
+	number = " ";
+
 	/*Defines how many descriptors each feature class contains*/
 	num_descriptors = 4;
 	
@@ -48,6 +54,8 @@
 	/*The offset of the feature..specifies where feature starts in genome.*/
 	offset = 8;
 	trait_offset = 0;
+	descriptor_offset = 5;
+
 
 	}
 	

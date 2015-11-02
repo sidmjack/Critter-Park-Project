@@ -24,8 +24,13 @@
 class Eyes{
 	
 	public:
+
 	/*Information Accessible to the User*/
-		
+	std::string size;
+	std::string pupil;
+	std::string color;
+	std::string number;
+
 	private:
 
 	/*New Feature Map*/
@@ -45,6 +50,8 @@ class Eyes{
 	/*The offset of the feature..specifies where feature starts in genome.*/
 	int offset; //Feature Offset
 	int trait_offset; //Trait Offset
+	int descriptor_offset; //Trait # of the first feature trait (relative to genome).
+
 
 };
 
