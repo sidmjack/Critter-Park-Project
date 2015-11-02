@@ -215,23 +215,36 @@ int decode_trait(const BINARY_TYPE* encoded_genome) {
 }
 
 /*Get Feature Function*/
-//This one just prints the traits...still working on having it
-//give a critter vector feature trait strings.
+// This function returns the strings of a specfic critter into 
+// an easy to access vector containing all of the traits of that feature 
+// for the critter...
 
-void get_Features(){
-	
-	/*"Var" is ONLY a tester variable*/
+void get_Features(std::vector<std::string>* critter_traits){
+
+	/*Variable that temporarily holds the string*/	
 	std::string var;
 		
 	for (int i = 0; i < num_descriptors; i++){
-		trait_offset = i*length;
-		cout << "Trait Offset: " << trait_offset << "\n";
+		
+		/*Descriptor Offset*/
+		int d_offset = (descriptor_offset - 1);
+		/*The "-1" accounts for the fact that the vector's first
+		 * position is zero, rather than one.*/
+		
+		/*Keeps track of which decode trait is evaluated*/
+		trait_offset = i*length; 
+
+		/*Gross function nested map that gets us the string we want
+		 * using the encoded genome and feature trait maps*/
 		var = covering_map[traits.at(i)][decode_trait(&encoded_Genome)];
-		cout << "Descriptor " << (i+1) << ":" << var << "\n";
+		
+		/*Pushes the string traits into the critter trait feature vector*/
+		critter_traits->push_back(var);
 	}
 	
 	return;
 }
+
 
 
 };//end class
