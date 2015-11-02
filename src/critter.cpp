@@ -50,7 +50,8 @@ void Critter::setName(std::string newname) {
 
 // returns the Binary encoding of this Critter
 Binary Critter::getBinary(){
-  return this->binary;
+  Binary out = this->binary;
+  return out;
 }
 
 // sets the Binary encoding of this Critter
@@ -66,6 +67,7 @@ void Critter :: printCritter() {
 // set a critter's name to another critter's
 void Critter::operator= (const Critter &other) {
   name = other.name;
+  return;
 }
 
 // check if two critters have the same name
@@ -81,7 +83,7 @@ void Critter::parents(Critter mommy, Critter daddy, float jitter){
 
 // mutate this Critter's genome by a specified amount between [0,1]
 void Critter::mutate(float severity){
-  this->mutate(severity);
+  this->binary.genome = Binary::mutate(binary.genome, severity);
 }
 
 void Critter :: unitTest() {

@@ -31,6 +31,7 @@
 // constructor
 Binary::Binary(){
   genome = 0;
+  std::cout << "new Binary!";
 }
 
 // destructor
