@@ -12,12 +12,37 @@
  * Last Modified: November 2, 2015
  *****************************************************************************/
 
-class Binary{
+
+//// if we need more than a long, change it here: ////
+///                                                ///
+             #define BINARY_TYPE long int          ///
+///                                                ///
+//////////////////////////////////////////////////////
+
+#include <vector>
+#include <map>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
+
+
+#include <iostream>
+
+// constructor
+Binary::Binary(){
+  genome = 0;
+}
+
+// destructor
+Binary::~Binary(){
+  std::cout << "genome is kill.\n";
+}
+
 
 // wrapper for the mutate function - mutates a Binary's genome in situ
 //
 // severity - number within [0,1] that determines the mutation strength
-void mutate(float severity){
+void Binary::mutate(float severity){
   // call the basic mutate() function on this Binary
   this->setGenome(mutate(this->getGenome(), severity));
   return;
@@ -27,13 +52,11 @@ void mutate(float severity){
 //
 // parent1, parent2 - Binary instances to cross
 // jitter - number within [0,1] that determines how "mixed" the result will be
-Binary cross(Binary parent1, Binary parent2, float jitter){
-  // create a blank Binary to store the outcome of the cross
-  Binary result;
-  // call the basic cross() function
-  result.setGenome(cross(parent1.getGenome(), parent2.getGenome(), jitter));
-  // return the finished Binary
-  return result;
+void Binary::cross(Binary parent1, Binary parent2, float jitter){
+  // call the basic cross() function, set the genome to its result
+  this->setGenome(cross(parent1.getGenome(), parent2.getGenome(), jitter));
+  // return
+  return;
 }
   
 
@@ -45,7 +68,7 @@ Binary cross(Binary parent1, Binary parent2, float jitter){
 // n1, n2 - the binary strings that will be crossed
 // jitter - the probability that the next bit will come from the opposite
 //          input string, should be in range [0,1]
-BINARY_TYPE cross(const BINARY_TYPE n1, const BINARY_TYPE n2, float jitter){
+BINARY_TYPE Binary::cross(const BINARY_TYPE n1, const BINARY_TYPE n2, float jitter){
   float random;
   char parent = 'a';
   BINARY_TYPE baby = 0;
@@ -101,7 +124,7 @@ BINARY_TYPE cross(const BINARY_TYPE n1, const BINARY_TYPE n2, float jitter){
 // severity - controls the strength of the changes, should be within [0,1]
 //
 // returns a mutated version of the first string
-BINARY_TYPE mutate(const BINARY_TYPE number, float severity){
+BINARY_TYPE Binary::mutate(BINARY_TYPE number, float severity){
   float random;
   BINARY_TYPE mask = 0;
   BINARY_TYPE mutant = 0;
@@ -137,12 +160,12 @@ BINARY_TYPE mutate(const BINARY_TYPE number, float severity){
 }
 
 // function for reading the raw binary string
-BINARY_TYPE getGenome(){
+BINARY_TYPE Binary::getGenome(){
   return this->genome;
 }
 
 // function for setting the genome to a new string
-void setGenome(BINARY_TYPE genome){
+void Binary::setGenome(BINARY_TYPE genome){
   this->genome = genome;
   return;
 }
@@ -152,7 +175,8 @@ void setGenome(BINARY_TYPE genome){
 // utility for printing bit strings to the console in readable form
 // NOTE: don't use "<<" in combination with this function because I
 // didn't overload the "<<" operator
-void printBinary(const BINARY_TYPE number){
+void printBinary(const BINARY_TYPE n){
+  BINARY_TYPE number = n;
   for(int i = (int)sizeof(number)*8-1; i > -1; i--){
     if((number >> i) % 2 == 0){
       std::cout << "0";
@@ -164,11 +188,15 @@ void printBinary(const BINARY_TYPE number){
 }
 
 // this is a hack, for now
-BINARY_TYPE genome;
+//BINARY_TYPE genome;
 
 //ENCODE DECODE FUNCTIONS:
 
-/*Encode Function: Encodes integer values onto a "blank" binary genome canvas*/
+/*
+
+//Encode Function: Encodes integer values onto a "blank" binary genome canvas
+
+/
 BINARY_TYPE encode(const BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas){
 
 	*genome_canvas = (*genome_canvas << offset);	
@@ -177,23 +205,23 @@ BINARY_TYPE encode(const BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas
 		int temp; //Evaluated integer
 		//unsigned long int genome_canvas = 0;
 
-		/*Grabs decoded number defining the feature*/
+		// Grabs decoded number defining the feature
 		temp = (noncoded_genome%10);
 		noncoded_genome = (noncoded_genome/10);
 	
-		/*Adds the binary interpretation of the 
-		 * encoded feature to the genome canvas.*/
+		// Adds the binary interpretation of the 
+		// encoded feature to the genome canvas.
 		*genome_canvas = (temp | *genome_canvas);
 			
-		/*Shifts the genome canvas by the number
-		 * of bits previously "used". */
+		// Shifts the genome canvas by the number
+		// of bits previously "used".
 		if(i < num_descriptors-1){
 			*genome_canvas = (*genome_canvas  << length);
 		}
 	}	
 }
 
-/*Decode Function: Decodes single traits from within the encoded genome*/
+// Decode Function: Decodes single traits from within the encoded genome
 int decode_trait(const BINARY_TYPE* encoded_genome) {
 	
 	long int GENOME_COPY = *encoded_genome;
@@ -207,13 +235,13 @@ int decode_trait(const BINARY_TYPE* encoded_genome) {
 	return trait_number;
 }
 
-/*Get Feature Function*/
+//Get Feature Function
 //This one just prints the traits...still working on having it
 //give a critter vector feature trait strings.
 
 void get_Features(){
 	
-	/*"Var" is ONLY a tester variable*/
+	//"Var" is ONLY a tester variable
 	std::string var;
 		
 	for (int i = 0; i < num_descriptors; i++){
@@ -226,6 +254,7 @@ void get_Features(){
 	return;
 }
 
+*/
 
-};//end class
+//};//end class
 
