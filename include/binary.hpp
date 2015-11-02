@@ -40,6 +40,14 @@
 
 class Binary{
   public:
+  
+  // constructor
+  Binary();
+
+  // destructor
+  ~Binary();
+
+
   /***************************************************************************/
   
   /*ENCODE/DECODE FUNCTIONS*/
@@ -59,7 +67,7 @@ class Binary{
   /*MATE CRITTER FUNCTIONS*/
 
   // wrapper for the cross function
-  static Binary cross(Binary parent1, Binary parent2, float jitter);
+  void cross(Binary parent1, Binary parent2, float jitter);
 
   // wrapper for the mutate function
   void mutate(float severity);
@@ -91,5 +99,8 @@ class Binary{
   std::vector<std::string> critter_traits;
 
 };
+
+#include "binary.cpp"
+
 
 #endif

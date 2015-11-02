@@ -18,9 +18,11 @@
 #ifndef HW8_CRITTER_UTILS
 #define HW8_CRITTER_UTILS
 
-//#include <iostream>
-
 #include "binary.hpp"
+
+// this is so temporary it's not even funny
+//#include "binary.cpp"
+
 #include "eyes.hpp"
 #include "covering.hpp"
 #include "limbs.hpp"
@@ -60,10 +62,10 @@ class Critter{
   void unitTest();
 
   // overload the = operator
-  Critter & Critter :: operator= (const Critter &other);
+  void operator= (const Critter &other);
 
   // overload the == operator
-  bool Critter :: operator== (const Critter &other);
+  bool operator== (const Critter &other);
 
   // variables for describing the Critter
   std::string name;
@@ -83,6 +85,11 @@ class Critter{
   Binary binary;
   
 };
+
+  // overload the << operator
+  std::ostream & operator<< (std::ostream & os, const Critter &c);
+
+
 
 #include "critter.cpp"
 

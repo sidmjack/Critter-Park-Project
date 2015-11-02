@@ -30,8 +30,13 @@ Critter::Critter(){
   digits;
   eyes;
   limbs;
+  binary;
 }
 
+// destructor
+Critter::~Critter(){
+  std::cout << "Critter is kill.\n";
+}
 
 // returns the name of this critter
 std::string const Critter :: getName(){
@@ -59,7 +64,7 @@ void Critter :: printCritter() {
 }
 
 // set a critter's name to another critter's
-Critter& Critter::operator= (const Critter &other) {
+void Critter::operator= (const Critter &other) {
   name = other.name;
 }
 
@@ -70,7 +75,7 @@ bool Critter :: operator== (const Critter &other) {
 
 // update the Critter's genome using two parent Critters and a jitter value
 void Critter::parents(Critter mommy, Critter daddy, float jitter){
-  this->binary = Binary::cross(mommy.getBinary(), daddy.getBinary(), jitter);
+  this->binary.cross(mommy.getBinary(), daddy.getBinary(), jitter);
   return;
 }
 
@@ -82,9 +87,10 @@ void Critter::mutate(float severity){
 void Critter :: unitTest() {
 }
 
-
-std::ostream & operator<< (std::ostream & os, const Critter &c) {
+// print a name for this critter in an ostream
+std::ostream & operator<< (std::ostream & os, const Critter& c) {
   os << c.name;
-  os << " is a Critter.\n";
+//  os << " is a Critter.\n";  <----- for some reason, uncommenting this causes an error
+//  along the lines of "<< undefined for types osream_basic<char> and const char[16]
   return os;
 }
