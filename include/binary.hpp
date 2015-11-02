@@ -78,7 +78,7 @@ class Binary{
   BINARY_TYPE cross(const BINARY_TYPE n1, const BINARY_TYPE n2, float jitter);
 
   // function for mutating a given binary string by a given factor
-  BINARY_TYPE mutate(const BINARY_TYPE number, float severity);
+  static BINARY_TYPE mutate(const BINARY_TYPE number, float severity);
 
   // function for reading the raw genome
   BINARY_TYPE getGenome();
@@ -88,13 +88,13 @@ class Binary{
 
   // debugging utility for printing the numbers in binary to the console
   void printBinary(const BINARY_TYPE number);
-
-  /***************************************************************************/
-  private:
   
   // the genome data itself, in all its glory
   BINARY_TYPE genome;
 
+  /***************************************************************************/
+  private:
+  
   // descriptor vector ... still working on this 
   std::vector<std::string> critter_traits;
 
