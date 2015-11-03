@@ -21,7 +21,7 @@
 #include <bitset>
 
 	
-	Digits:Digits(){
+	Digits::Digits(){
 	
 	/*Defines which traits are in the vector*/	       
 	std::vector<std::string> traits = {"type", "amount"};

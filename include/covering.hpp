@@ -26,6 +26,8 @@ class Covering{
 	
 	public:
 	
+	Covering();
+
 	/*Information Accessible to the User*/
 	std::string coat;
 	std::string texture;
@@ -39,6 +41,9 @@ class Covering{
 	std::vector<std::string> traits;
 	
 	/*******************************************************************/
+	/*Critter Genome Here!!!*/
+	BINARY_TYPE genome;
+	
 	/*Phenotype (AKA: String of Critter's Unique Traits)*/
 	std::vector<std::string> phenotype;
 
@@ -46,7 +51,7 @@ class Covering{
 	 * define the variables (accessible to Critter) containing
 	 * the Critters traits.*/
 
-	void get_Feature(std::vector<std::string>* phenotype);
+	 void get_Feature(std::vector<std::string>& phenotype);
 	/********************************************************************/
 	
 	/*CRITTER GENOME FUNCTION VARIABLES*/

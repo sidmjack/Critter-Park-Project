@@ -19,24 +19,22 @@
 #include <string>
 #include <bitset>
 	
-	Cover::Cover() {
+	Covering::Covering() {
 
 	/*Defines which trait strings are in the vector*/
-	std::vector<std::string> traits = {"coat", "texture"};
+	/*std::vector<std::string>*/ traits = {"coat", "texture"};
 
 	/*Define which trait stings map to what descriptor string*/		
 	covering_map[coat] = {"pelt","set of scales","layer of plumes","leather hide"};
 	covering_map[texture] = {"smooth","course","slimy","bristly"};
 
 	/*****************************************************************/
-	/*Phenotype Vector*/
-	phenotype;
+	/*Critter Genome*/
+//	genome = binary.genome;
 
-	/*Get Feature Function*/
-	void get_Feature(std::vector<std::string>* phenotype){
-		get_Features(phenotype);
-		return;
-	}
+	/*Phenotype Vector*/
+	/*std::vector<std::string>*/ phenotype = {" ", " "};
+
 	/*****************************************************************/
 
 	/*Trait Strings*/
@@ -60,5 +58,14 @@
 	descriptor_offset = 1;
 
 	}
+	
+	/*Get Feature Function*/
+/*
+	void Covering::get_Feature(std::vector<std::string>& phenotype){
+		Binary::get_Features(phenotype, num_descriptors, offset, trait_offset, length, covering_map, traits, genome);
+		return;
+	} 
+*/	
+
 	
 

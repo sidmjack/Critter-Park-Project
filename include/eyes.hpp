@@ -24,7 +24,9 @@
 class Eyes{
 	
 	public:
-
+	
+	Eyes();
+	
 	/*Information Accessible to the User*/
 	std::string size;
 	std::string pupil;
