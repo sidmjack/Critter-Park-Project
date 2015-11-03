@@ -17,9 +17,9 @@
 #ifndef HW8_EYES_H
 #define HW8_EYES_H
 
-#include "binary.hpp"
 #include <string>
 #include <map>
+#include <vector>
 
 class Eyes{
 	
@@ -57,4 +57,5 @@ class Eyes{
 
 };
 
+#include "eyes.cpp"
 #endif

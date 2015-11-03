@@ -17,7 +17,6 @@
 #ifndef HW8_LIMBS_H
 #define HW8_LIMBS_H
 
-#include "binary.hpp"
 #include <string>
 #include <map>
 
@@ -55,5 +54,7 @@ class Limbs{
 
 
 };
+
+#include "limbs.cpp"
 
 #endif

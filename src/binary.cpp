@@ -265,5 +265,3 @@ void get_Features(std::vector<std::string>* phenotype, int num_descriptors, int 
 }
 
 
-};//end class
-
