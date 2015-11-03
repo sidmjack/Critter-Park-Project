@@ -13,15 +13,13 @@
  * Last Modified: November 2, 2015
  * *****************************************************************************/
 
-
 #include "eyes.hpp"
 #include <map>
 #include <vector>
 #include <string>
 #include <bitset>
 
-	Eyes:Eyes() {
-
+	Eyes::Eyes() {
 
 	/*Defines which traits are in the vector*/	       
 	std::vector<std::string> traits = {"size", "pupil", "color", "number"};
@@ -55,7 +53,6 @@
 	offset = 8;
 	trait_offset = 0;
 	descriptor_offset = 5;
-
 
 	}
 	

@@ -89,8 +89,4 @@ class Critter{
   // overload the << operator
   std::ostream & operator<< (std::ostream & os, const Critter &c);
 
-
-
-#include "critter.cpp"
-
 #endif

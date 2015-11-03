@@ -39,6 +39,7 @@
 #include <cmath>
 
 class Binary{
+  
   public:
   
   // constructor
@@ -99,8 +100,5 @@ class Binary{
   std::vector<std::string> critter_traits;
 
 };
-
-#include "binary.cpp"
-
 
 #endif

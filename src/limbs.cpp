@@ -19,7 +19,7 @@
 #include <string>
 #include <bitset>
 
-	Limbs:Limbs() {
+	Limbs::Limbs() {
 
 	/*Defines which traits are in the vector*/	       
 	std::vector<std::string> traits = {"number", "shape"};

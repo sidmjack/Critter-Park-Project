@@ -24,7 +24,13 @@
 class Limbs{
 	
 	public:
+	
+	Limbs();
+
 	/*Information Accessible to the User*/
+	
+	std::string number;
+	std::string shape;
 		
 	
 	
@@ -36,10 +42,6 @@ class Limbs{
 	
 	/*CRITTER GENOME FUNCTION VARIABLES*/
 	
-	/*String Traits*/
-	std::string number;
-	std::string shape;
-
 	/*Number of descriptors contained in a class*/
 	int num_descriptors;
 	
