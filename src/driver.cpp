@@ -1,14 +1,23 @@
-#include <iostream>
-#include <cmath>
-#include <string>
-#include <cstdbool>
-#include "critter.hpp"
+/******************************************************************************
+ * Florian Pontani & Sidney Jackson
+ * fpontan1 & sjacks85
+ * (917) 454-8493 & (386) 956-5577
+ * 
+ * EN.600.120
+ * Intermediate Programming
+ * Homework #8, part 1
+ *
+ * driver.cpp - contains implementations for the menu and related functions
+ *
+ * Last Modified: November 2, 2015
+ * 
+ * *****************************************************************************/
 
-//#include "critter.hpp" //For when we start adding functions
+#include "driver.hpp"
 
 using namespace std;
 
-
+// print a list of options for the user
 void printMenu(){	   
 	cout << "**************************************************";
 	cout << "****************************\n";
@@ -26,6 +35,7 @@ void printMenu(){
 
 }
 
+// do everything the user wants, given a vector full of critters
 bool menu(std::map<std::string, Critter> *critters){
 
         char menuChoice = 0;
@@ -499,6 +509,8 @@ bool menu(std::map<std::string, Critter> *critters){
 	
 }
 
+
+// this is the main program head
 int main(){
 	// set up a critter map
 	std::map<std::string, Critter> critters;

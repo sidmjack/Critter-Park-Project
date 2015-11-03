@@ -13,11 +13,11 @@
  * Last Modified: November 2, 2015
  * *****************************************************************************/
 
-#include "eyes.hpp"
 #include <map>
 #include <vector>
 #include <string>
 #include <bitset>
+#include "eyes.hpp"
 
 	Eyes::Eyes() {
 

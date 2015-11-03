@@ -1,1 +1,0 @@
-obj/eyes.o: eyes.cpp ../include/eyes.hpp ../include/binary.hpp

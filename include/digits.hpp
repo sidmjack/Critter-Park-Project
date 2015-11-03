@@ -19,6 +19,7 @@
 
 #include <string>
 #include <map>
+#include <vector>
 
 class Digits{
 	
@@ -53,5 +54,5 @@ class Digits{
 
 
 };
-#include "digits.cpp"
+
 #endif

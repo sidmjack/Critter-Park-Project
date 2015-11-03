@@ -19,6 +19,7 @@
 
 #include <string>
 #include <map>
+#include <vector>
 
 class Limbs{
 	
@@ -54,7 +55,5 @@ class Limbs{
 
 
 };
-
-#include "limbs.cpp"
 
 #endif

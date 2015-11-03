@@ -18,9 +18,10 @@
 #ifndef HW8_COVERING_H
 #define HW8_COVERING_H
 
-#include "binary.hpp"
 #include <string>
 #include <map>
+#include <vector>
+#include "binary.hpp"
 
 class Covering{
 	
@@ -69,6 +70,5 @@ class Covering{
 
 	
 };
-#include "covering.cpp"
 
 #endif
