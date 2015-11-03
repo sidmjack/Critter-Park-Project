@@ -24,6 +24,8 @@
 class Digits{
 	
 	public:
+
+	Digits();
 	
 	/*Information Accessible to the User*/
 	std::string type;

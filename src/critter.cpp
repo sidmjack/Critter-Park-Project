@@ -15,6 +15,10 @@
  * 
  * *****************************************************************************/
 
+#include "critter.hpp"
+#include <iostream>
+
+using std::cout;
 
 // default constructor
 Critter::Critter(){
