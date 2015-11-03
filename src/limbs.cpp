@@ -27,6 +27,16 @@
 	/*Define which trait stings map to what descriptor string*/	      
 	limbs_map["number"] = {"two","four","six","eight"};
 	limbs_map["shape"] = {"spindles","tentacles","forelegs","stubs"};
+	
+	/*****************************************************************/
+	/*Critter Genome*/
+	genome = 0;
+
+	/*Phenotype Vector*/
+	phenotype = {" ", " "};
+
+	/*****************************************************************/
+
 
 	/*Trait Strings*/
 	number = " ";
@@ -50,4 +60,11 @@
 
 
 	}
+	/*Get Feature Function*/
+
+	void Limbs::get_Feature(std::vector<std::string>& phenotype){
+		Binary::get_Features(phenotype, num_descriptors, offset, trait_offset, length, limbs_map, traits, genome);
+		return;
+	} 
+	
 

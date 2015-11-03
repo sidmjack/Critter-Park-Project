@@ -45,6 +45,10 @@ class Critter{
   // prints a neatly formatted bio abot this Critter
   void printCritter();
 
+  void set_Binary();
+
+  void set_Features();
+
   // default constructor
   Critter();
 

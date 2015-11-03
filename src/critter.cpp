@@ -80,6 +80,47 @@ void Critter :: printCritter() {
 	cout << "********************************************\n";
 }
 
+//Sets all genome values to that of the Critter's
+void Critter :: set_Binary() {
+
+	long int c_genome = this->binary.getGenome();
+
+	this->covering.genome = c_genome;
+	this->digits.genome = c_genome;
+	this->eyes.genome = c_genome;
+	this->limbs.genome = c_genome;
+
+	return;
+}
+
+//Sets all traits of the critter in accorance to critter's genome.
+
+void set_Features() {
+	
+	//This, in theory, sets the phenotype vectors of all features.
+	this->covering.get_Feature(this->covering.phenotype);
+	this->digits.get_Feature(this->digits.phenotype);
+	this->eyes.get_Feature(this->eyes.phenotype);
+	this->limbs.get_Feature(this->limbs.phenotype);
+	
+	//Covering Feature:
+	this->covering.coat = this->covering.phenotype.at(0);
+	this->covering.texture = this->covering.phenotype.at(1);
+	//Digits Feature:
+	this->digits.type = this->digits.phenotype.at(0);
+	this->digits.amount = this->digits.phenotype.at(1);
+	//Eyes Feature:
+	this->eyes.size = this->eyes.phenotype.at(0);
+	this->eyes.pupil = this->eyes.phenotype.at(1);
+	this->eyes.color = this->eyes.phenotype.at(2);
+	this->eyes.number = this->eyes.phenotype.at(3);
+	//Limbs Feature:
+	this->limbs.number = this->limbs.phenotype.at(0);
+	this->limbs.shape = this->limbs.phenotype.at(1);
+	return;
+
+}
+
 // set a critter's name to another critter's
 void Critter::operator= (const Critter &other) {
   name = other.name;
