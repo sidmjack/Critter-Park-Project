@@ -1,0 +1,71 @@
+***Sidney Jackson & Florian Pontani***
+***sjacks85@jhu.edu flo@jhu.edu***
+***(917) 454-8493 & (386) 956-5577***
+***EN.600.120***
+***Intermediate Programming***
+***Homework #8, Part 1***
+***Last Modified: October 31, 2015***
+
+*******************************************************************************
+				READ_ME FILE:
+*******************************************************************************
+SUMMARY:
+**We should probably consider making a menu for the driver at some point.**
+
+***Critter Class: 
+
+The critter class contains the characteristic values of the critter(scary
+,cute, strange), along with the critter data (binary genome) used to 
+interpret the characteristics of the critter, and other features that
+allow the user to manipulate the critter.
+
+***Feature Classes:
+ 
+Feature Details:
+   Feature 1: Covering
+   Feature 2: Eyes
+   Feature 3: Limbs
+   Feature 4: Digits
+
+*******************************************************************************
+Issues/Frustration:
+
+At first, we weren't entirely sure how to turn each individual feature
+characteristic into one cohesive binary string. It was later determined
+that using an already declared integer (a long int) of zero's that
+would be incremented using bit shifts (in accordance with the length of the
+known descriptor and its location in the "genome" segment) took care of this.
+Further, it was found to be difficult to "concatonate" binary strings
+not related to each other. Bit shifting a single predetermined integer
+resolved this issue as well. 
+
+A map was suggested to be the easiest / "cleanest" means of interpreting
+the descriptors from integers. Then arrays/vecors were. We decided to go 
+with maps on account of maps being able to get us the "values" (descriptor)
+strings we wanted using just the name of the trait as our key.
+
+We had a few issues with the makefile. At first it appeared to be working 
+properly, but we determined it was only reporting that it had compiled our
+files when really..it wasn't. By tweeking our code and downloading the
+update magic makefile, this problem was addressed.
+
+Dealing with "Nested functions" and "nested objects" made it difficult to
+keep track of everything, it was sort of a nightmare.
+
+*******************************************************************************
+Overall Outcome:
+
+Not there yet...
+
+*******************************************************************************
+ASSIGNMENT FEEDBACK:
+
+A little more guidance would be much appreciated. It was difficult going from
+completely structures and planned out programming to "Here's a game, make it."
+However, we can't deny it was necessary. Maybe just a more progressive way
+of assigning projects that made us rely on our ability to plan out an entire
+program over time instead of being the first and last 6 week C++ project would
+have made the transition a bit eaier.
+
+*******************************************************************************
+
