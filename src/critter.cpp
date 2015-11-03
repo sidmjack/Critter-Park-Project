@@ -35,7 +35,7 @@ Critter::Critter(){
 
 // destructor
 Critter::~Critter(){
-  std::cout << "Critter is kill.\n";
+  //std::cout << "Critter is kill.\n";
 }
 
 // returns the name of this critter
@@ -61,6 +61,7 @@ void Critter::setBinary(Binary newBinary){
 
 // prints a description of this critter
 void Critter :: printCritter() {
+        using std::cout;
 	cout << "********************************************";
 	cout << "********************************************\n";
 	cout << "Meet " << this->name << "!\n";	

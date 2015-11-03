@@ -31,12 +31,12 @@
 // constructor
 Binary::Binary(){
   genome = 0;
-  std::cout << "new Binary!";
+ // std::cout << "new Binary!";
 }
 
 // destructor
 Binary::~Binary(){
-  std::cout << "genome is kill.\n";
+  //std::cout << "genome is kill.\n";
 }
 
 
@@ -188,44 +188,46 @@ void printBinary(const BINARY_TYPE n){
   return;
 }
 
+
+/*
 // this is a hack, for now
 //BINARY_TYPE genome;
 
 //ENCODE DECODE FUNCTIONS:
 
-/*Encode Function: Encodes integer values onto a "blank" binary genome canvas*/
+//Encode Function: Encodes integer values onto a "blank" binary genome canvas
 
 void encode(BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas, int descriptor_offset, int num_descriptors, int trait_offset, int length, int offset){
 	
 	BINARY_TYPE NON_CODED_COPY = noncoded_genome;
 
-	/*Shifts the non_coded genome to be ANDED with the appropriate integer*/
+	//Shifts the non_coded genome to be ANDED with the appropriate integer
 	for (int i = 0; i < descriptor_offset-1; i++){
 		NON_CODED_COPY = (NON_CODED_COPY/10); 
 	}
 	
-	/*Loops through and encodes all traits of the feature.*/
+	//Loops through and encodes all traits of the feature.
 	for (int i = 0; i < num_descriptors; i++){
 		BINARY_TYPE temp; //Evaluated integer
 	
-		/*Grabs decoded number defining the feature*/
+		//Grabs decoded number defining the feature
 		temp = (NON_CODED_COPY%10);
 		NON_CODED_COPY = (NON_CODED_COPY/10);
 		
-		/*Trait Offset (ie How many traits read in feature)*/
+		//Trait Offset (ie How many traits read in feature)
 		trait_offset = i*length;
 
 		//Shifts temp to the appropriate position to be
 		//ANDED with the genome_canvas.
 		temp = ( temp << (offset + trait_offset));
 	
-		/*Adds the binary interpretation of the 
-		 * encoded feature to the genome canvas.*/
+		//Adds the binary interpretation of the 
+		// encoded feature to the genome canvas.
 		*genome_canvas = (temp | *genome_canvas);		
 	}	
 }
 
-/*Decode Function: Decodes single traits from within the encoded genome*/
+//Decode Function: Decodes single traits from within the encoded genome
 int decode_trait(const BINARY_TYPE* encoded_genome, int offset, int trait_offset, int length) {
 	
 	BINARY_TYPE GENOME_COPY = *encoded_genome;
@@ -239,28 +241,29 @@ int decode_trait(const BINARY_TYPE* encoded_genome, int offset, int trait_offset
 	return trait_number;
 }
 
-/*Get Feature Function*/
+//Get Feature Function
 // This function returns the strings of a specfic critter into 
 // an easy to access vector containing all of the traits of that feature 
 // for the critter...
 
 void get_Features(std::vector<std::string>* critter_traits, int num_descriptors, int feature_offset, int trait_offset, int length, BINARY_TYPE covering_map, std::vector<std::string> traits, BINARY_TYPE encoded_Genome){
 
-	/*Variable that temporarily holds the string*/	
+	//Variable that temporarily holds the string	
 	std::string var;
 		
 	for (int i = 0; i < num_descriptors; i++){			
-		/*Keeps track of which decode trait is evaluated*/
+		//Keeps track of which decode trait is evaluated
 		trait_offset = i*length; 
-		/*Gets trait strings using the encoded genome & trait maps*/
+		//Gets trait strings using the encoded genome & trait maps
 		var = covering_map[traits.at(i)][decode_trait(&encoded_Genome, int feature_offset, int trait_offset, int length)];	
-		/*Pushes the string traits into the critter trait feature vector*/
+		//Pushes the string traits into the critter trait feature vector
 		critter_traits->push_back(var);
 	}
 	
 	return;
 }
 
+*/
 
-};//end class
+
 

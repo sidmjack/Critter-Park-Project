@@ -2,11 +2,11 @@
 #include <cmath>
 #include <string>
 #include <cstdbool>
+#include "critter.hpp"
+
 //#include "critter.hpp" //For when we start adding functions
 
 using namespace std;
-
-int menuChoice;
 
 
 void printMenu(){	   
@@ -18,17 +18,25 @@ void printMenu(){
 	cout << "\t3) Describe Critter\n";
 	cout << "\t4) Display Critter Genome\n";
 	cout << "\t5) Display List of Critter Park Creatures\n";
-	cout << "\t6) About Critter Park - Authors/Game-Info\n";
-	cout << "\t7) Leave \"Critter Park\"\n\n";
+	cout << "\t6) Remove Critter from park\n";
+	cout << "\t7) About Critter Park - Authors/Game-Info\n";
+	cout << "\t8) Leave \"Critter Park\"\n\n";
 	cout << "**************************************************";
 	cout << "****************************\n";
 
 }
 
-bool menu(){
+bool menu(std::map<std::string, Critter> *critters){
+
+        int menuChoice = 0;
+	int counter = 0;
+	Critter c; // general-purpose burner critter
+        std::map<std::string, Critter>::iterator it;
+	float jitter; // number for some function parameters
 
 	printMenu(); //Prints the Menu
 	cout << "Enter Menu Option: ";
+
 	cin >> menuChoice; //Recieves User Input (Menu Option)
 	switch (menuChoice) { //Initiates the Switch
 	
@@ -64,10 +72,14 @@ bool menu(){
 	   	  cout << "\t\"critter genome\".\n ";
 
             	  cout << "\n\tMenu's Critter Park Game Options: \n";
-		  cout << "\t\t(2) Create Critter\n";
-	  	  cout << "\t\t(3) Describe Critter\n";
-	 	  cout << "\t\t(4) Display Critter Genome\n";
-		  cout << "\t\t(5) Display Critters\n";
+		  cout << "\t\t(1) Display this helpful information\n";
+		  cout << "\t\t(2) Create a new Critter\n";
+	  	  cout << "\t\t(3) Describe a Critter\n";
+	 	  cout << "\t\t(4) Display a Critter's Genome\n";
+		  cout << "\t\t(5) List the Critters in the park\n";
+		  cout << "\t\t(6) Remove a Critter from the park\n";
+		  cout << "\t\t(7) Display information about the game\n";
+		  cout << "\t\t(8) Exit the program\n";
 
 		  cout << "\n\n\tTo Learn more about us and critter park along with\n";
 		  cout << "\tour \"future aspirations\", we invite you to check out \n";
@@ -109,22 +121,32 @@ bool menu(){
 				cout << "**************************************************";
 				cout << "****************************\n";
 
-				cout << "\nGive your Random Critter a Name!\n";
+				cout << "\nGive your Random critter a Name!\n";
 				cout << "Name: ";
+				//get a string from the user
 				cin >> name_r;
-
-				cout << "\nFeature Not Available...\n";
-				cout << "PUT RANDOM CRITTER FUNCTION HERE!\n";
-				
-				//Make NEW Critter Using New Critter Function.
-				//Use Random Critter Function to give it a random genome.
-				//Give New Random Critter a Name Using Rename Function.
-				
+				//rename the Critter, store by name
+				c.setName(name_r);
+				// see if a critter by this name exists already
+				it = critters->find(name_r); //THIS IS USELESS FOR SOME REASON ASK BEN
+				if(it != critters->end()){
+					cout << "A critter by the name " << name_r << " already exists!" << endl;
+					break;
+				}
+				// if there isn't one, add it
+				(*critters)[name_r] = c;
+				(*critters)[name_r].mutate(0.5);
+				cout << "Generated a new critter!\n";				
 				break;
 				}
 			
 			case 'b':
 				{
+				// make sure there are enough critters
+				if(critters->size() < 2){
+					cout << "You must have at least two critters for reproduction to occur!" << endl;
+					break;
+				}
 				string name_b = " ";
 				string P_1 = " ";
 				string P_2 = " ";
@@ -136,20 +158,47 @@ bool menu(){
 							
 				cout << "Parent 1: ";
 				cin >> P_1;
-
+				it = critters->find(P_1);
+				// see if the parent is real
+				if(it == critters->end()){
+					cout << "Could not find a critter called "<<P_1<<"!" << endl;
+					break;
+				}
+				// do the same for another parent
 				cout << "Parent 2: ";
-			        cin >> P_2;	
+			        cin >> P_2;
+				it = critters->find(P_2);
+				if(it == critters->end()){
+					cout << "Could not find a critter called "<<P_2<<"!" << endl;
+					break;
+				}
+				// get a value for the jitter
+				cout << "Breeding jitter (number from 0 to 1): ";
+				cin >> jitter;
+				// make sure the number was reasonable
+				if(jitter < 0 || jitter > 1){
+					cout << "I literally just told you, a number between zero and one. Please." << endl;
+					break;
+				}
 							
 				cout << "Give your Baby Critter a Name!\n";
 				cout << "Name: ";
 				cin >> name_b;
-
-				cout << "\nFeature Not Available...\n";
-				cout << "PUT MATE CRITTER FUNCTION HERE!\n";
-				
-				//Make New Critter Using New Critter Function.
-				//Use Mate Critter Function to give it a crossed genome.
+				//make sure nobody already has the baby's name
+				it = critters->find(name_b);
+				if(it != critters->end()){
+					cout << "There's already a critter by the name "<<name_b<<"!" << endl;
+					break;
+				}
+			//	cout << "they finna bone rn"<<endl;		
+				//edit burner critter to have parents' genes
+				c.parents((*critters)[P_1], (*critters)[P_2], jitter);
 				//Give New Baby Critter a Name Using Rename Function.
+				c.setName(name_b);
+				// add the baby to the list of existing critters
+				(*critters)[name_b] = c;
+				(*critters)[name_b].parents((*critters)[P_1], (*critters)[P_2], jitter);
+			//	cout << "One night, "<<P_1<<" and "<<P_2<<" got a little friendly, and "<<name_b<<" was born.\n";
 
 				break;
 				}
@@ -178,13 +227,18 @@ bool menu(){
 						cout << "\nName your NEW Critter:\n";
 						cout << "Name: ";
 						cin >> name_n;
-
-						cout << "\nFeature Not Available...\n";
-						cout << "PUT MAKE CRITTER FUNCTION HERE!\n";
-
-						//Make a New Critter Using Create Critter Function.
-						//Use Rename Function to Rename the Critter.
-						
+						//rename the Critter, store by name
+						c.setName(name_n);
+						// see if a critter by this name exists already
+						it = critters->find(name_n); //THIS IS USELESS FOR SOME REASON ASK BEN
+						if(it != critters->end()){
+							cout << "A critter by the name " << name_n << " already exists!" << endl;
+							break;
+						}
+						// if there isn't one, add it
+						(*critters)[name_n] = c;
+						(*critters)[name_n].mutate(0.5);
+						cout << "Generated a new critter!\n";
 						break;
 						}
 				
@@ -192,24 +246,37 @@ bool menu(){
 						{
 						string name_n = " ";
 						string name_o = " ";
-
+						// see if any critters exist to be renamed
+						if(critters->size() == 0){
+							cout << "There aren't any critters to rename!"<<endl;
+							break;
+						}
+						
 						cout << "**************************************************";
 						cout << "****************************\n";
 
 						cout << "\nRename your OLD Critter:\n";
 						cout << "Name of OLD critter: ";
 						cin >> name_o;
+						// check if it exists
+						it = critters->find(name_o);
+						if(it == critters->end()){
+							cout << "There aren't any critters by that name!\n";
+							break;
+						}
 											
 						cout << "New Name of " << name_o << ": ";
 						cin >> name_n;
-											
-						cout << "\nFeature Not Available...\n";
-						cout << "PUT RENAME CRITTER FUNCTION HERE!\n";
-
-						//Given the old name of the critter,
-						//Use the rename function to change 
-						//critter's name.
 						
+						// NOTE THAT THERE ARE TWO 'NAME's, one is stored as a member of the Critter class,
+						// and the other is used as a key for the map that stores the critters in this
+						// diver program. The latter is mostly used here, but change both just to be sure.
+						(*critters)[name_o].setName(name_n);
+						// copy critter to new entry in map
+						(*critters)[name_n] = (*critters)[name_o];
+						// delete the old one
+						critters->erase(name_o);
+											
 						break;
 						}
 					
@@ -253,20 +320,30 @@ bool menu(){
 		cout << "\n Displaying Critter Genome...\n\n";
 		cout << "**************************************************";
 		cout << "****************************\n";
-
+		// do we even have critters?
+		if(critters->size() == 0){
+			cout << "Ruh-Roh! There aren't any critters to analyze!"<<endl;
+			break;
+		}
 		cout <<	"\n///////////////////////////////\n";
-		cout <<	"//////	CRITTER GENOME  /////\n";
+		cout <<	"//////  CRITTER GENOME  ///////\n";
 		cout <<	"///////////////////////////////\n\n";
 		
 		cout << "Which Critter's Genome would you like to have displayed?\n";
 		cout << "Critter's Name: ";
 		cin >> name_critter;
 		cout << "\n";
-
-		cout << "Feature Not Available...\n";
-		cout << "PUT DISPLAY BINARY FUNCTION HERE!\n";
-		cout << "**************************************************";
-		cout << "****************************\n";
+		// see if we know that critter
+		it = critters->find(name_critter);
+		if(it == critters->end()){
+			cout << "Are you sure you spelled that correctly? I can't find anyone by that name." << endl;
+			break;
+		}
+		cout << "Analyzing the genome of the critter known as \'"<<(*critters)[name_critter].getName()<<"\'....\n";
+		cout << "RESULTS: Our scientists conclude that the critter's genes look like this:"<<endl<<endl;
+		cout << "\t";
+		printBinary((*critters)[name_critter].getBinary().getGenome());
+		cout << endl << endl << "Pretty neat, huh?"<<endl;
 
 	       		break;
 		}
@@ -279,13 +356,60 @@ bool menu(){
 		cout <<	"//////	LIST OF CRITTERS  /////\n";
 		cout <<	"///////////////////////////////\n\n";
 		
-		cout << "Feature Not Available...\n";
-		cout << "PUT DISPLAY FUNCTION HERE!\n";
+		//make sure the park has critters in it first
+		if(critters->size() == 0){
+			cout<<"The park doesn't have any critters in it at all! How sad!\n";
+			break;
+		}
+		//otherwise, iterate through all of them
+		counter = 1;
+		for(std::map<std::string, Critter>::iterator i = critters->begin(); i != critters->end(); i++){
+			cout << "\t";
+			if(counter < 10){
+				cout << " ";
+			}
+			cout<<counter<<" -- "<< i->second.getName()<<endl;
+			counter++;
+		}
+		cout << endl;
+
 		cout << "**************************************************";
 		cout << "****************************\n";
 	 
 	       		break;
-	case 6: 
+	case 6:
+		{
+		std::string name_k;
+		cout << "**************************************************";
+		cout << "****************************\n";
+		// if there aren't any critters left, say so
+		if(critters->size() == 0){
+			cout << "There aren't any Critters left!\n";
+			break;
+		}
+
+		cout <<	"\n///////////////////////////////\n";
+		cout <<	"//////	 REMOVE CRITTER   //////\n";
+		cout <<	"///////////////////////////////\n\n";
+	
+		cout << "\nWhich innocent critter would you like to safely and humanely tear from this world?\n";
+		cout << "Name: ";
+		//get a string from the user
+		cin >> name_k;
+		//see if this critter is real
+		it = critters->find(name_k);
+		if(it == critters->end()){
+			cout << "I couldn't find a critter called \'"<<name_k<<"\'."<<endl;
+			break;
+		}
+		//otherise, remove the critter
+		critters->erase(name_k);
+		//return back to the menu
+		cout << "Successfully.. er.. disposed of "<<name_k<<"!"<<endl;
+		break;
+		}
+
+	case 7: 
 		cout << "**************************************************";
 		cout << "****************************\n";
 		cout << "\tCRITTER PARK INFORMATION:\n\n";
@@ -314,7 +438,7 @@ bool menu(){
 
 			  break;
 
-	case 7: 	
+	case 8: 	
 		
 		cout << "**************************************************";
 		cout << "****************************\n";
@@ -338,17 +462,17 @@ bool menu(){
 			  	 
 				 char response_2;
 				  
-				 cout << "\t\"a\") Continue Playing!\n";
-				 cout << "\t\"b\") Quit Game...\n\n\n";
+				 cout << "\t\"}\") Continue Playing!\n";
+				 cout << "\t\"`\") Quit Game...\n\n\n";
 					
 				 cout << "Enter Response: ";
 				 cin >> response_2;
 	
 				switch(response_2) {
-					case 'a': cout << "\nYeah- We figured you'd want to keep playing.\n\n";
+					case '}': cout << "\nYeah- We figured you'd want to keep playing.\n\n";
 						  return false;
 						  break;
-					case 'b': 
+					case '`': 
 						  cout << "**************************************************";
 						  cout << "****************************\n";
 						  cout << "\n\nAlright, if you're sure you want to quit...\n";
@@ -356,17 +480,18 @@ bool menu(){
 					          return true;
 						  break;
 					default: cout << "Invalid Input.\n";
-						 break;
+						 return false;
 				}
 			        break;
 			default: cout << "Invalid Input.\n";
-				 break;
+				 return false;
 		}
 		
 		break; //Break for QUIT switch.
 	
-	default:  cout << "Invalid Input.\n";
-		  break;
+	default:  cout << "Invalid Input!\n";
+		  cin.clear();
+		  return false;
 	
 	} //End of Switch Cases
 	
@@ -375,6 +500,8 @@ bool menu(){
 }
 
 int main(){
+	// set up a critter map
+	std::map<std::string, Critter> critters;
 	
 	cout << "\n\t\t   *********************************\n";
 	cout << "\t\t        WELCOME TO CRITTER PARK!\n";
@@ -383,7 +510,7 @@ int main(){
 	bool quit = false;
  	 
 	 while(!quit) {
-  	 		 quit = menu();
+  	 		quit = menu(&critters);
  	 }
 
 	return 0;

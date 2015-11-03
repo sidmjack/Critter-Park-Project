@@ -26,7 +26,7 @@ class Limbs{
 	public:
 	/*Information Accessible to the User*/
 		
-	private:
+	
 	
 	/*New Feature Map*/
 	std::map<std::string, std::array<std::string, 4>> limbs_map;
