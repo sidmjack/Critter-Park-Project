@@ -17,7 +17,6 @@
 #ifndef HW8_DIGITS_H
 #define HW8_DIGITS_H
 
-#include "binary.hpp"
 #include <string>
 #include <map>
 
@@ -54,5 +53,5 @@ class Digits{
 
 
 };
-
+#include "digits.cpp"
 #endif

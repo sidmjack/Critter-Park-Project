@@ -69,5 +69,6 @@ class Covering{
 
 	
 };
+#include "covering.cpp"
 
 #endif

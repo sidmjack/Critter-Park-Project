@@ -28,7 +28,7 @@ void printMenu(){
 
 bool menu(std::map<std::string, Critter> *critters){
 
-        int menuChoice = 0;
+        char menuChoice = 0;
 	int counter = 0;
 	Critter c; // general-purpose burner critter
         std::map<std::string, Critter>::iterator it;
@@ -40,7 +40,7 @@ bool menu(std::map<std::string, Critter> *critters){
 	cin >> menuChoice; //Recieves User Input (Menu Option)
 	switch (menuChoice) { //Initiates the Switch
 	
-	case 1:   
+	case '1':   
 		  cout << "**************************************************";
 		  cout << "****************************\n";
 		  cout << "**************************************************";
@@ -94,7 +94,7 @@ bool menu(std::map<std::string, Critter> *critters){
 
 	  	  	  break;
 	
-	case 2: 
+	case '2': 
 		cout << "\n Create a Critter...\n\n";
 		cout << "**************************************************";
 		cout << "****************************\n";
@@ -290,7 +290,7 @@ bool menu(std::map<std::string, Critter> *critters){
 		}        
 	     	break; //Case 3 Break	
 
-	case 3: 
+	case '3': 
 		{
 		string name_critter = " ";
 
@@ -313,7 +313,7 @@ bool menu(std::map<std::string, Critter> *critters){
 		cout << "****************************\n";
 			  break;
 		}
-	case 4: 
+	case '4': 
 		{
 		string name_critter = " ";
 
@@ -347,7 +347,7 @@ bool menu(std::map<std::string, Critter> *critters){
 
 	       		break;
 		}
-	case 5: 
+	case '5': 
 		cout << "\n Displaying List of Critters...\n\n";
 		cout << "**************************************************";
 		cout << "****************************\n";
@@ -377,7 +377,7 @@ bool menu(std::map<std::string, Critter> *critters){
 		cout << "****************************\n";
 	 
 	       		break;
-	case 6:
+	case '6':
 		{
 		std::string name_k;
 		cout << "**************************************************";
@@ -409,7 +409,7 @@ bool menu(std::map<std::string, Critter> *critters){
 		break;
 		}
 
-	case 7: 
+	case '7': 
 		cout << "**************************************************";
 		cout << "****************************\n";
 		cout << "\tCRITTER PARK INFORMATION:\n\n";
@@ -438,7 +438,7 @@ bool menu(std::map<std::string, Critter> *critters){
 
 			  break;
 
-	case 8: 	
+	case '8': 	
 		
 		cout << "**************************************************";
 		cout << "****************************\n";

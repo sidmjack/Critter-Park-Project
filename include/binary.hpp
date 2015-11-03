@@ -101,4 +101,5 @@ class Binary{
 
 };
 
+#include "binary.cpp"
 #endif
