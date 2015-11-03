@@ -1,1 +1,1 @@
-obj/binary.o: binary.cpp
+obj/binary.o: binary.cpp ../include/binary.hpp
