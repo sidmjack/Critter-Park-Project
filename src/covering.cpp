@@ -30,10 +30,10 @@
 
 	/*****************************************************************/
 	/*Critter Genome*/
-//	genome = binary.genome;
+	genome = 0;
 
 	/*Phenotype Vector*/
-	/*std::vector<std::string>*/ phenotype = {" ", " "};
+	phenotype = {" ", " "};
 
 	/*****************************************************************/
 
@@ -60,12 +60,12 @@
 	}
 	
 	/*Get Feature Function*/
-/*
+
 	void Covering::get_Feature(std::vector<std::string>& phenotype){
 		Binary::get_Features(phenotype, num_descriptors, offset, trait_offset, length, covering_map, traits, genome);
 		return;
 	} 
-*/	
+	
 
 	
 

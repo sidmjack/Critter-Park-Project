@@ -31,7 +31,19 @@ class Digits{
 	std::string type;
 	std::string amount;
 	
-	private:
+	/*******************************************************************/
+	/*Critter Genome Here!!!*/
+	long int genome;
+	
+	/*Phenotype (AKA: String of Critter's Unique Traits)*/
+	std::vector<std::string> phenotype;
+
+	/* Get_Feature Function uses the phenotype vector above to 
+	 * define the variables (accessible to Critter) containing
+	 * the Critters traits.*/
+
+	 void get_Feature(std::vector<std::string>& phenotype);
+	/********************************************************************/
 	
 	/*NEW FEATURE MAP!*/
 	std::map<std::string, std::array<std::string, 4>> digits_map;

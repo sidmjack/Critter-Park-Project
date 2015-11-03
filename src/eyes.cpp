@@ -13,6 +13,7 @@
  * Last Modified: November 2, 2015
  * *****************************************************************************/
 
+#include "binary.hpp"
 #include <map>
 #include <vector>
 #include <string>
@@ -29,6 +30,16 @@
 	eyes_map["pupil"] = {"indiscernible","slit","compound","round"};
 	eyes_map["color"] = {"blood-shot","azure","emerald","golden"};
 	eyes_map["number"] = {"one eye","two eyes","four eyes","eight eyes"};
+
+	/*****************************************************************/
+	/*Critter Genome*/
+	genome = 0;
+
+	/*Phenotype Vector*/
+	phenotype = {" ", " ", " ", " "};
+
+	/*****************************************************************/
+
 
 	/*Trait Strings: */
 	size = " ";
@@ -55,6 +66,13 @@
 	descriptor_offset = 5;
 
 	}
+	/*Get Feature Function*/
+
+	void Eyes::get_Feature(std::vector<std::string>& phenotype){
+		Binary::get_Features(phenotype, num_descriptors, offset, trait_offset, length, eyes_map, traits, genome);
+		return;
+	} 
+	
 	
 	
 

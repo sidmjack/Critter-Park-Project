@@ -33,7 +33,19 @@ class Eyes{
 	std::string color;
 	std::string number;
 
-	private:
+	/*******************************************************************/
+	/*Critter Genome Here!!!*/
+	long int genome;
+	
+	/*Phenotype (AKA: String of Critter's Unique Traits)*/
+	std::vector<std::string> phenotype;
+
+	/* Get_Feature Function uses the phenotype vector above to 
+	 * define the variables (accessible to Critter) containing
+	 * the Critters traits.*/
+
+	 void get_Feature(std::vector<std::string>& phenotype);
+	/********************************************************************/
 
 	/*New Feature Map*/
 	std::map<std::string, std::array<std::string, 4>>eyes_map;

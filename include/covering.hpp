@@ -32,18 +32,10 @@ class Covering{
 	/*Information Accessible to the User*/
 	std::string coat;
 	std::string texture;
-		
-	private:
-	
-	/*New Feature Map*/
-	std::map<std::string, std::array<std::string, 4>> covering_map;
-	
-	/*Vector containing trait strings*/
-	std::vector<std::string> traits;
 	
 	/*******************************************************************/
 	/*Critter Genome Here!!!*/
-	BINARY_TYPE genome;
+	long int genome;
 	
 	/*Phenotype (AKA: String of Critter's Unique Traits)*/
 	std::vector<std::string> phenotype;
@@ -54,6 +46,13 @@ class Covering{
 
 	 void get_Feature(std::vector<std::string>& phenotype);
 	/********************************************************************/
+
+	
+	/*New Feature Map*/
+	std::map<std::string, std::array<std::string, 4>> covering_map;
+	
+	/*Vector containing trait strings*/
+	std::vector<std::string> traits;	
 	
 	/*CRITTER GENOME FUNCTION VARIABLES*/
 

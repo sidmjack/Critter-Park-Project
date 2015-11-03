@@ -29,7 +29,17 @@
 	/*Define which trait stings map to what descriptor string*/		       
 	digits_map["type"] = {"toes","claws","fingers","talons"};
 	digits_map["amount"] = {"two","three","five","seven"};
-	
+
+	/*****************************************************************/
+	/*Critter Genome*/
+	genome = 0;
+
+	/*Phenotype Vector*/
+	phenotype = {" ", " "};
+
+	/*****************************************************************/
+
+
 	/*Trait Strings*/
 	type = " ";
 	amount = " ";
@@ -52,6 +62,13 @@
 
 
 	}
+	
+	/*Get Feature Function*/
+
+	void Digits::get_Feature(std::vector<std::string>& phenotype){
+		Binary::get_Features(phenotype, num_descriptors, offset, trait_offset, length, digits_map, traits, genome);
+		return;
+	} 
 	
 
 
