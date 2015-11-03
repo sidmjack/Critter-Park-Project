@@ -19,15 +19,12 @@
 ///                                                ///
 //////////////////////////////////////////////////////
 
-#include "binary.hpp"
 #include <vector>
 #include <map>
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
-
-
-#include <iostream>
+#include "binary.hpp"
 
 // constructor
 Binary::Binary(){

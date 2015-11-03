@@ -57,5 +57,4 @@ class Eyes{
 
 };
 
-#include "eyes.cpp"
 #endif

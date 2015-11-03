@@ -18,15 +18,15 @@
 #ifndef HW8_CRITTER_UTILS
 #define HW8_CRITTER_UTILS
 
+#include <iostream>
+#include "binary.hpp"
+#include "covering.hpp"
+#include "digits.hpp"
+#include "eyes.hpp"
+#include "limbs.hpp"
+
 // this is so temporary it's not even funny
 //#include "binary.cpp"
-
-#include "eyes.hpp"
-#include "covering.hpp"
-#include "limbs.hpp"
-#include "digits.hpp"
-#include "binary.hpp"
-
 
 class Critter{
  public:
@@ -87,7 +87,5 @@ class Critter{
 
   // overload the << operator
   std::ostream & operator<< (std::ostream & os, const Critter &c);
-
-#include "critter.cpp"
 
 #endif

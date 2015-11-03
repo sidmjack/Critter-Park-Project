@@ -35,6 +35,7 @@
 #include <vector>
 #include <map>
 #include <cstdlib>
+#include <iostream>
 #include <ctime>
 #include <cmath>
 
@@ -87,9 +88,6 @@ class Binary{
   // function for setting the raw genome
   void setGenome(BINARY_TYPE genome);
 
-  // debugging utility for printing the numbers in binary to the console
-  void printBinary(const BINARY_TYPE number);
-  
   // the genome data itself, in all its glory
   BINARY_TYPE genome;
 
@@ -101,5 +99,7 @@ class Binary{
 
 };
 
-#include "binary.cpp"
+  // debugging utility for printing the numbers in binary to the console
+  void printBinary(const BINARY_TYPE number);
+
 #endif
