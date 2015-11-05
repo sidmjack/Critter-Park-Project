@@ -13,63 +13,44 @@
  * Last Modified: November 2, 2015
  * *****************************************************************************/
 
-
 #include "digits.hpp"
 #include <map>
-#include <vector>
+#include <vector> 
 #include <string>
 #include <bitset>
+	
+Digits::Digits() {
 
+	/*Information Accessible to the User*/
+	std::string type;
+	std::string amount;
 	
-	Digits::Digits(){
-	
-	/*Defines which traits are in the vector*/	       
-	std::vector<std::string> traits = {"type", "amount"};
-		  
-	/*Define which trait stings map to what descriptor string*/		       
+	/*Define which trait stings map to what descriptor string*/			       
 	digits_map["type"] = {"toes","claws","fingers","talons"};
 	digits_map["amount"] = {"two","three","five","seven"};
-
-	/*****************************************************************/
-	/*Critter Genome*/
-	genome = 0;
-
-	/*Phenotype Vector*/
-	phenotype = {" ", " "};
-
-	/*****************************************************************/
-
-
-	/*Trait Strings*/
-	type = " ";
-	amount = " ";
+}
 	
-	/*Defines how many descriptors each feature class contains*/
-	num_descriptors = 2;
+/************************ ENCODE/DECODE FUNCTIONS ****************************/
 
-	/*Defines the number of bits needed to categorize those features*/
-	length = 2;
-	
-		/*Digits Offset Information (2): */
-  	   //Second Segment (4 Bits)
-	   //Type Requires 2 bits (1-2)
-	   //Amount Requires 2 bits (3-4)
+void Digits::encode (Binary &genotype, unsigned &offset) const {
 
-	/*The offset of the feature..specifies where feature starts in genome.*/
-	offset = 4;
-	trait_offset = 0;
-	descriptor_offset = 3;
+ 	genotype.setBitField(offset, 2, TYPE_descriptor);
+ 	offset += 2;
+  	genotype.setBitField(offset, 2, AMOUNT_descriptor);
+  	offset += 2;
+}
 
+void Digits::decode (const Binary &genotype, unsigned &offset) {
 
-	}
-	
-	/*Get Feature Function*/
+  	TYPE_descriptor = genotype.getBitField(offset, 2);
+  	offset += 2;
+	this->type = digits_map["type"][TYPE_descriptor]; 
 
-	void Digits::get_Feature(std::vector<std::string>& phenotype){
-		Binary::get_Features(phenotype, num_descriptors, offset, trait_offset, length, digits_map, traits, genome);
-		return;
-	} 
-	
+  	AMOUNT_descriptor = genotype.getBitField(offset, 2);
+  	offset += 2;
+	this->amount = digits_map["amount"][AMOUNT_descriptor]; 
+}
 
+/*****************************************************************************/
 
 

@@ -9,7 +9,7 @@
  * Binary.cpp - contains utilities for printing and manipulating the binary
  *      strings used to store Critter traits in this program.
  *
- * Last Modified: November 2, 2015
+ * Last Modified: November 9, 2015
  *****************************************************************************/
 
 
@@ -24,19 +24,23 @@
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
+#include <chrono>
 #include "binary.hpp"
+#include <random>
+
+std::uniform_int_distribution<BINARY_TYPE> Binary :: uniform_ul;
+
+std::uniform_real_distribution<double> Binary :: double_ul(0.0, 1.0);
 
 // constructor
-Binary::Binary(){
-  genome = 0;
- // std::cout << "new Binary!";
+Binary::Binary(BINARY_TYPE genotype)
+  : genome(genotype)
+{
 }
 
 // destructor
 Binary::~Binary(){
-  //std::cout << "genome is kill.\n";
 }
-
 
 // wrapper for the mutate function - mutates a Binary's genome in situ
 //
@@ -58,9 +62,7 @@ void Binary::cross(Binary parent1, Binary parent2, float jitter){
   return;
 }
   
-
 /**************** FUNCTIONS USED MOSTLY BY OTHER FUNCTIONS *******************/
-
 
 // function for crossing two binary strings with a given jitter
 //
@@ -115,14 +117,11 @@ BINARY_TYPE Binary::cross(const BINARY_TYPE n1, const BINARY_TYPE n2, float jitt
   return baby;
 }
 
+// Function for mutating a given binary string by a given factor
+// Number - the string to mutate
+// Severity - controls the strength of the changes, should be within [0,1]
+// Returns a mutated version of the first string.
 
-
-// function for mutating a given binary string by a given factor
-// 
-// number - the string to mutate
-// severity - controls the strength of the changes, should be within [0,1]
-//
-// returns a mutated version of the first string
 BINARY_TYPE Binary::mutate(BINARY_TYPE number, float severity){
   float random;
   BINARY_TYPE mask = 0;
@@ -169,8 +168,6 @@ void Binary::setGenome(BINARY_TYPE genome){
   return;
 }
 
-
-
 // utility for printing bit strings to the console in readable form
 // NOTE: don't use "<<" in combination with this function because I
 // didn't overload the "<<" operator
@@ -185,80 +182,41 @@ void printBinary(const BINARY_TYPE n){
   }
   return;
 }
+/************************* Set and Get Bit Field *****************************/
 
-// this is a hack, for now
-//BINARY_TYPE genome;
-
-//ENCODE DECODE FUNCTIONS:
-
-//Encode Function: Encodes integer values onto a "blank" binary genome canvas
-
-void encode(BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas, int descriptor_offset, int num_descriptors, int trait_offset, int length, int offset){
-	
-	BINARY_TYPE NON_CODED_COPY = noncoded_genome;
-
-	//Shifts the non_coded genome to be ANDED with the appropriate integer
-	for (int i = 0; i < descriptor_offset-1; i++){
-		NON_CODED_COPY = (NON_CODED_COPY/10); 
-	}
-	
-	//Loops through and encodes all traits of the feature.
-	for (int i = 0; i < num_descriptors; i++){
-		BINARY_TYPE temp; //Evaluated integer
-	
-		//Grabs decoded number defining the feature
-		temp = (NON_CODED_COPY%10);
-		NON_CODED_COPY = (NON_CODED_COPY/10);
-		
-		//Trait Offset (ie How many traits read in feature)
-		trait_offset = i*length;
-
-		//Shifts temp to the appropriate position to be
-		//ANDED with the genome_canvas.
-		temp = ( temp << (offset + trait_offset));
-	
-		//Adds the binary interpretation of the 
-		// encoded feature to the genome canvas.
-		*genome_canvas = (temp | *genome_canvas);		
-	}
-	return;	
+unsigned Binary::getBitField (unsigned offset, unsigned length) const {
+  BINARY_TYPE mask = 0;
+  for (unsigned i=0; i<length; i++) {
+    mask <<= 1;
+    mask += 1;
+  }
+  mask <<= offset;
+  //std::cout << "mask: " << toBitString(mask) << "\n";
+  BINARY_TYPE field = genome & mask;
+  field >>= offset;
+  return field;
 }
 
-//Decode Function: Decodes single traits from within the encoded genome
-int decode_trait(const BINARY_TYPE* encoded_genome, int offset, int trait_offset, int length) {
-	
-	BINARY_TYPE GENOME_COPY = *encoded_genome;
+void Binary::setBitField (unsigned offset, unsigned length, unsigned value) {
 
-	GENOME_COPY = (*encoded_genome >> (offset + trait_offset));
+  if (value >= 1u << length) {
+    std::cout << "error: value " << value << " is to big to be held in field!\n";
+    std::cout << "\t (width: " << length <<", max value: " << (1 << length)-1 << ")\n";
+    return;
+    //TODO throw something
+  }
 
-	int mask = (pow(2,length) -1);	
-	int trait_number = 0;	  
-	trait_number = (GENOME_COPY & mask);
-	
-	return trait_number;
+  BINARY_TYPE mask = 0;
+  for (unsigned i=0; i<length; i++) {
+    mask <<= 1;
+    mask += 1;
+  }
+  mask <<= offset;
+  //std::cout << "mask: " << toBitString(mask) << "\n";
+  BINARY_TYPE field = value;
+  field <<= offset;
+  genome &= ~mask; // set field to 0
+  genome |= field; // then put in the new value
 }
 
-//Get Feature Function
-// This function returns the strings of a specfic critter into 
-// an easy to access vector containing all of the traits of that feature 
-// for the critter...
-
-void get_Features(std::vector<std::string>* phenotype, int num_descriptors, int feature_offset, int trait_offset, int length, std::map<std::string, std::array<std::string, 4>> feature_map, std::vector<std::string> traits, BINARY_TYPE encoded_Genome) {
-//Passing a Map.
-
-	//Variable that temporarily holds the string	
-	std::string var;
-		
-	for (int i = 0; i < num_descriptors; i++){			
-		//Keeps track of which decode trait is evaluated
-		trait_offset = i*length; 
-		/*Gets trait strings using the encoded genome & trait maps*/
-		var = feature_map[traits.at(i)][decode_trait(&encoded_Genome, feature_offset, trait_offset, length)];	
-		/*Pushes the string traits into the critter trait feature vector*/
-		phenotype->push_back(var);
-	}
-	
-	return;
-}
-
-
+/*****************************************************************************/

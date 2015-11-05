@@ -17,53 +17,37 @@
 #ifndef HW8_DIGITS_H
 #define HW8_DIGITS_H
 
+#include "binary.hpp"
 #include <string>
 #include <map>
 #include <vector>
 
-class Digits{
-	
-	public:
+class Digits{	
 
-	Digits();
+	/*********************************************************************/
+
+	public:
 	
+	Digits();
+
 	/*Information Accessible to the User*/
 	std::string type;
 	std::string amount;
-	
-	/*******************************************************************/
-	/*Critter Genome Here!!!*/
-	long int genome;
-	
-	/*Phenotype (AKA: String of Critter's Unique Traits)*/
-	std::vector<std::string> phenotype;
 
-	/* Get_Feature Function uses the phenotype vector above to 
-	 * define the variables (accessible to Critter) containing
-	 * the Critters traits.*/
+	 void encode(Binary &genotype, unsigned &offset) const;
+         void decode(const Binary &genotype, unsigned &offset);
 
-	 void get_Feature(std::vector<std::string>& phenotype);
 	/********************************************************************/
 	
-	/*NEW FEATURE MAP!*/
-	std::map<std::string, std::array<std::string, 4>> digits_map;
+	private:
 
-	/*Vector containing trait strings*/
-	std::vector<std::string> traits;
-		
-	/*CRITTER GENOME FUNCTION VARIABLES*/
+	/*Feature Traits*/
+	int TYPE_descriptor, AMOUNT_descriptor;
 
-	/*Number of descriptors contained in a class*/
-	int num_descriptors;
+	/*Feature Map*/
+	std::map<std::string, std::array<std::string, 4>> digits_map;	
 
-	/*Defines the number of bits needed to categorize those features*/
-	int length;
-
-	/*The offset of the feature..specifies where feature starts in genome.*/
-	int offset; //Feature Offset
-	int trait_offset; //Trait Offset
-	int descriptor_offset; //Trait # of the first feature trait (relative to genome).
-
+	/*********************************************************************/
 
 };
 

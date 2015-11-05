@@ -16,65 +16,57 @@
 #ifndef HW8_BINARY_H
 #define HW8_BINARY_H
 
-   /*FEATURE BYTE OFFSETS)*/
-//Covering Offset
-#define COVERING_OFFSET 1
-//Digits Offset
-#define DIGITS_OFFSET 2
-//Eyes Offset
-#define EYES_OFFSET 3
-//Limbs Offset
-#define LIMBS_OFFSET 4
-
 //// if we need more than a long, change it here: ////
 ///                                                ///
              #define BINARY_TYPE long int          ///
 ///                                                ///
 //////////////////////////////////////////////////////
 
+#include <array>
 #include <vector>
 #include <map>
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
 #include <cmath>
+#include <random>
 
 class Binary{
   
   public:
-  
-  // constructor
+ 
+  /******************************* BASIC STUFF *******************************/
+  // Constructor
   Binary();
 
-  // destructor
+  // Destructor
   ~Binary();
 
+  Binary (BINARY_TYPE genotype = 0);
 
-  /***************************************************************************/
+   static std::uniform_int_distribution<BINARY_TYPE> uniform_ul;
+
+   static std::uniform_real_distribution<double> double_ul;
+
+  /************************** BIT-FIELD FUNCTIONS ****************************/
   
-  /*ENCODE/DECODE FUNCTIONS*/
-
-  /*Encode Function: Encodes integer values into binary genome*/
-  BINARY_TYPE encode(const BINARY_TYPE noncoded_genome, BINARY_TYPE* genome_canvas); 
-
-  /*Decode Function: Decodes single traits from within the encoded genome*/
-  int decode(const BINARY_TYPE* genome_canvas);
-
-  /*Get Features Functions: stores string features into a vector of critter traits*/
-  void get_Features();
+  //Gets Bit Field
+    unsigned getBitField(unsigned offset, unsigned length) const;
+ 
+  //Sets Bit Field   
+    void setBitField(unsigned offset, unsigned length, unsigned value);
 
 
-  /**************************************************************************/
+  /************************* MATE CRITTER FUNCTIONS **************************/
   
-  /*MATE CRITTER FUNCTIONS*/
-
-  // wrapper for the cross function
+  // Wrapper for the cross function
   void cross(Binary parent1, Binary parent2, float jitter);
 
-  // wrapper for the mutate function
+  // Wrapper for the mutate function
   void mutate(float severity);
 
-  /************** Functions used mostly by other functions *******************/
+
+  /***************** FUNCTIONS USED BY OTHER FUNCTIONS ***********************/
   
   // function for crossing two binary strings with a given jitter
   BINARY_TYPE cross(const BINARY_TYPE n1, const BINARY_TYPE n2, float jitter);
@@ -88,14 +80,19 @@ class Binary{
   // function for setting the raw genome
   void setGenome(BINARY_TYPE genome);
 
-  // the genome data itself, in all its glory
+  /*TEMPORARY, THIS SHOULD BE PRIVATE!*/
+  // The Genome Data itself, in all its glory
   BINARY_TYPE genome;
 
+
+ /*****************************************************************************/
+
+ private:
+
+  /************************ PRIVATE DATA/VARIABLES ***************************/
+    
+
   /***************************************************************************/
-  private:
-  
-  // descriptor vector ... still working on this 
-  std::vector<std::string> critter_traits;
 
 };
 

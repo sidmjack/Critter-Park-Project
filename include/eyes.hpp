@@ -20,52 +20,34 @@
 #include <string>
 #include <map>
 #include <vector>
+#include "binary.hpp"
 
 class Eyes{
 	
 	public:
 	
 	Eyes();
-	
+
 	/*Information Accessible to the User*/
 	std::string size;
 	std::string pupil;
 	std::string color;
 	std::string number;
 
-	/*******************************************************************/
-	/*Critter Genome Here!!!*/
-	long int genome;
-	
-	/*Phenotype (AKA: String of Critter's Unique Traits)*/
-	std::vector<std::string> phenotype;
+	 void encode(Binary &genotype, unsigned &offset) const;
+         void decode(const Binary &genotype, unsigned &offset);
 
-	/* Get_Feature Function uses the phenotype vector above to 
-	 * define the variables (accessible to Critter) containing
-	 * the Critters traits.*/
-
-	 void get_Feature(std::vector<std::string>& phenotype);
 	/********************************************************************/
-
-	/*New Feature Map*/
-	std::map<std::string, std::array<std::string, 4>>eyes_map;
-
-	/*Vector containing trait strings*/
-	std::vector<std::string> traits;
-
-	/*CRITTER GENOME FUNCTIONS VARIABLES*/
-
-	/*Number of descriptors contained in a class*/
-	int num_descriptors;
 	
-	/*Defines the number of bits needed to categorize those features*/
-	int length;
+	private:
 
-	/*The offset of the feature..specifies where feature starts in genome.*/
-	int offset; //Feature Offset
-	int trait_offset; //Trait Offset
-	int descriptor_offset; //Trait # of the first feature trait (relative to genome).
+	/*Feature Traits*/
+	int SIZE_descriptor, PUPIL_descriptor, COLOR_descriptor, NUMBER_descriptor;
 
+	/*Feature Map*/
+	std::map<std::string, std::array<std::string, 4>> eyes_map;	
+
+	/*********************************************************************/	
 
 };
 

@@ -13,58 +13,46 @@
  * Last Modified: November 2, 2015
  * *****************************************************************************/
 
+#include "binary.hpp"
 #include "limbs.hpp"
 #include <map>
 #include <vector>
 #include <string>
 #include <bitset>
 
-	Limbs::Limbs() {
+Limbs::Limbs() {
 
-	/*Defines which traits are in the vector*/	       
-	std::vector<std::string> traits = {"number", "shape"};
-	      
-	/*Define which trait stings map to what descriptor string*/	      
+	/*Information Accessible to the User*/
+	std::string number;
+	std::string shape;
+	
+	/*Define which trait stings map to what descriptor string*/		
 	limbs_map["number"] = {"two","four","six","eight"};
 	limbs_map["shape"] = {"spindles","tentacles","forelegs","stubs"};
+}
 	
-	/*****************************************************************/
-	/*Critter Genome*/
-	genome = 0;
+/************************ ENCODE/DECODE FUNCTIONS ****************************/
 
-	/*Phenotype Vector*/
-	phenotype = {" ", " "};
+void Limbs::encode (Binary &genotype, unsigned &offset) const {
 
-	/*****************************************************************/
+ 	genotype.setBitField(offset, 2, NUMBER_descriptor);
+ 	offset += 2;
+  	genotype.setBitField(offset, 2, SHAPE_descriptor);
+  	offset += 2;
+}
 
+void Limbs::decode (const Binary &genotype, unsigned &offset) {
 
-	/*Trait Strings*/
-	number = " ";
-	shape = " ";
+  	NUMBER_descriptor = genotype.getBitField(offset, 2);
+  	offset += 2;
+	this->number = limbs_map["number"][NUMBER_descriptor]; 
 
-	/*Defines how many descriptors each feature class contains*/
-	num_descriptors = 2;
+  	SHAPE_descriptor = genotype.getBitField(offset, 2);
+  	offset += 2;
+	this->shape = limbs_map["shape"][SHAPE_descriptor]; 
+}
 
-	/*Defines the number of bits needed to categorize those features*/
-	length = 2;
-	
-		/*Limbs Offset Information (4): */
-	   //Fourth Segment (4 Bits)
-	   //Limb_Num Requires 2 bits (1-2)
-	   //Limb_Shape Requires 2 bits (3-4)
+/*****************************************************************************/
 
-	/*The offset of the feature..specifies where feature starts in genome.*/
-	offset = 16;
-	trait_offset = 0;
-	descriptor_offset = 1;
-
-
-	}
-	/*Get Feature Function*/
-
-	void Limbs::get_Feature(std::vector<std::string>& phenotype){
-		Binary::get_Features(phenotype, num_descriptors, offset, trait_offset, length, limbs_map, traits, genome);
-		return;
-	} 
 	
 

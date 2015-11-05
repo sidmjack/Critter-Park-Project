@@ -19,60 +19,57 @@
 #include <string>
 #include <bitset>
 #include "eyes.hpp"
+		
+Eyes::Eyes() {
 
-	Eyes::Eyes() {
+	/*Information Accessible to the User*/
+	std::string size;
+	std::string pupil;
+	std::string color;
+	std::string number;
 
-	/*Defines which traits are in the vector*/	       
-	std::vector<std::string> traits = {"size", "pupil", "color", "number"};
-	     
 	/*Define which trait stings map to what descriptor string*/		
 	eyes_map["size"] = {"beady","little","large","mammoth"};
 	eyes_map["pupil"] = {"indiscernible","slit","compound","round"};
 	eyes_map["color"] = {"blood-shot","azure","emerald","golden"};
 	eyes_map["number"] = {"one eye","two eyes","four eyes","eight eyes"};
-
-	/*****************************************************************/
-	/*Critter Genome*/
-	genome = 0;
-
-	/*Phenotype Vector*/
-	phenotype = {" ", " ", " ", " "};
-
-	/*****************************************************************/
-
-
-	/*Trait Strings: */
-	size = " ";
-	pupil = " ";
-	color = " ";
-	number = " ";
-
-	/*Defines how many descriptors each feature class contains*/
-	num_descriptors = 4;
+}
 	
-	/*Defines the number of bits needed to categorize those features*/
-	length = 2;
-	
-		/*Eyes Offset Information (3): */
-	   //Third Segment (8 Bits)
-	   //Size Requires 2 bits (1-2)
-	   //Pupil Requires 2 bits (3-4)
-	   //Color Requires 2 bits (5-6)
-	   //Number Requires 2 bits (7-8)
+/************************ ENCODE/DECODE FUNCTIONS ****************************/
 
-	/*The offset of the feature..specifies where feature starts in genome.*/
-	offset = 8;
-	trait_offset = 0;
-	descriptor_offset = 5;
+void Eyes::encode (Binary &genotype, unsigned &offset) const {
 
-	}
-	/*Get Feature Function*/
+ 	genotype.setBitField(offset, 2, SIZE_descriptor);
+ 	offset += 2;
+  	genotype.setBitField(offset, 2, PUPIL_descriptor);
+  	offset += 2;
+	genotype.setBitField(offset, 2, COLOR_descriptor);
+ 	offset += 2;
+  	genotype.setBitField(offset, 2, NUMBER_descriptor);
+  	offset += 2;
 
-	void Eyes::get_Feature(std::vector<std::string>& phenotype){
-		Binary::get_Features(phenotype, num_descriptors, offset, trait_offset, length, eyes_map, traits, genome);
-		return;
-	} 
-	
-	
-	
+}
+
+void Eyes::decode (const Binary &genotype, unsigned &offset) {
+
+  	SIZE_descriptor = genotype.getBitField(offset, 2);
+  	offset += 2;
+	this->size = eyes_map["size"][SIZE_descriptor]; 
+
+  	PUPIL_descriptor = genotype.getBitField(offset, 2);
+  	offset += 2;
+	this->pupil = eyes_map["pupil"][PUPIL_descriptor]; 
+
+	COLOR_descriptor = genotype.getBitField(offset, 2);
+  	offset += 2;
+	this->color = eyes_map["color"][COLOR_descriptor]; 
+
+  	NUMBER_descriptor = genotype.getBitField(offset, 2);
+  	offset += 2;
+	this->number = eyes_map["number"][NUMBER_descriptor]; 
+
+}
+
+/*****************************************************************************/
+
 
