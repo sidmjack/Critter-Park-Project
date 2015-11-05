@@ -1,5 +1,4 @@
-/******************************************************************************
- * Florian Pontani & Sidney Jackson
+/*
  * fpontan1 & sjacks85
  * (917) 454-8493 & (386) 956-5577
  * 
@@ -40,7 +39,9 @@ bool menu(std::map<std::string, Critter> *critters){
 
         char menuChoice = 0;
 	int counter = 0;
-	Critter c; // general-purpose burner critter
+	Binary b;
+	Critter c;
+	//Critter c(b); // general-purpose burner critter
         std::map<std::string, Critter>::iterator it;
 	float jitter; // number for some function parameters
 

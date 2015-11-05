@@ -20,7 +20,7 @@
 using std::cout;
 
 // Constructor
-Critter :: Critter(const Binary &b)
+Critter :: Critter(const Binary b)
   : genotype(b)
 {
 

@@ -37,12 +37,10 @@ class Binary{
  
   /******************************* BASIC STUFF *******************************/
   // Constructor
-  Binary();
+ Binary (BINARY_TYPE genotype = 0);
 
   // Destructor
   ~Binary();
-
-  Binary (BINARY_TYPE genotype = 0);
 
    static std::uniform_int_distribution<BINARY_TYPE> uniform_ul;
 

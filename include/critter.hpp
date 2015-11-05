@@ -50,8 +50,8 @@ class Critter{
   void set_Features();
 
   // Constructor
-  Critter(const Binary &genotype);
-
+  Critter(const Binary genotype = 0);
+	
   // Destructor
   ~Critter();
 
