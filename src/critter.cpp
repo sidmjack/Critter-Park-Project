@@ -96,12 +96,25 @@ bool Critter :: operator== (const Critter &other) {
 // Updates the Critter's genome using two parent Critters and a jitter value
 void Critter::parents(Critter mommy, Critter daddy, float jitter){
   this->genotype.cross(mommy.getBinary(), daddy.getBinary(), jitter);
+/*Considering turning code below into a function*/
+  unsigned offset = 0;
+  covering.decode(genotype, offset);
+  digits.decode(genotype, offset);
+  eyes.decode(genotype, offset);
+  limbs.decode(genotype, offset);
   return;
 }
 
 // Mutates this Critter's genome by a specified amount between [0,1]
 void Critter::mutate(float severity){
   this->genotype.genome = Binary::mutate(genotype.genome, severity);
+ /*Considering turning code below into a function*/
+  unsigned offset = 0;
+  covering.decode(genotype, offset);
+  digits.decode(genotype, offset);
+  eyes.decode(genotype, offset);
+  limbs.decode(genotype, offset);
+  return;
 }
 
 // Print a name for this critter in an ostream
