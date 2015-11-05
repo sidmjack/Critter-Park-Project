@@ -79,7 +79,7 @@ void Critter :: printCritter() {
 	cout << this->digits.amount << " " << this->digits.type;
 	cout << "." << "\n";
 	cout << "********************************************";
-	cout << "********************************************\n";
+	cout << "********************************************\n\n";
 }
 
 // Set a Critter's name another Critter's

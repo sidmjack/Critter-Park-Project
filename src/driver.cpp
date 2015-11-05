@@ -317,11 +317,18 @@ bool menu(std::map<std::string, Critter> *critters){
 		cout << "Critter's Name: ";
 		cin >> name_critter;
 		cout << "\n";
+		
+		// check if it exists
+		it = critters->find(name_critter);
+		if(it == critters->end()){
+		cout << "There aren't any critters by that name!\n";
+		break;
+		}
+		//Adding Critter Here...
+		(*critters)[name_critter].printCritter();
 
-		cout << "Feature Not Available...\n";
-		cout << "PUT PRINT CRITTER FUNCTION HERE!\n";
-		cout << "**************************************************";
-		cout << "****************************\n";
+		//cout << "**************************************************";
+		//cout << "****************************\n";
 			  break;
 		}
 	case '4': 
