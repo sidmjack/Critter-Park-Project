@@ -32,7 +32,7 @@ Eyes::Eyes() {
 	eyes_map["size"] = {"beady","little","large","mammoth"};
 	eyes_map["pupil"] = {"indiscernible","slit","compound","round"};
 	eyes_map["color"] = {"blood-shot","azure","emerald","golden"};
-	eyes_map["number"] = {"one eye","two eyes","four eyes","eight eyes"};
+	eyes_map["number"] = {"one","two","four","eight"};
 }
 	
 /************************ ENCODE/DECODE FUNCTIONS ****************************/
