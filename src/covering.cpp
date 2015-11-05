@@ -19,52 +19,40 @@
 #include <string>
 #include <bitset>
 	
-	Covering::Covering() {
+Covering::Covering() {
 
-	/*Defines which trait strings are in the vector*/
-	/*std::vector<std::string>*/ traits = {"coat", "texture"};
-
+	/*Information Accessible to the User*/
+	std::string coat;
+	std::string texture;
+	
 	/*Define which trait stings map to what descriptor string*/		
-	covering_map[coat] = {"pelt","set of scales","layer of plumes","leather hide"};
-	covering_map[texture] = {"smooth","course","slimy","bristly"};
-
-	/*****************************************************************/
-	/*Critter Genome*/
-	genome = 0;
-
-	/*Phenotype Vector*/
-	phenotype = {" ", " "};
-
-	/*****************************************************************/
-
-	/*Trait Strings*/
-	coat = " ";
-	texture = " ";
-
-	/*Defines how many descriptors each feature class contains*/
-	num_descriptors = 2;
+	covering_map["coat"] = {"pelt","set of scales","layer of plumes","leather hide"};
+	covering_map["texture"] = {"smooth","course","slimy","bristly"};
+}
 	
-	/*Defines the number of bits needed to categorize those features*/
-	length = 2;
+/************************ ENCODE/DECODE FUNCTIONS ****************************/
 
-		/*Covering Offset Information (1): */
-	   //First Segment (4 Bits)
-  	   //Coat Requires 2 bits (1-2)
-	   //Texture Requires 2 bits (3-4)
+void Covering::encode (Binary &genotype, unsigned &offset) const {
 
-	/*The offset of the feature..specifies where feature starts in genome.*/
-	offset = 0;
-	trait_offset = 0;
-	descriptor_offset = 1;
+ 	genotype.setBitField(offset, 2, COAT_descriptor);
+ 	offset += 2;
+  	genotype.setBitField(offset, 2, TEXTURE_descriptor);
+  	offset += 2;
+}
 
-	}
-	
-	/*Get Feature Function*/
+void Covering::decode (const Binary &genotype, unsigned &offset) {
 
-	void Covering::get_Feature(std::vector<std::string>& phenotype){
-		Binary::get_Features(phenotype, num_descriptors, offset, trait_offset, length, covering_map, traits, genome);
-		return;
-	} 
+  	COAT_descriptor = genotype.getBitField(offset, 2);
+  	offset += 2;
+	this->coat = covering_map["coat"][COAT_descriptor]; 
+
+  	TEXTURE_descriptor = genotype.getBitField(offset, 2);
+  	offset += 2;
+	this->texture = covering_map["texture"][TEXTURE_descriptor]; 
+}
+
+/*****************************************************************************/
+
 	
 
 	

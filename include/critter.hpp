@@ -25,67 +25,73 @@
 #include "eyes.hpp"
 #include "limbs.hpp"
 
-// this is so temporary it's not even funny
-//#include "binary.cpp"
-
 class Critter{
- public:
-  // returns the name of the Critter
+ 
+  public:
+  // Returns the Name of the Critter
   std::string const getName();
 
-  // changes the name of the Critter
+  // Changes the Name of the Critter
   void setName(std::string name);
 
-  // returns the Binary encoding of the Critter
+  // Returns the Binary Encoding of the Critter
   Binary getBinary();
 
   // sets the Binary encoding of the Critter
   void setBinary(Binary newBinary);
 
-  // prints a neatly formatted bio abot this Critter
+  // Prints Critter Bio
   void printCritter();
 
   void set_Binary();
 
+  void get_Features(Binary binary);
+
   void set_Features();
 
-  // default constructor
-  Critter();
+  // Constructor
+  Critter(const Binary &genotype);
 
-  // destructor
+  // Destructor
   ~Critter();
 
-  // breeding mechanism
+  // Breeding Mechanism
   void parents(Critter mommy, Critter daddy, float jitter);
 
-  // mutation mechanism
+  // Mutation Mechanism
   void mutate(float severity);
 
-  // the Critter class unit test
+  //Critter Class Unit Test
   void unitTest();
 
-  // overload the = operator
+/****************************OPERATOR OVERLOAD********************************/
+  
+  // Overload the = Operator
   void operator= (const Critter &other);
 
-  // overload the == operator
+  // Overload the == Operator
   bool operator== (const Critter &other);
 
-  // variables for describing the Critter
-  std::string name;
+/*TEMPORARY: SHOULD BE PRIVATE*/
+    std::string name;
+
+/*****************************************************************************/
+
+ private:
+
+  // Variables Describing Critter
   float cuteness;
   float scariness;
   float strangeness;
 
-  // features that this Critter has
+  // Critter's Features
   Covering covering;
   Eyes eyes;
   Limbs limbs;
   Digits digits;
 
-  private:
-
-  // the Critter's genes
-  Binary binary;
+  //Critter's Genome
+  Binary genotype;
   
 };
 

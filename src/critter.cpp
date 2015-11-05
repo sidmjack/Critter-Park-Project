@@ -19,50 +19,52 @@
 
 using std::cout;
 
-// default constructor
-Critter::Critter(){
+// Constructor
+Critter :: Critter(const Binary &b)
+  : genotype(b)
+{
 
-  // fill in random junk by default
+  //Initialize Critter Characteristics 
   name = "New Critter";
   cuteness = 0.0;
   scariness = 0.0;
   strangeness = 0.0;
 
-  // initialize features to default feature constructors
-  covering;
-  digits;
-  eyes;
-  limbs;
-  binary;
+  //Sets traits of each feature in accordance to the genome.
+  unsigned offset = 0;
+  covering.decode(genotype, offset);
+  digits.decode(genotype, offset);
+  eyes.decode(genotype, offset);
+  limbs.decode(genotype, offset);
+
 }
 
-// destructor
+// Destructor
 Critter::~Critter(){
-  //std::cout << "Critter is kill.\n";
 }
 
-// returns the name of this critter
-std::string const Critter :: getName(){
+// Returns Critter's Name
+  std::string const Critter :: getName(){
   return name;
 }
 
-// changes the name of this critter
-void Critter::setName(std::string newname) {
+// Changes Critter's Name 
+  void Critter::setName(std::string newname) {
   this->name = newname;
 }
 
-// returns the Binary encoding of this Critter
+// Returns the Binary Encoding of Critter
 Binary Critter::getBinary(){
-  Binary out = this->binary;
+  Binary out = this->genotype;
   return out;
 }
 
-// sets the Binary encoding of this Critter
+// Sets the Binary Encoding of Critter
 void Critter::setBinary(Binary newBinary){
-  this->binary = newBinary;
+  this->genotype = newBinary;
 }
 
-// prints a description of this critter
+// Prints Critter Description
 void Critter :: printCritter() {
         using std::cout;
 	cout << "********************************************";
@@ -80,76 +82,40 @@ void Critter :: printCritter() {
 	cout << "********************************************\n";
 }
 
-//Sets all genome values to that of the Critter's
-void Critter :: set_Binary() {
-
-	long int c_genome = this->binary.getGenome();
-
-	this->covering.genome = c_genome;
-	this->digits.genome = c_genome;
-	this->eyes.genome = c_genome;
-	this->limbs.genome = c_genome;
-
-	return;
-}
-
-//Sets all traits of the critter in accorance to critter's genome.
-
-void set_Features() {
-	
-	//This, in theory, sets the phenotype vectors of all features.
-	this->covering.get_Feature(this->covering.phenotype);
-	this->digits.get_Feature(this->digits.phenotype);
-	this->eyes.get_Feature(this->eyes.phenotype);
-	this->limbs.get_Feature(this->limbs.phenotype);
-	
-	//Covering Feature:
-	this->covering.coat = this->covering.phenotype.at(0);
-	this->covering.texture = this->covering.phenotype.at(1);
-	//Digits Feature:
-	this->digits.type = this->digits.phenotype.at(0);
-	this->digits.amount = this->digits.phenotype.at(1);
-	//Eyes Feature:
-	this->eyes.size = this->eyes.phenotype.at(0);
-	this->eyes.pupil = this->eyes.phenotype.at(1);
-	this->eyes.color = this->eyes.phenotype.at(2);
-	this->eyes.number = this->eyes.phenotype.at(3);
-	//Limbs Feature:
-	this->limbs.number = this->limbs.phenotype.at(0);
-	this->limbs.shape = this->limbs.phenotype.at(1);
-	return;
-
-}
-
-// set a critter's name to another critter's
+// Set a Critter's name another Critter's
 void Critter::operator= (const Critter &other) {
   name = other.name;
   return;
 }
 
-// check if two critters have the same name
+// Checks if 2 Critters have the same name
 bool Critter :: operator== (const Critter &other) {
   return name == other.name;
 }
 
-// update the Critter's genome using two parent Critters and a jitter value
+// Updates the Critter's genome using two parent Critters and a jitter value
 void Critter::parents(Critter mommy, Critter daddy, float jitter){
-  this->binary.cross(mommy.getBinary(), daddy.getBinary(), jitter);
+  this->genotype.cross(mommy.getBinary(), daddy.getBinary(), jitter);
   return;
 }
 
-// mutate this Critter's genome by a specified amount between [0,1]
+// Mutates this Critter's genome by a specified amount between [0,1]
 void Critter::mutate(float severity){
-  this->binary.genome = Binary::mutate(binary.genome, severity);
+  this->genotype.genome = Binary::mutate(genotype.genome, severity);
 }
+
+// Print a name for this critter in an ostream
+std::ostream & operator<< (std::ostream & os, const Critter& c) {
+	os << c.name;
+  //  os << " is a Critter.\n";  <----- for some reason, uncommenting this causes an error
+//  along the lines of "<< undefined for types osream_basic<char> and const char[16]
+  return os;
+}
+/***************************CRITTER UNIT TESTING******************************/
 
 void Critter :: unitTest() {
 }
 
-// print a name for this critter in an ostream
-std::ostream & operator<< (std::ostream & os, const Critter& c) {
-  os << c.name;
-//  os << " is a Critter.\n";  <----- for some reason, uncommenting this causes an error
-//  along the lines of "<< undefined for types osream_basic<char> and const char[16]
-  return os;
-}
+/*****************************************************************************/
+
+
