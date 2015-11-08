@@ -35,6 +35,9 @@ class Limbs{
 	 void encode(Binary &genotype, unsigned &offset) const;
          void decode(const Binary &genotype, unsigned &offset);
 
+	 static void unitTest();
+
+
 	/********************************************************************/
 	
 	private:

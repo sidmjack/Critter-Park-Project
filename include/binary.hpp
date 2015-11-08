@@ -77,11 +77,12 @@ class Binary{
 
   // function for setting the raw genome
   void setGenome(BINARY_TYPE genome);
-
+  
   /*TEMPORARY, THIS SHOULD BE PRIVATE!*/
   // The Genome Data itself, in all its glory
   BINARY_TYPE genome;
 
+  static void unitTest();
 
  /*****************************************************************************/
 
@@ -96,5 +97,7 @@ class Binary{
 
   // debugging utility for printing the numbers in binary to the console
   void printBinary(const BINARY_TYPE number);
+
+
 
 #endif

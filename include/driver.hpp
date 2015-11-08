@@ -21,16 +21,54 @@
 #include <string>
 #include <cstdbool>
 #include "binary.hpp"
-#include "critter.hpp"
+#include "critter.hpp" 
 
-// print a list of things the user may do
-void printMenu();
+/*********** Menu Handling Functions **************/
 
-// using a list of critters, apply the user's desired changes
-// or show the desired information
+// Repeatedly calls the Menu Function
+int main();
+
+//"Refreshes Screen"
+void refreshScreen();
+
+//Calls Continue Prompt
+void continuePrompt();
+
+/************* Menu Variables **********************/
+
+// Using a list of critters, presents and
+// applies users' desired changes/ info. 
 bool menu(std::map<std::string, Critter> *critters);
 
-// used for repeatedly calling the menu function and for little else
-int main();
+
+/************* Print Functions ********************/
+
+//Critter Park Welcome "Page"
+void printWelcome();
+
+//Prints List of Critter Park Menu Options
+void printMenu();
+
+//Prints Menu Border
+void printBorder();
+
+//Prints input text with "fancy" border
+void borderText(std::string text);
+
+//Prints the Player Manual
+void printManual();
+
+//Print the "About Us" Page
+void printAboutUs();
+
+
+/************* Switch Cases Functions **************/
+
+//Prints and Handles the Rename Critter Switch Case
+void rename_Critter_Switch_Case(std::string choice);
+
+/***************************************************/
+
+
 
 #endif

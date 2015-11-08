@@ -62,7 +62,7 @@ class Critter{
   void mutate(float severity);
 
   //Critter Class Unit Test
-  void unitTest();
+  static void unitTest();
 
 /****************************OPERATOR OVERLOAD********************************/
   
@@ -94,6 +94,7 @@ class Critter{
   Binary genotype;
   
 };
+
 
   // overload the << operator
   std::ostream & operator<< (std::ostream & os, const Critter &c);

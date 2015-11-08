@@ -13,6 +13,8 @@
  * Last Modified: November 2, 2015
  * *****************************************************************************/
 
+#include "critter.hpp"
+#include "binary.hpp"
 #include "digits.hpp"
 #include <map>
 #include <vector> 
@@ -52,5 +54,19 @@ void Digits::decode (const Binary &genotype, unsigned &offset) {
 }
 
 /*****************************************************************************/
+
+//UNIT TEST:
+void Digits::unitTest () {
+
+	std::cout << "Beginning unit tests for Digits Class Functions...\n";
+	/*
+	BINARY_TYPE mockGenotype = 0;
+	unsigned int mockOffset = 0;
+	encode(mockGenotype, mockOffset);*/
+
+	std::cout << "Finished unit tests for Digits Class Functions.\n";
+	
+	return;
+}
 
 

@@ -1,3 +1,4 @@
+*******************************************************************************
 ***Sidney Jackson & Florian Pontani***
 ***sjacks85@jhu.edu flo@jhu.edu***
 ***(917) 454-8493 & (386) 956-5577***
@@ -9,55 +10,39 @@
 *******************************************************************************
 				READ_ME FILE:
 *******************************************************************************
-SUMMARY:
-**We should probably consider making a menu for the driver at some point.**
 
-***Critter Class: 
-
-The critter class contains the characteristic values of the critter(scary
-,cute, strange), along with the critter data (binary genome) used to 
-interpret the characteristics of the critter, and other features that
-allow the user to manipulate the critter.
-
-***Feature Classes:
- 
-Feature Details:
-   Feature 1: Covering
-   Feature 2: Eyes
-   Feature 3: Limbs
-   Feature 4: Digits
+SUMMARY (Assignment 9):
+   We accidently completed hald of this week's project last week so that
+was a nice surprise considering that the User Interface was basically 
+complete. The only changed made in our program was the change of title
+for th euser interface as well as the inclusion of another file containing
+more of the menu handling functions, in an attempt to make the menu 
+look a bit cleaner. We also had to chage the printCritter function
+which describes the critter to include the new characteristic scores.
+Finally, we added a characteristic class which contains a map of the numerical
+impact of each trait on the characteristics (scary, cute, strange) of the 
+critter. The sum of these characteristics was calculated by overloading 
+the += and + operator for characteristics (which contained the values
+of each characteristic that defined the critters). All the other
+classes didn't change much at all, since most of the interface was already
+completed and since the new class is contained most of the "updating" 
+of our Critter Park Program for this week's assignment.
 
 *******************************************************************************
+
 Issues/Frustration:
-
-At first, we weren't entirely sure how to turn each individual feature
-characteristic into one cohesive binary string. It was later determined
-that using an already declared integer (a long int) of zero's that
-would be incremented using bit shifts (in accordance with the length of the
-known descriptor and its location in the "genome" segment) took care of this.
-Further, it was found to be difficult to "concatonate" binary strings
-not related to each other. Bit shifting a single predetermined integer
-resolved this issue as well. 
-
-A map was suggested to be the easiest / "cleanest" means of interpreting
-the descriptors from integers. Then arrays/vecors were. We decided to go 
-with maps on account of maps being able to get us the "values" (descriptor)
-strings we wanted using just the name of the trait as our key.
-
-We had a few issues with the makefile. At first it appeared to be working 
-properly, but we determined it was only reporting that it had compiled our
-files when really..it wasn't. By tweeking our code and downloading the
-update magic makefile, this problem was addressed.
-
-Dealing with "Nested functions" and "nested objects" made it difficult to
-keep track of everything, it was sort of a nightmare.
+Keeping track of the several functions we created proved to be a little
+annoying, but not impossible to deal with. Overloading operators, also 
+not fun.
 
 *******************************************************************************
+
 Overall Outcome:
-
-Not there yet...
+So far so good, we're satisfied with the code we've produced so far.
+(Not Complete Yet However)
 
 *******************************************************************************
+
 ASSIGNMENT FEEDBACK:
 
 A little more guidance would be much appreciated. It was difficult going from
@@ -65,7 +50,15 @@ completely structures and planned out programming to "Here's a game, make it."
 However, we can't deny it was necessary. Maybe just a more progressive way
 of assigning projects that made us rely on our ability to plan out an entire
 program over time instead of being the first and last 6 week C++ project would
-have made the transition a bit eaier.
+have made the transition a bit easier.
+
+This assignment seemed a lot less demanding then the last assignment (which is
+much appreciated). Building off of the program we made last week proved 
+a little more complicated than expected. As the code kept growing, the 
+importance of good orginization and readable code became more important.
+At times, it was difficult to remember where exactly a function was defined
+or which class had a specific function we were looking for. Note:
+Will now consider adding a Table of Content.
 
 *******************************************************************************
 

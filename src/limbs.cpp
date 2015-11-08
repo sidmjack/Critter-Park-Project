@@ -54,5 +54,13 @@ void Limbs::decode (const Binary &genotype, unsigned &offset) {
 
 /*****************************************************************************/
 
+//UNIT TEST:
+void Limbs::unitTest () {
+
+	std::cout << "Beginning unit tests for Limbs Class Functions...\n";
+	std::cout << "Finished unit tests for Limbs Class Functions.\n";
+	
+	return;
+}
 	
 

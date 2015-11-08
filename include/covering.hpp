@@ -37,6 +37,9 @@ class Covering{
 	 void encode(Binary &genotype, unsigned &offset) const;
          void decode(const Binary &genotype, unsigned &offset);
 
+	 static void unitTest();
+
+
 	/********************************************************************/
 	
 	private:
@@ -48,6 +51,7 @@ class Covering{
 	std::map<std::string, std::array<std::string, 4>> covering_map;	
 
 	/*********************************************************************/
+
 
 };
 

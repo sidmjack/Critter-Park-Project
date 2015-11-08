@@ -53,6 +53,14 @@ void Covering::decode (const Binary &genotype, unsigned &offset) {
 
 /*****************************************************************************/
 
+//UNIT TEST:
+void Covering::unitTest () {
+
+	std::cout << "Beginning unit tests for Covering Class Functions...\n";
+	std::cout << "Finished unit tests for Covering Class Functions.\n";
+	
+	return;
+}
 	
 
 	
