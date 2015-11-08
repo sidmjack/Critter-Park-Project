@@ -124,10 +124,202 @@ std::ostream & operator<< (std::ostream & os, const Critter& c) {
 //  along the lines of "<< undefined for types osream_basic<char> and const char[16]
   return os;
 }
+
 /***************************CRITTER UNIT TESTING******************************/
 
-void Critter :: unitTest() {
+//UNIT TEST:
+void Critter::unitTest () {
+
+	std::cout << "Beginning unit tests for Critter Class Functions...\n\n";
+	
+	/*********************************************************************/
+	std::cout << "Make Two Critter Objects:\n";
+	
+	Critter A;
+	Critter B;
+	
+	/* Note: If Critter couldn't be constructed, the compiler wouldn't
+	 * let the program get to this point */
+	std::cout << "Critter Constructor: PASSED!\n\n";
+
+	/*********************************************************************/
+	
+	std::cout << "Mutate Critter:\n";
+	
+	BINARY_TYPE a_before = A.genotype.getGenome();
+	std::cout << "Critter Binary BEFORE Mutation: ";
+	printBinary(a_before);
+	std::cout << "\n";
+
+	A.mutate(.5);
+
+	BINARY_TYPE a_after = A.genotype.getGenome();
+	std::cout << "Critter Binary AFTER Mutation:  ";
+	printBinary(a_after);
+	std::cout << "\n";
+
+	if (a_before != a_after){
+		std::cout << "Critter Mutate: PASSED!\n\n";
+	} else {
+		std::cout << "Critter Mutate: FAILED!\n\n";
+	}
+
+	/*********************************************************************/
+
+	std::cout << "Breed Two Critters:\n";
+	std::cout << "Breeding Critter A with Critter B to make Critter C\n";
+	Critter C;
+	C.parents(A,B,.1);
+
+	BINARY_TYPE a = A.genotype.getGenome();
+	std::cout << "Critter Binary of Parent 1 (A): ";
+	printBinary(a);
+	std::cout << "\n";
+
+	BINARY_TYPE b = B.genotype.getGenome();
+	std::cout << "Critter Binary of Parent 2 (B): ";
+	printBinary(b);
+	std::cout << "\n";
+
+	BINARY_TYPE c = C.genotype.getGenome();
+	std::cout << "Critter Binary of Baby Critter (C): ";
+	printBinary(c);
+	std::cout << "\n";
+
+	if (((c != a) & (c != b))){
+		std::cout << "Critter Breeding: PASSED!\n\n";
+	} else {
+		std::cout << "Critter Breeding: FAILED!\n\n";
+	}		
+
+	/*********************************************************************/
+	std::cout << "Change Name of Critter:\n";
+	
+	std::string name_1;
+	std::string name_2;
+	
+	C.setName("James");
+	name_1 = C.getName();
+	std::cout << "Name of Critter is..." << name_1 << ".\n";
+
+	std::cout << "Change Name...\n";
+
+	C.setName("Johnny");
+	name_2 = C.getName();
+	std::cout << "New Name of Critter is..." << name_2 << ".\n";
+
+	if (name_1 != name_2){
+		std::cout << "Name Change: PASSED!\n\n";
+	} else {
+		std::cout << "Name Change: FAILED!\n\n";
+	}
+
+	/*********************************************************************/
+	std::cout << "Print Description of Critter:\n";
+	std::cout << "Description of Critter B (Binary Set to 0)\n";
+	
+	B.setName("Lulu");
+	B.printCritter();
+
+	if ((
+	(B.name == "Lulu") &
+	(B.covering.texture == "smooth") &
+       	(B.covering.coat == "pelt") &
+	(B.eyes.number == "one") &
+	(B.eyes.size == "beady") &
+	(B.eyes.color == "blood-shot") &
+	(B.eyes.pupil == "indiscernible") &
+	(B.limbs.number == "two") &
+	(B.limbs.shape == "spindles") &
+	(B.digits.amount == "two") &
+	(B.digits.type == "toes")
+	)) {
+		std::cout << "Critter Description: PASSED!\n\n";
+	} else {
+		std::cout << "Critter Description: FAILED!\n\n";
+	}
+
+	/*********************************************************************/
+	std::cout << "Retrieve Critter Binary Genome:\n";
+	
+	BINARY_TYPE X;
+	BINARY_TYPE Y;
+
+	X = A.getBinary().genome;
+	Y = B.getBinary().genome;
+	
+	if ((X != 0) & (Y == 0)){
+		std::cout << "Retrieve Binary Genome: PASSED!\n\n";
+	} else {
+		std::cout << "Retrieve Binary Genome: FAILED!\n\n";
+	}
+
+	/*********************************************************************/
+	std::cout << "Print Critter Name:\n";
+	
+	std::cout << "Print the Names of the Critters (A-C)\n";
+	
+	std::string name_a;
+	std::string name_b;
+	std::string name_c;
+
+	A.setName("Alphie");
+	B.setName("Brendon");
+	C.setName("Caesar");
+
+	name_a = A.getName();
+	name_b = B.getName();
+	name_c = C.getName();
+
+	std::cout << "Critter A: " << name_a << "\n";
+	std::cout << "Critter B: " << name_b << "\n";
+	std::cout << "Critter B: " << name_c << "\n";
+
+	if (((name_a == "Alphie") & (name_b == "Brendon") & (name_c == "Caesar"))){
+		std::cout << "Print Name: PASSED!\n\n";
+	} else {
+		std::cout << "Print Name: FAILED!\n\n";
+	}
+	
+	/*********************************************************************/
+	std::cout << "Compare Critter Names:\n";
+	
+	std::string answer;
+	int passes = 0;
+	
+	//Quesiton 1
+	std::cout << "Are Alphie and Caesar the same???\n";
+	if (A.name != C.name){
+		answer = "Of course not!";
+		passes++;
+	} else {
+		answer = "Obvs...";
+	}
+	std::cout << "Answer: " << answer << "\n";
+
+	//Question 2
+	std::cout << "Is Brendon, umm...Brendon???\n";
+		if (B.name != B.name){
+		answer = "Of course not!";
+	} else {
+		answer = "Obvs...";
+		passes++;
+	}
+	std::cout << "Answer: " << answer << "\n";
+
+	if (passes == 2) {
+		std::cout << "Compare Names: PASSED!\n\n";
+	} else {
+		std::cout << "Compare Names: FAILED!\n\n";
+	}
+
+	/*********************************************************************/
+
+	std::cout << "Finished unit tests for Critter Class Functions.\n";
+	
+	return;
 }
+
 
 /*****************************************************************************/
 

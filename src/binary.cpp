@@ -200,8 +200,8 @@ unsigned Binary::getBitField (unsigned offset, unsigned length) const {
 void Binary::setBitField (unsigned offset, unsigned length, unsigned value) {
 
   if (value >= 1u << length) {
-    std::cout << "error: value " << value << " is to big to be held in field!\n";
-    std::cout << "\t (width: " << length <<", max value: " << (1 << length)-1 << ")\n";
+   // std::cout << "error: value " << value << " is to big to be held in field!\n";
+    //std::cout << "\t (width: " << length <<", max value: " << (1 << length)-1 << ")\n";
     return;
     //TODO throw something
   }
@@ -220,3 +220,122 @@ void Binary::setBitField (unsigned offset, unsigned length, unsigned value) {
 }
 
 /*****************************************************************************/
+
+//UNIT TEST:
+void Binary::unitTest () {
+
+	std::cout << "Beginning unit tests for Binary Class Functions...\n";
+
+/*****************************************************************************/	
+	//CREATING BINARY OBJECTS!
+	Binary A;
+	Binary B;
+	Binary C;
+
+/*****************************************************************************/
+	//TESTING MUTATE!
+	//Before
+	std::cout << "Genome \"Before Mutate\": " << B.genome << "\n";
+	BINARY_TYPE before = B.genome;
+	
+	//Set Genome using Mutate Function
+	B.setGenome(mutate(B.getGenome(), .5));
+
+	//After
+	std::cout << "Genome \"After Mutate\": " << B.genome << "\n";
+	BINARY_TYPE after = B.genome;
+
+
+	if(before != after) {
+		std::cout << "Mutate Function: PASSED!\n\n";
+	} else {
+		std::cout << "Mutate Function: FAILED!\n\n";
+	}
+
+/*****************************************************************************/
+	//TESTING CROSS OVER!
+	
+	std::cout << "Genome \"Before Cross Over\": " << C.genome << "\n";
+	before = C.genome;
+	
+	//Crossing Binary A and B to make C
+	C.cross(A, B, .2);
+	
+	std::cout << "Genome \"After Cross Over\": " << C.genome << "\n";
+	after = C.genome;
+
+	if(before != after) {
+		std::cout << "Cross-Over Function: PASSED!\n\n";
+	} else {
+		std::cout << "Cross-Over Function: FAILED!\n\n";
+	}
+
+/*****************************************************************************/
+//TEST Get GENOME AND BINARY PRINT FUNCTIONS (Visually)
+	std::cout << "Binary A: " << A.getGenome() << "\n";
+	std::cout << "Binary Representation of A: ";
+	printBinary(A.genome);
+	std::cout << "\n";
+	
+	std::cout << "Binary B: " << B.getGenome() << "\n";
+	std::cout << "Binary Representation of B: ";
+	printBinary(B.genome);
+	std::cout << "\n";
+
+	std::cout << "Binary C: " << C.getGenome() << "\n";
+	std::cout << "Binary Representation of C: ";
+	printBinary(C.genome);
+	std::cout << "\n";
+
+	if ((A.getGenome() != 0) | (B.getGenome() != 0) | (C.getGenome() != 0)){
+		std::cout << "Get Genome PASSED!\n\n";
+	} else {
+		std::cout << "Get Genome Failed!\n\n";
+	}	
+
+/*****************************************************************************/
+//Testing Set Bit Field and Get Bitfield
+//Needs Work...
+/*	
+	BINARY_TYPE A_field;
+
+	std::cout << "Binary A (Before): ";
+	printBinary(A.genome);
+	std::cout << "\n";
+	std::cout << "Bianry B (Before): ";
+	printBinary(B.genome);
+	std::cout << "\n";
+
+	std::cout << "Goal: Set Binary A equal to Binary B...\n";
+
+	for (unsigned int i = 0; i < 32; i++){
+		//Determines Position along Genome to Alter
+		A_field = A.getBitField(i, 2); 
+		std::cout << "Iteration " << i << ": " << A_field << "\n";
+
+		//Sets Genome for specified length at specified location to passed value.
+		A.setBitField(i, 2, i); 
+		std::cout << "Iteration " << i << ": " << A.genome << "\n\n";
+	}
+
+	std::cout << "Binary A (After): ";
+	printBinary(A.genome);
+	std::cout << "\n";
+	std::cout << "Bianry B (After): ";
+	printBinary(B.genome);
+	std::cout << "\n";
+
+
+	if (((A.genome) == (B.genome))) {
+		std::cout << "Get Genome and Set Genome: PASSED!\n\n";
+	} else {
+		std::cout << "Get Genome and Set Genome: FAILED!\n\n";
+	}
+*/
+/*****************************************************************************/
+
+	std::cout << "Finished unit tests for Binary Class Functions.\n";
+	
+	return;
+}
+
