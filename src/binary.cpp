@@ -295,7 +295,6 @@ void Binary::unitTest () {
 
 /*****************************************************************************/
 //Testing Set Bit Field and Get Bitfield
-//Needs Work...
 /*	
 	BINARY_TYPE A_field;
 

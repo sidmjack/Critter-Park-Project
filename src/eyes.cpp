@@ -74,10 +74,76 @@ void Eyes::decode (const Binary &genotype, unsigned &offset) {
 
 //UNIT TEST:
 void Eyes::unitTest () {
-
+	
+	//Testing Decode Function
+	
+	Eyes mock_Eyes;
+	Binary mock_Binary = 0;
+	unsigned int mock_Offset = 0;
+	
 	std::cout << "Beginning unit tests for Eyes Class Functions...\n";
+		
+	//Decode Function
+	mock_Eyes.decode(mock_Binary, mock_Offset);
+
+	std::string trait_1 = mock_Eyes.size;
+	std::string trait_2 = mock_Eyes.pupil;
+	std::string trait_3 = mock_Eyes.color;
+	std::string trait_4 = mock_Eyes.number;
+
+	std::cout << "Trait 1: " << trait_1 << "\n";
+	std::cout << "Trait 2: " << trait_2 << "\n"; 
+	std::cout << "Trait 3: " << trait_3 << "\n";
+	std::cout << "Trait 4: " << trait_4 << "\n"; 
+	
+	if (((trait_1 == "beady") & (trait_2 == "indiscernible") &
+		(trait_3 == "blood-shot") & (trait_4 == "one"))){
+		std::cout << "Decode: PASSED!\n\n";
+	} else { 
+		std::cout << "Decode: FAILED!\n\n";
+	}
+	
+	/*********************************************************************/
+	//Testing Encode Function:
+	
+	std::cout << "Displaying genome of current Binary Object.\n";
+	std::cout << "Current Binary (BEFORE): ";
+	printBinary(mock_Binary.getGenome());
+	std::cout << "\n";
+
+	std::cout << "Converting genome from 0 to largest binary representation.\n";
+	mock_Binary.setGenome(~0);
+	std::cout << "Current Binary (POST-CONVERSION): ";
+	printBinary(mock_Binary.getGenome());
+	std::cout << "\n";
+
+	//Encode Function
+	mock_Eyes.encode(mock_Binary, mock_Offset);
+	mock_Eyes.decode(mock_Binary, mock_Offset);
+	
+	std::cout << "\n";
+
+	trait_1 = mock_Eyes.size;
+	trait_2 = mock_Eyes.pupil;
+	trait_3 = mock_Eyes.color;
+	trait_4 = mock_Eyes.number;
+
+	std::cout << "Trait 1: " << trait_1 << "\n";
+	std::cout << "Trait 2: " << trait_2 << "\n"; 
+	std::cout << "Trait 3: " << trait_3 << "\n";
+	std::cout << "Trait 4: " << trait_4 << "\n"; 
+
+
+	if (((trait_1 == "mammoth") & (trait_2 == "round") &
+		(trait_3 == "golden") & (trait_4 == "eight"))){
+		std::cout << "Decode: PASSED!\n\n";
+	} else { 
+		std::cout << "Decode: FAILED!\n\n";
+	}
+	
 	std::cout << "Finished unit tests for Eyes Class Functions.\n";
 	
 	return;
 }
+	
 

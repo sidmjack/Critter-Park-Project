@@ -21,7 +21,9 @@
 #include <string>
 #include <cstdbool>
 #include "binary.hpp"
-#include "critter.hpp" 
+#include "critter.hpp"
+
+//public:
 
 /*********** Menu Handling Functions **************/
 
@@ -67,8 +69,10 @@ void printAboutUs();
 //Prints and Handles the Rename Critter Switch Case
 void rename_Critter_Switch_Case(std::string choice);
 
+/*************** Unit Test Function ****************/
+
+//static void unitTest();
+
 /***************************************************/
-
-
 
 #endif
