@@ -56,7 +56,7 @@ class Trait{
   // INSTANCE LOOKUP FUNCTIONS //
 
   // returns all values for this Trait
-  std::vector<int> getALL();
+  std::vector<int> getAll();
 
   // returns cuteness of this Trait
   std::vector<int> getCute();
@@ -112,61 +112,61 @@ class Trait{
   // THIS IS THE DICTIONARY
   // EYE DESCRIPTION
     // eye size                  cute, scary, strange
-    index["beady"] = std::vector<int> {0,0,0};
-    index["little"] = std::vector<int> {0,0,0};
-    index["large"] = std::vector<int> {0,0,0};
-    index["mammoth"] = std::vector<int> {0,0,0};
+    index["beady"] = std::vector<int> {-1,2,0};
+    index["little"] = std::vector<int> {-1,1,0};
+    index["large"] = std::vector<int> {2,0,1};
+    index["mammoth"] = std::vector<int> {1,0,2};
     // pupils
-    index["indiscernible"] = std::vector<int> {0,0,0};
-    index["slit"] = std::vector<int> {0,0,0};
-    index["compound"] = std::vector<int> {0,0,0};
-    index["round"] = std::vector<int> {0,0,0};
+    index["indiscernible"] = std::vector<int> {-1,3,0};
+    index["slit"] = std::vector<int> {0,2,0};
+    index["compound"] = std::vector<int> {0,1,2};
+    index["round"] = std::vector<int> {1,0,-2};
     // color
-    index["blood-shot"] = std::vector<int> {0,0,0};
-    index["azure"] = std::vector<int> {0,0,0};
-    index["emerald"] = std::vector<int> {0,0,0};
-    index["golden"] = std::vector<int> {0,0,0};
+    index["blood-shot"] = std::vector<int> {-2,3,1};
+    index["azure"] = std::vector<int> {2,0,-1};
+    index["emerald"] = std::vector<int> {2,0,1};
+    index["golden"] = std::vector<int> {0,-1,2};
     // number
-    index["one eye"] = std::vector<int> {0,0,0};
-    index["two eyes"] = std::vector<int> {0,0,0};
-    index["four eyes"] = std::vector<int> {0,0,0};
-    index["eight eyes"] = std::vector<int> {0,0,0};
+    index["one eye"] = std::vector<int> {0,1,2};
+    index["two eyes"] = std::vector<int> {1,0,-3};
+    index["four eyes"] = std::vector<int> {0,1,2};
+    index["eight eyes"] = std::vector<int> {-2,2,3};
 
   // COVERING DESCRIPTION
     // coat
-    index["pelt"] = std::vector<int> {0,0,0};
-    index["set of scales"] = std::vector<int> {0,0,0};
-    index["layer of plumes"] = std::vector<int> {0,0,0};
-    index["leather hide"] = std::vector<int> {0,0,0};
+    index["pelt"] = std::vector<int> {2,0,-1};
+    index["set of scales"] = std::vector<int> {-1,2,0};
+    index["layer of plumes"] = std::vector<int> {1,0,3};
+    index["leather hide"] = std::vector<int> {0,0,-1};
     // texture
-    index["smooth"] = std::vector<int> {0,0,0};
-    index["course"] = std::vector<int> {0,0,0}; // eventually, change to "coarse"
-    index["slimy"] = std::vector<int> {0,0,0};
-    index["bristly"] = std::vector<int> {0,0,0};
+    index["smooth"] = std::vector<int> {2,0,-1};
+    index["course"] = std::vector<int> {-1,2,0}; // eventually, change to "coarse"
+    index["slimy"] = std::vector<int> {-2,3,3};
+    index["bristly"] = std::vector<int> {0,1,0};
 
   // LIMB DESCRIPTIONS
     // number
-    index["two"] =  std::vector<int> {0,0,0};
-    index["four"] =  std::vector<int> {0,0,0};
-    index["six"] =  std::vector<int> {0,0,0};
-    index["eight"] =  std::vector<int> {0,0,0};
+    index["two"] =  std::vector<int> {1,0,-1};
+    index["four"] =  std::vector<int> {2,0,-1};
+    index["six"] =  std::vector<int> {0,1,2};
+    index["eight"] =  std::vector<int> {0,3,3};
     // type
-    index["spindles"] = std::vector<int> {0,0,0};
-    index["tentacles"] = std::vector<int> {0,0,0};
-    index["forelegs"] = std::vector<int> {0,0,0};
-    index["stubs"] = std::vector<int> {0,0,0};
+    index["spindles"] = std::vector<int> {-2,3,3};
+    index["tentacles"] = std::vector<int> {-2,2,3};
+    index["forelegs"] = std::vector<int> {2,0,-2};
+    index["stubs"] = std::vector<int> {3,-3,1};
 
   // DIGIT DESCRIPTORS
     // type
-    index["toes"] = std::vector<int> {0,0,0};
-    index["claws"] = std::vector<int> {0,0,0};
-    index["fingers"] = std::vector<int> {0,0,0};
-    index["talons"] = std::vector<int> {0,0,0};
+    index["toes"] = std::vector<int> {2,-1,-1};
+    index["claws"] = std::vector<int> {0,1,0};
+    index["fingers"] = std::vector<int> {0,0,2};
+    index["talons"] = std::vector<int> {-1,3,1};
     // amount
     //index["two"] = (two is already used by limbs. Maybe use "two legs"?)
-    index["three"] = std::vector<int> {0,0,0};
-    index["five"] = std::vector<int> {0,0,0};
-    index["seven"] = std::vector<int> {0,0,0};
+    index["three"] = std::vector<int> {3,0,0};
+    index["five"] = std::vector<int> {0,0,-1};
+    index["seven"] = std::vector<int> {0,1,3};
     
     // return the map
     return index;
@@ -174,7 +174,7 @@ class Trait{
 
 
 
-  // this vector will assign three integer values for each trait to evey word
+  // this vector will assign three integer values for each trait to every word
   // we've used to describe anything in this program. The array that a word
   // maps to shall have the format {cuteness, scariness, strangeness}
   //
