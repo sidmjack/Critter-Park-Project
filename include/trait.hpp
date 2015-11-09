@@ -11,7 +11,7 @@
  * which is used in this program to assess the cuteness, scariness, and
  * strangeness of each feature that a Critter has.
  *
- * Last Modified: November 4, 2015
+ * Last Modified: November 9, 2015
  * ****************************************************************************/
 
 #include <map>
@@ -35,6 +35,7 @@ class Trait{
 
 
   // STATIC LOOKUP FUNCTIONS //
+
   // check if an adjective is in the index
   static bool exists(std::string);
 
@@ -78,6 +79,9 @@ class Trait{
 
   // returns a list of currently stored traits (empty on failure)
   std::vector<std::string> getTraits();
+
+  // assesses the cuteness, scariness, and strangeness of this Trait
+  std::vector<int> rate();
 
 
 
