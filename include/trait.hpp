@@ -172,7 +172,10 @@ class Trait{
     return index;
   }//end dictionary
 
-
+  /*Unit Test for TRAIT!*/
+  static void unitTest();
+  
+  //private:
 
   // this vector will assign three integer values for each trait to every word
   // we've used to describe anything in this program. The array that a word
