@@ -15,14 +15,14 @@ SUMMARY (Assignment 9):
    
 	We accidently completed half of this week's project last week so that
 was a nice surprise considering that the User Interface was basically 
-complete. The only changed made in our program was the change of title
+complete. The only changed made in our program was the change in file name
 for the user interface as well as the inclusion of another file containing
 more of the menu handling functions, in an attempt to make the menu 
-look a bit cleaner. We also had to chage the printCritter function
+look a bit cleaner. We also had to chnage the printCritter function
 which describes the critter to include the new characteristic scores.
 Finally, we added a characteristic class which contains a map of the numerical
 impact of each trait on the characteristics (scary, cute, strange) of the 
-critter. The sum of these characteristics was calculated by overloading 
+critter. The sum of these characteristics were calculated by overloading 
 the += and + operator for characteristics (which contained the values
 of each characteristic that defined the critters). All the other
 classes didn't change much at all, since most of the interface was already
@@ -97,6 +97,29 @@ and using switch statements and user input to direct the user through out user
 interface, none of which can really be tested without actually running
 the programming and testing it by hand.
 
+***PLEASE NOTE***:
+
+Due to the set up of our user interface/ driver class, it was nearly 
+impossible to test. To check for error and bugs we ran the code, feeding
+all input prompts from the user for all menu features/choices presented
+through our menu to the user, we tested "ideal" and "much-less-than-ideal" 
+input form the user. Most error we've encountered that crashed our program, we
+placed error handling functions. Though, we will admit, some of these
+error handling bugs have bugs themselves (for example, when you enter 
+several wrong characters, for each invalid character that is entered
+an "invalid input" message is printed). It's more ideal than a program that 
+crashes, but it's not pretty. If we had more time, we'd address this.
+Due to the number of switch statements (and nested switch statements), and
+due to the number of print funcitons used in our driver, we found it 
+less helpful to produce unit tests for the driver/user_Interface classes
+and simply opted to test these classes by hand (running the program and
+playing with Critter Park ourselves).
+
+That being said, pleeease don't take off unit test points
+for this class because it wasn't really feasible and becuase we 
+extensively tested everything else (especially the functions that
+are actually used by the menu) in the other classes.
+
 *******************************************************************************
 Issues/Frustration:
 Keeping track of the several functions we created proved to be a little
@@ -127,7 +150,7 @@ of assigning projects that made us rely on our ability to plan out an entire
 program over time instead of being the first and last 6 week C++ project would
 have made the transition a bit easier.
 
-This assignment seemed a lot less demanding then the last assignment (which is
+*This assignment seemed a lot less demanding then the last assignment (which is
 much appreciated). Building off of the program we made last week proved 
 a little more complicated than expected. As the code kept growing, the 
 importance of good orginization and readable code became more important.
