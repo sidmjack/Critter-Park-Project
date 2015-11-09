@@ -48,7 +48,7 @@ void continuePrompt(){
 }
 
 // Prints list of menu options.
-void printMenu(){	   
+void printMenu(){
 	
 	cout << "\n**************************************************";
 	cout << "****************************\n";
@@ -115,30 +115,27 @@ void borderText(std::string text){
 
 void printManual(){
 
-	cout << "\t	*** CRITTER PARK PLAYERS' MANUAL *** \n\n";
+	cout << "\n\t	*** CRITTER PARK PLAYERS' MANUAL *** \n\n";
 	cout << "\t Welcome to Critter Park - A text based game that allows \n";
-	cout << "\tyou to create, display, and breed critters! \n";
+	cout << "\t you to create, display, and breed critters! \n";
  
-	cout << "\n\n\tWhat are Critters? :";
-	cout << "\n\n\t\t Critters are a genetically versatile and flexible species,\n"; 
-      	cout << "\tcapable of breeding and producing new creatures with a wide\n";
-	cout << "\tarray of characteristics. These are the creature's you, as\n";
-	cout << "\tthe player, will be creating and showing off.\n";
+	cout << "\n\tWhat are Critters? :";
+	cout << "\n\t Critters are a genetically versatile and flexible species, "; 
+      	cout << "capable of breeding and \n\t producing new creatures with a wide ";
+	cout << "array of characteristics.\n";
 
-	cout << "\n\n\tHow to Play?\n\n";
-
+	cout << "\n\tHow to Play?\n";
 	cout << "\t\t\"Critter Park\" is currently under construction...\n";
-	cout << "\tAs of now, the scope of feaatures we've implemented\n";
-	cout << "\tare fairly limited in number and complexity. \n";
-	cout << "\tGiven the menu provided to you at the opening of\n";
-	cout << "\tthe game, you are offered a set of options that allow\n";
+	cout << "\tAs of now, the scope of feaatures we've implemented ";
+	cout << "are fairly limited in number and complexity. \n";
+	cout << "\tGiven the menu provided to you at the opening of ";
+	cout << "the game, you are offered a set of options that allow\n";
  	cout << "\tyou to build your collection of critters.\n";
 	
-	cout << "\n\t\tBy entering the number of the menu option offered\n";
-	cout << "\tto you in the menu list, you're able create, mate, and\n";
-	cout << "\tdisplay your critters (along with their genomes for more\n";
-	cout << "\tin depth critter studies, if you so choose to study the\n ";
-	cout << "\t\"critter genome\".\n ";
+	cout << "\n\tBy entering the number of the menu option offered ";
+	cout << " to you in the menu list, you're able create, mate, and\n";
+	cout << "\tdisplay your critters (along with their genomes for more ";
+	cout << " in depth critter studies).\n";
 
         cout << "\n\tMenu's Critter Park Game Options: \n";
 	cout << "\t\t(1) Display this helpful information\n";
@@ -150,12 +147,9 @@ void printManual(){
 	cout << "\t\t(7) Display information about the game\n";
 	cout << "\t\t(8) Exit the program\n";
 
-	cout << "\n\n\tTo Learn more about us and critter park along with\n";
-	cout << "\tour \"future aspirations\", we invite you to check out \n";
-  	cout <<"\tour \"About Us\" Page (6).\n";
- 
-	cout << "\n\t\tTo Exit the Game, Simply Enter (7).\n\n";
-}
+	cout << "\n\tTo Learn more about critter park we invite\n";
+	cout << "\t you to check out our \"About Us\" Page (6). \n\n";
+   }
 
 /********************/
 
@@ -622,5 +616,11 @@ bool menu(std::map<std::string, Critter> *critters){ //Start Menu
 	return false; //Don't Quit
 }
 
-
+/*
+void Driver::unitTest() {
+	std::cout << "Beginning unit tests for Driver Class Functions...\n";
+	std::cout << "Finished unit tests for Driver Class Functions.\n";
+	return;
+}
+*/
 
