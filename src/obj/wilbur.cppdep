@@ -1,3 +1,0 @@
-obj/wilbur.o: wilbur.cpp ../include/critter.hpp ../include/binary.hpp \
- ../include/eyes.hpp ../include/covering.hpp ../include/limbs.hpp \
- ../include/digits.hpp
