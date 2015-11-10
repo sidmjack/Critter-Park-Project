@@ -22,6 +22,7 @@
 #include "binary.hpp"
 #include "covering.hpp"
 #include "digits.hpp"
+#include "trait.hpp"
 #include "eyes.hpp"
 #include "limbs.hpp"
 
@@ -60,6 +61,9 @@ class Critter{
 
   // Mutation Mechanism
   void mutate(float severity);
+  
+  // Assess Critter characteristic scores
+  std::vector<int> getTraitScores();
 
   //Critter Class Unit Test
   static void unitTest();
@@ -83,9 +87,9 @@ class Critter{
  private:
 
   // Variables Describing Critter
-  float cuteness;
-  float scariness;
-  float strangeness;
+  float cuteness = 0;
+  float scariness = 0;
+  float strangeness = 0;
 
   // Critter's Features
   Covering covering;
