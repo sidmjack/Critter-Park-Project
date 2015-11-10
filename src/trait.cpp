@@ -11,8 +11,8 @@
  * which is used in this program to assess the cuteness, scariness, and
  * strangeness of each feature that a Critter has.
  *
- * Last Modified: November 4, 2015
- * ****************************************************************************/
+ * Last Modified: November 9, 2015
+ * ***************************************************************************/
 #include "trait.hpp"
 
 // CREATE THE BLOODY DICTIONARY //
@@ -86,16 +86,57 @@ std::vector<int> Trait::getStrange(std::string s){
 
 
 
+// INSTANCE LOOKUP FUNCTIONS //
+// which are wrappers for rate(), shhh
+
+// returns all values for this Trait
+std::vector<int> Trait::getAll(){
+  // make sure there isn't an error
+  if( this->rate().size() != 3 ){
+    std::cout << "getAll: index error!\n";
+    return std::vector<int> {};
+  }
+  return this->rate();
+}
+
+// returns cuteness of this Trait
+std::vector<int> Trait::getCute(){
+  if( this->rate().size() != 3 ){
+    std::cout << "getCute: index error!\n";
+    return std::vector<int> {};
+  }
+  return std::vector<int> { this->rate().at(0)};
+}
+
+// returns scariness of this Trait
+std::vector<int> Trait::getScary(){
+  if( this->rate().size() != 3 ){
+    std::cout << "getScary: index error!\n";
+    return std::vector<int> {};
+  }
+  return std::vector<int> { this->rate().at(1)};
+}
+
+// returns strangeness of this Trait
+std::vector<int> Trait::getStrange(){
+  if( this->rate().size() != 3 ){
+    std::cout << "getStrange: index error!\n";
+    return std::vector<int> {};
+  }
+  return std::vector<int> { this->rate().at(2)};
+}
+
+
+
 // TRAIT MANIPULATION FUNCTIONS //
 
 // assigns this Trait the given traits
-  bool Trait::setTraits(std::vector<std::string> new_traits){
-
-
+bool Trait::setTraits(std::vector<std::string> new_traits){
   // see if each trait is recognized
   for(unsigned int i = 0; i < new_traits.size(); i++){
     if( ! Trait::exists(new_traits[i])){
-      std::cout << "error: setTraits: \"" << new_traits.at(i) << "\" not in dictionary!";
+      std::cout << "error: setTraits: \"" << new_traits.at(i);
+      std::cout << "\" not in dictionary!\n";
       return false;
     }
   }
@@ -108,7 +149,28 @@ std::vector<int> Trait::getStrange(std::string s){
 std::vector<std::string> Trait::getTraits(){
   return current;
 }
-  
+
+// assesses the overall cuteness, scariness, and strangeness of the Trait
+// returns empty vector if there are no assigned traits
+std::vector<int> Trait::rate(){
+  std::vector<int> output = {0, 0, 0};
+  for(unsigned int i = 0; i < this->getTraits().size(); i++){
+    // it shouldn't be possible, but just because I'm paranoid
+    if( !Trait::exists(this->getTraits().at(i)) ){
+      std::cout << "rate: couldn't find \""<<this->getTraits().at(i);
+      std::cout << "\"in index!\n";
+      return std::vector<int> { };
+    }
+    // otherise, keep summing scores
+    output.at(0) += this->getTraits().at(i).at(0);
+    output.at(1) += this->getTraits().at(i).at(1);
+    output.at(2) += this->getTraits().at(i).at(2);
+
+  }
+  // return the total sum
+  return output;
+}
+
 
 
 // OVERLOADED OPERATORS  //
@@ -141,7 +203,8 @@ void Trait::operator+=(Trait other){
   for(unsigned int i = 0; i < other.getTraits().size(); i++){
     // make sure nohing sus is stored in the other Trait
     if( !Trait::exists(other.getTraits().at(i)) ){
-      std::cout << "copyAssign: could not find \"" << other.getTraits().at(i) << "\" in index!\n";
+      std::cout << "copyAssign: could not find \"";
+      std::cout << other.getTraits().at(i) << "\" in index!\n";
     }
     this->current.push_back(other.getTraits().at(i));
   }
