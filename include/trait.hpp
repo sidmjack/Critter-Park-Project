@@ -14,6 +14,9 @@
  * Last Modified: November 9, 2015
  * ****************************************************************************/
 
+#ifndef HW9_TRAIT_H
+#define HW9_TRAIT_H
+
 #include <map>
 #include <vector>
 #include <string>
@@ -187,4 +190,6 @@ class Trait{
 
 
 }; //end class
+
+#endif
 

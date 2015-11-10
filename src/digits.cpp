@@ -13,6 +13,7 @@
  * Last Modified: November 2, 2015
  * *****************************************************************************/
 
+//#include "trait.hpp"
 #include "critter.hpp"
 #include "binary.hpp"
 #include "digits.hpp"
@@ -30,6 +31,14 @@ Digits::Digits() {
 	/*Define which trait stings map to what descriptor string*/			       
 	digits_map["type"] = {"toes","claws","fingers","talons"};
 	digits_map["amount"] = {"two","three","five","seven"};
+
+	//The Feature's Trait
+	feature_trait;
+	//The Vector of Trait Strings
+	std::vector<std::string> string_traits = {type, amount};
+	//The function that sets the Feature Trair.
+	feature_trait.setTraits(string_traits);
+
 }
 	
 /************************ ENCODE/DECODE FUNCTIONS ****************************/

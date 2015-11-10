@@ -13,6 +13,7 @@
  * Last Modified: November 2, 2015
  * *****************************************************************************/
 
+//#include "trait.hpp"
 #include "binary.hpp"
 #include "limbs.hpp"
 #include <map>
@@ -29,6 +30,14 @@ Limbs::Limbs() {
 	/*Define which trait stings map to what descriptor string*/		
 	limbs_map["number"] = {"two","four","six","eight"};
 	limbs_map["shape"] = {"spindles","tentacles","forelegs","stubs"};
+
+	//The Feature's Trait
+	feature_trait;
+	//The Vector of Trait Strings
+	std::vector<std::string> string_traits = {number, shape};
+	//The function that sets the Feature Trair.
+	feature_trait.setTraits(string_traits);
+
 }
 	
 /************************ ENCODE/DECODE FUNCTIONS ****************************/

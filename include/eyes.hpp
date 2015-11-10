@@ -17,6 +17,7 @@
 #ifndef HW8_EYES_H
 #define HW8_EYES_H
 
+#include "trait.hpp"
 #include <string>
 #include <map>
 #include <vector>
@@ -33,6 +34,12 @@ class Eyes{
 	std::string pupil;
 	std::string color;
 	std::string number;
+
+	//Vector of Strings 
+	std::vector<std::string> string_traits;
+	//Feature Trait
+	Trait feature_trait;
+
 
 	 void encode(Binary &genotype, unsigned &offset) const;
          void decode(const Binary &genotype, unsigned &offset);
