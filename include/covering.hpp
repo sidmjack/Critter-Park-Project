@@ -17,6 +17,7 @@
 #ifndef HW8_COVERING_H
 #define HW8_COVERING_H
 
+#include "trait.hpp"
 #include "binary.hpp"
 #include <string>
 #include <map>
@@ -33,6 +34,11 @@ class Covering{
 	/*Information Accessible to the User*/
 	std::string coat;
 	std::string texture;
+	
+	//Vector of Strings 
+	std::vector<std::string> string_traits;
+	//Feature Trait
+	Trait feature_trait;
  	
 	 void encode(Binary &genotype, unsigned &offset) const;
          void decode(const Binary &genotype, unsigned &offset);

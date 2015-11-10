@@ -13,6 +13,7 @@
  * Last Modified: November 2, 2015
  * *****************************************************************************/
 
+//#include "trait.hpp"
 #include "binary.hpp"
 #include <map>
 #include <vector>
@@ -33,6 +34,14 @@ Eyes::Eyes() {
 	eyes_map["pupil"] = {"indiscernible","slit","compound","round"};
 	eyes_map["color"] = {"blood-shot","azure","emerald","golden"};
 	eyes_map["number"] = {"one","two","four","eight"};
+
+	//The Feature's Trait
+	feature_trait;
+	//The Vector of Trait Strings
+	std::vector<std::string> string_traits = {size, pupil, color ,number};
+	//The function that sets the Feature Trair.
+	feature_trait.setTraits(string_traits);
+
 }
 	
 /************************ ENCODE/DECODE FUNCTIONS ****************************/

@@ -12,7 +12,7 @@
  * 
  * Last Modified: November 2, 2015
  * *****************************************************************************/
-
+//#include "trait.hpp"
 #include "binary.hpp"
 #include "covering.hpp"
 #include <map>
@@ -29,6 +29,14 @@ Covering::Covering() {
 	/*Define which trait stings map to what descriptor string*/		
 	covering_map["coat"] = {"pelt","set of scales","layer of plumes","leather hide"};
 	covering_map["texture"] = {"smooth","course","slimy","bristly"};
+
+	//The Feature's Trait
+	feature_trait;
+	//The Vector of Trait Strings
+	std::vector<std::string> string_traits = {coat, texture};
+	//The function that sets the Feature Trair.
+	feature_trait.setTraits(string_traits);
+
 }
 	
 
