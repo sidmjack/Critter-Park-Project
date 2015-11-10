@@ -73,7 +73,7 @@ class Binary{
   static BINARY_TYPE mutate(const BINARY_TYPE number, float severity);
 
   // function for reading the raw genome
-  BINARY_TYPE getGenome();
+  BINARY_TYPE getGenome() const;
 
   // function for setting the raw genome
   void setGenome(BINARY_TYPE genome);

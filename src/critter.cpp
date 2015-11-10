@@ -11,7 +11,7 @@
  * and the length of the bits required to define the descriptors.
  * (Modeled from Ben Mitchell's Class Example)
  *
- * Last Modified: November 2, 2015
+ * Last Modified: November 9, 2015
  * 
  * *****************************************************************************/
 
@@ -54,7 +54,7 @@ Critter::~Critter(){
 }
 
 // Returns the Binary Encoding of Critter
-Binary Critter::getBinary(){
+Binary const Critter::getBinary() const{
   Binary out = this->genotype;
   return out;
 }
@@ -82,16 +82,33 @@ void Critter :: printCritter() {
 	cout << "********************************************\n\n";
 }
 
+// OPERATOR OVERLOADING //
+
 // Set a Critter's name another Critter's
 void Critter::operator= (const Critter &other) {
   name = other.name;
   return;
 }
 
-// Checks if 2 Critters have the same name
+// Checks if 2 Critters have the same name & genome
 bool Critter :: operator== (const Critter &other) {
-  return name == other.name;
+  //test a number of defining qualities of a Critter against another one
+  if( !(this->name == other.name)){
+    return false;
+  }
+  if( !(this->getBinary().getGenome() == other.getBinary().getGenome())){
+    return false;
+  }
+  return true;
 }
+
+// checks which Critter's name comes first
+bool Critter::operator< (const Critter &other){
+  return (this->name < other.name);
+}
+
+
+// GENETIC STUFF //
 
 // Updates the Critter's genome using two parent Critters and a jitter value
 void Critter::parents(Critter mommy, Critter daddy, float jitter){
