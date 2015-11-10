@@ -158,8 +158,8 @@ BINARY_TYPE Binary::mutate(BINARY_TYPE number, float severity){
 }
 
 // function for reading the raw binary string
-BINARY_TYPE Binary::getGenome(){
-  return this->genome;
+BINARY_TYPE Binary::getGenome() const{
+  return this->genome; 
 }
 
 // function for setting the genome to a new string

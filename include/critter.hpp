@@ -35,7 +35,7 @@ class Critter{
   void setName(std::string name);
 
   // Returns the Binary Encoding of the Critter
-  Binary getBinary();
+  Binary const getBinary() const;
 
   // sets the Binary encoding of the Critter
   void setBinary(Binary newBinary);
@@ -71,6 +71,9 @@ class Critter{
 
   // Overload the == Operator
   bool operator== (const Critter &other);
+
+  // Compare two Critters by name
+  bool operator< (const Critter &other);
 
 /*TEMPORARY: SHOULD BE PRIVATE*/
     std::string name;

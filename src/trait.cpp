@@ -87,7 +87,7 @@ std::vector<int> Trait::getStrange(std::string s){
 // which are wrappers for rate(), shhh
 
 // returns all values for this Trait
-std::vector<int> Trait::getALL(){
+std::vector<int> Trait::getAll(){
   // make sure there isn't an error
   if( this->rate().size() != 3 ){
     std::cout << "getAll: index error!\n";
