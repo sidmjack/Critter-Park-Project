@@ -45,9 +45,9 @@ class Covering{
          void decode(const Binary &genotype, unsigned &offset);
 
 	 static void unitTest();
-	 
-	 Trait getFeatureTrait();
 
+	/* updatees local Trait */
+	void updateTrait();
 
 	/********************************************************************/
 	
@@ -56,6 +56,7 @@ class Covering{
 	/*Feature Traits*/
 	int COAT_descriptor, TEXTURE_descriptor;
 
+	
 	/*Feature Map*/
 	std::map<std::string, std::array<std::string, 4>> covering_map;	
 

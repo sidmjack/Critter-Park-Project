@@ -35,7 +35,7 @@ Covering::Covering() {
 	//The Vector of Trait Strings
 	std::vector<std::string> string_traits = {coat, texture};
 	//The function that sets the Feature Trair.
-	feature_trait.setTraits(string_traits);
+	feature_trait.setTraits(std::vector<std::string>{this->coat, this->texture});
 
 }
 	
@@ -61,6 +61,12 @@ void Covering::decode (const Binary &genotype, unsigned &offset) {
   	offset += 2;
 	this->texture = covering_map["texture"][TEXTURE_descriptor]; 
 	return;
+	
+	this->updateTrait();
+}
+
+void Covering::updateTrait(){
+  this->feature_trait.setTraits(std::vector<std::string>{this->texture, this->coat});
 }
 
 /*****************************************************************************/
