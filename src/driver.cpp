@@ -78,7 +78,7 @@ void printAboutUs(){
 	
 	cout << "\tAbout Critter Park:\n";
 	cout << "\t\tProject Details:CS 600.120 - Homework 8.1\n";
-	cout << "\t\tLast Modification: November 2, 2015\n";
+	cout << "\t\tLast Modification: November 9, 2015\n";
 	cout << "\t\tGame Version: JHU.CS.CP.1.0\n\n";
 
 	cout << "\t\tOur game is still currently under construction.\n";

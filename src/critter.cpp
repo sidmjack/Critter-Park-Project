@@ -60,8 +60,14 @@ Binary const Critter::getBinary() const{
 }
 
 // Sets the Binary Encoding of Critter
-void Critter::setBinary(Binary newBinary){
-  this->genotype = newBinary;
+void Critter::setBinary(Binary genotype){
+  this->genotype = genotype;
+  // update features
+  unsigned offset = 0;
+  this->covering.decode(genotype, offset);
+  this->digits.decode(genotype, offset);
+  this->eyes.decode(genotype, offset);
+  this->limbs.decode(genotype, offset);
 }
 
 // Prints Critter Description
@@ -90,9 +96,10 @@ void Critter :: printCritter() {
 
 // sets a critter's trait scores based on the descriptors in its features
 std::vector<int> Critter::getTraitScores() {
-  std::vector<int> scores;
+  std::vector<int> scores = {0,0,0};
   // sum the scores from all four body parts
   for(int i = 0; i < 3; i++){
+    covering.updateTrait();
     scores.at(i) += covering.feature_trait.rate().at(i);
     scores.at(i) += digits.feature_trait.rate().at(i);
     scores.at(i) += eyes.feature_trait.rate().at(i);

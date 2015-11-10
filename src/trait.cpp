@@ -135,8 +135,8 @@ bool Trait::setTraits(std::vector<std::string> new_traits){
   // see if each trait is recognized
   for(unsigned int i = 0; i < new_traits.size(); i++){
     if( ! Trait::exists(new_traits[i])){
-    //  std::cout << "error: setTraits: \"" << new_traits.at(i);
-    //  std::cout << "\" not in dictionary!\n";
+ //     std::cout << "error: setTraits: \"" << new_traits.at(i);
+  //    std::cout << "\" not in dictionary!\n";
       return false;
     }
   }
