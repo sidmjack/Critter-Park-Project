@@ -80,17 +80,32 @@ void Critter :: printCritter() {
 	cout << "." << "\n";
 	//Assuming we give Critter a Trait and create a critter function that 
 	//makes "Critter Trait" by summing the feature traits...Uncomment Below.
-	//cout << "Characteristic Leves: \n";
-	//cout << "Cuteness: " << trait.at(0);
-	//cout << "Scariness: " << trait.at(1);
-	//cout << "Strangeness: " << trait.at(2);
-	cout << "********************************************";
+	cout << "Characteristic Scores: \n";
+	cout << "Cuteness: " << this->getTraitScores().at(0);
+	cout << "\nScariness: " << this->getTraitScores().at(1);
+	cout << "\nStrangeness: " << this->getTraitScores().at(2);
+	cout << "\n********************************************";
 	cout << "********************************************\n\n";
+}
+
+// sets a critter's trait scores based on the descriptors in its features
+std::vector<int> Critter::getTraitScores() {
+  std::vector<int> scores;
+  // sum the scores from all four body parts
+  for(int i = 0; i < 3; i++){
+    scores.at(i) += covering.feature_trait.rate().at(i);
+    scores.at(i) += digits.feature_trait.rate().at(i);
+    scores.at(i) += eyes.feature_trait.rate().at(i);
+    scores.at(i) += limbs.feature_trait.rate().at(i);
+  }
+    
+  // return the scores
+  return scores;
 }
 
 // OPERATOR OVERLOADING //
 
-// Set a Critter's name another Critter's
+// Set a Critter's name to another Critter's
 void Critter::operator= (const Critter &other) {
   name = other.name;
   return;
@@ -112,6 +127,8 @@ bool Critter :: operator== (const Critter &other) {
 bool Critter::operator< (const Critter &other){
   return (this->name < other.name);
 }
+
+// print a critter's info to stream
 
 
 // GENETIC STUFF //

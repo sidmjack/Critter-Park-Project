@@ -19,6 +19,7 @@
 
 #include "trait.hpp"
 #include "binary.hpp"
+#include "trait.hpp"
 #include <string>
 #include <map>
 #include <vector>
@@ -44,6 +45,8 @@ class Covering{
          void decode(const Binary &genotype, unsigned &offset);
 
 	 static void unitTest();
+	 
+	 Trait getFeatureTrait();
 
 
 	/********************************************************************/
