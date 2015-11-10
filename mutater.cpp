@@ -1,5 +1,6 @@
 #include <iostream>
-#include "binary.hpp"
+#include "critter.hpp"
+usign std::cout;
 
 int main(){
   int a = 0;
@@ -26,6 +27,14 @@ int main(){
   //test mutate
   mutate(b,0.5);
   std::cout << std::endl;
+
+  //test critter stuff
+  Critter michael;
+  Critter james;
+  michael.setName("michael");
+  james.setName("james");
+  cout << "results of test michael < james: \n";
+  cout << (michael < james);
 
   return 0;
 }
