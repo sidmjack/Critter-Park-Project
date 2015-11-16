@@ -8,47 +8,16 @@
  *
  * driver.cpp - contains implementations for the menu and related functions
  *
- * Last Modified: November 2, 2015
+ * Last Modified: November 20, 2015
  * 
  * *****************************************************************************/
 
-#include "driver.hpp"
-#include "binary.hpp"
-//#include <string>
+#include "barn_menu.hpp"
 
 using namespace std;
 
-void printWelcome(){
-	
-	cout << "\n\t\t  *********************************\n";
-	cout << "\t\t        WELCOME TO CRITTER PARK!\n";
-	cout << "\t\t   *********************************\n\n";
-
-	return;
-}
-
-void refreshScreen(){
-
-	cout << "\x1b[?47h"; //Deletes Former Screen Content
-	cout << "\x1b[0m"; //Resets Lingering Text Edits
-
-	return;
-}
-
-void continuePrompt(){
-	
-	char continue_prompt;
-
-	do {
-		cout << "\n >>> ENTER \"C\" to Continue... <<< \n";
-		cout << "Prompt: ";
-		cin >> continue_prompt;
-			
-	} while (continue_prompt != 'c');
-}
-
 // Prints list of menu options.
-void printMenu(){
+void printBarnMenu(){
 	
 	cout << "\n**************************************************";
 	cout << "****************************\n";
@@ -59,78 +28,22 @@ void printMenu(){
 	cout << "\t4) Display Critter Genome\n";
 	cout << "\t5) Display List of Critter Park Creatures\n";
 	cout << "\t6) Remove Critter from park\n";
-	cout << "\t7) About Critter Park - Authors/Game-Info\n";
-	cout << "\t8) Leave \"Critter Park\"\n\n";
+	cout << "\t7) Leave \"Critter Park Barn\"\n\n";
 	cout << "**************************************************";
 	cout << "****************************\n";
 	cout << "Enter Menu Option: ";
 }
 
-//Print the About Us Page
-void printAboutUs(){
-
-	cout << "\tCRITTER PARK INFORMATION:\n\n";
-	cout << "\tAbout Us:\n";
-	cout << "\t\tAuthors: Florian Pontani & Sidney Jackson\n";
-	cout << "\t\tContact: flo1@jhu.edu & sjacks85@jhu.edu\n";
-	cout << "\t\t   (917) 454-8493 & (386) 956-5577\n";
-	cout << "\t\tCompany: JHU-Squid Squad Inc.\n\n";
-	
-	cout << "\tAbout Critter Park:\n";
-	cout << "\t\tProject Details:CS 600.120 - Homework 8.1\n";
-	cout << "\t\tLast Modification: November 9, 2015\n";
-	cout << "\t\tGame Version: JHU.CS.CP.1.0\n\n";
-
-	cout << "\t\tOur game is still currently under construction.\n";
-	cout << "\tWe later plan to implement more interactive\n";
-	cout << "\tfeatures to critter park that will allow players\n";
- 	cout << "\tnot only create and show off their critters, but\n";
-	cout << "\tevaluate their critter characteristics, diplay them\n";
-	cout << "\tin a virtual \"Critter Park\", build the park, manage\n";
-	cout << "\tthe park, and more!\n\n"; 
-
- 	cout << "\t\tMORE TO COME...\n\n";
-}
-
-//Prints a Border
-void printBorder(){
-	std::string border(80, '*');	
-	cout << border << endl;
-}
-
-void borderText(std::string text){
-	
-	const std::string spaces(text.size(), ' ');
-	const std::string second = "////   " + spaces + "   ////";
-	const std::string first(second.size(), '/');
-
-	cout << endl;
-	cout << first << endl;
-	cout << second << endl;
-	cout << "////   " + text + "   ////" << endl;
-	cout << second << endl;
-	cout << first << endl;
-	cout << endl;
-}
-
-void printManual(){
+void printBarnManual(){
 
 	cout << "\n\t	*** CRITTER PARK PLAYERS' MANUAL *** \n\n";
-	cout << "\t Welcome to Critter Park - A text based game that allows \n";
-	cout << "\t you to create, display, and breed critters! \n";
- 
-	cout << "\n\tWhat are Critters? :";
-	cout << "\n\t Critters are a genetically versatile and flexible species, "; 
-      	cout << "capable of breeding and \n\t producing new creatures with a wide ";
-	cout << "array of characteristics.\n";
+	cout << "\t Welcome to the Critter Park Barn\n"; 
 
-	cout << "\n\tHow to Play?\n";
-	cout << "\t\t\"Critter Park\" is currently under construction...\n";
-	cout << "\tAs of now, the scope of feaatures we've implemented ";
-	cout << "are fairly limited in number and complexity. \n";
-	cout << "\tGiven the menu provided to you at the opening of ";
-	cout << "the game, you are offered a set of options that allow\n";
- 	cout << "\tyou to build your collection of critters.\n";
+	cout << "\n\t It is here that critters are a created, \n"; 
+      	cout << "bred, and \"studied\". The critters kept here are\n";
+	cout << "the critter's avaiable to be put on display in the Park.\n";
+
+	cout << "\n\tWhat's there to do in the Critter Barn?\n";
 	
 	cout << "\n\tBy entering the number of the menu option offered ";
 	cout << " to you in the menu list, you're able create, mate, and\n";
@@ -139,28 +52,19 @@ void printManual(){
 
         cout << "\n\tMenu's Critter Park Game Options: \n";
 	cout << "\t\t(1) Display this helpful information\n";
-	cout << "\t\t(2) Create a new Critter\n";
+	cout << "\t\t(2) Create a random new Critter\n";
 	cout << "\t\t(3) Describe a Critter\n";
 	cout << "\t\t(4) Display a Critter's Genome\n";
-	cout << "\t\t(5) List the Critters in the park\n";
-	cout << "\t\t(6) Remove a Critter from the park\n";
-	cout << "\t\t(7) Display information about the game\n";
-	cout << "\t\t(8) Exit the program\n";
+	cout << "\t\t(5) List the Critters in the barn\n";
+	cout << "\t\t(6) Remove a Critter from the barn\n";
+	cout << "\t\t(7) Exit the Critter Park Barn\n";
 
-	cout << "\n\tTo Learn more about critter park we invite\n";
-	cout << "\t you to check out our \"About Us\" Page (6). \n\n";
    }
 
-/********************/
-
-//rename_Critter_Switch_Case(std::string choice){
-//} //End of Function
-
-/********************/
 
 
 // do everything the user wants, given a vector full of critters
-bool menu(std::map<std::string, Critter> *critters){ //Start Menu
+bool barnMenu(std::map<std::string, Critter> *critters){ //Start Menu
 	
         char menuChoice = 0;
 	int counter = 0;
@@ -172,7 +76,7 @@ bool menu(std::map<std::string, Critter> *critters){ //Start Menu
 	
 	float jitter; // number for some function parameters
 	
-	printMenu(); //Prints the Menu
+	printBarnMenu(); //Prints the Menu
 
 	cin >> menuChoice; //Recieves User Input (Menu Option)
 	
@@ -531,96 +435,24 @@ bool menu(std::map<std::string, Critter> *critters){ //Start Menu
 		break;
 		} //End Case 6
 
-	case '7':
+
+	case '7': 	
 		{ //Start Case 7
 
-		printBorder();
-		printAboutUs();
-		printBorder();
+		return true;
 		continuePrompt();
+		break;
 		
-			  break;
 		} //End Case 7
-
-	case '8': 	
-		{ //Start Case 8
-		
-		printBorder();
-		cout << "\nAre you sure you want to quit? \n";
-		
-		char response;
-		
-		cout << "\t\"a\") Continue Playing!\n";
-		cout << "\t\"b\") Quit Game...\n\n\n";
-		
-		cout << "Enter Response: ";
-		cin >> response;
-		
-		switch (response) { //Start Nested Switch 1
-			case 'a':{ //Start Case a
-				cout << "\nYeah- We figured you'd want to keep playing!\n\n";
-			        break;
-				 } //End Case A
-			case 'b':{ //Start Case B
-				
-				 printBorder();      	 
-       				 cout << "\nAre you absolutely sure you want to quit?\n";
-			  	 
-				 char response_2;
-				  
-				 cout << "\t\"}\") Continue Playing!\n";
-				 cout << "\t\"`\") Quit Game...\n\n\n";
-					
-				 cout << "Enter Response: ";
-				 cin >> response_2;
-	
-				switch(response_2) { //Start Nest Switch 2
-					case '}':{ //Start Case }
-						  cout << "\nYeah- We figured you'd want to keep playing.\n\n";
-						  return false;
-						  break;
-					} //End Case }
-					case '`': 
-				 		{ //Start Case `
-						  printBorder();
-      						  cout << "\n\nAlright, if you're sure you want to quit...\n";
-						  cout << "Come back again!\n\n";
-					          return true;
-						  break;
-						} //End Case `
-					default: { 
-						 cout << "Invalid Input.\n";
-						 return false;
-						 break;
-						 }
-				} //End Nested Switch 2
-				} //End Case B
-			
-			default:{ cout << "Invalid Input.\n";
-				 return false;
-			}
-		
-		continuePrompt();
-
-		break; //Break for QUIT switch.
-		} //End Nested Switch 1
-	} //End Case 8
 	
 	default:{  cout << "Invalid Input!\n";
 		  cin.clear();
 		  continuePrompt();
 		  return false;
 		}
-	} 
-} 
+	}  
+}	
 	return false; //Don't Quit
 }
 
-/*
-void Driver::unitTest() {
-	std::cout << "Beginning unit tests for Driver Class Functions...\n";
-	std::cout << "Finished unit tests for Driver Class Functions.\n";
-	return;
-}
-*/
 
