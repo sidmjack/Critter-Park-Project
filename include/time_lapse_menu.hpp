@@ -16,6 +16,7 @@
 #define HW8_TIME_H
 
 #include "main_menu.hpp"
+#include "progressReport.hpp"
 #include "critter.hpp"
 #include <iostream>
 #include <string>
@@ -26,7 +27,7 @@
 
 /*********** Menu Handling Functions **************/
 
-bool progressMenu(std::map<std::string, Critter> *critters);
+bool progressMenu(Progress_Report *A, Progress_Report *B);
 
 /************* Print Functions ********************/
 

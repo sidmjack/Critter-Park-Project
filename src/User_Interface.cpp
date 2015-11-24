@@ -5,6 +5,9 @@ int main(){
 
 	// Set up Critter Map
 	std::map<std::string, Critter> critters;
+	//Set up Time-Lapse Progress Reports
+	Progress_Report A;
+	Progress_Report B;
 	
 	//Prints Welcome
 	printWelcome();
@@ -14,7 +17,7 @@ int main(){
 	bool quit = false; 
 	 while(!quit) {
 		refreshScreen();
-  	 	quit = mainMenu(&critters);
+  	 	quit = mainMenu(&critters, &A, &B);
  	 }
 
 	return 0;

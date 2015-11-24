@@ -20,6 +20,7 @@
 #include "management_menu.hpp"
 #include "time_lapse_menu.hpp"
 #include "critter.hpp"
+#include "progressReport.hpp"
 #include <iostream>
 #include <string>
 #include <cstdbool>
@@ -32,7 +33,7 @@
 // Repeatedly calls the Menu Function
 int main();
 
-bool mainMenu(std::map<std::string, Critter> *critters);
+bool mainMenu(std::map<std::string, Critter> *critters, Progress_Report *A, Progress_Report *B);
 
 //"Refreshes Screen"
 void refreshScreen();
