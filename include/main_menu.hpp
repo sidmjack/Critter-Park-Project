@@ -46,6 +46,18 @@ void continuePrompt();
 //Critter Park Welcome "Page"
 void printWelcome();
 
+//Prints a Critter Figure
+void print_Critter();
+
+//Prints the alleged Critter Park Logo
+void print_Logo();
+
+//Literally prints "Critter Park" in fun colors.
+void print_CritterPark();
+
+//Literally prints "Welcome to" in fun colors.
+void print_WelcomeTo();
+
 //Prints List of Critter Park Menu Options
 void printMenu();
 
