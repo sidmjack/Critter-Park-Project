@@ -11,6 +11,7 @@
  * *****************************************************************************/
 
 #include "time_lapse_menu.hpp"
+#include "progressReport.hpp"
 
 using namespace std;
 
@@ -43,7 +44,7 @@ void printProgressManual(){
    }
 
 //Will need to pass critter map and display map to do anything...
-bool progressMenu(std::map<std::string, Critter> *critters){ //Start Menu
+bool progressMenu(Progress_Report *A, Progress_Report *B){ //Start Menu
 
 	char menuChoice = 0;
 		
@@ -70,7 +71,10 @@ bool progressMenu(std::map<std::string, Critter> *critters){ //Start Menu
 		
 		printBorder();
 		borderText("INITIATE TIME LAPSE");
-		cout << "\"Time Lapse\" Under Construction!\n";
+		Progress_Report::simulateWeek(A, B);
+		cout << "Timelapse successfully run!\n";
+		cout << "One Week has passed since your last Critter Park Modifications were made...\n";
+		cout << "Check the Critter Park Progress Report to view your park's statistics.\n";
 		continuePrompt();		
 		break; //Case 2 Break
 		} //End Case 2
@@ -81,7 +85,8 @@ bool progressMenu(std::map<std::string, Critter> *critters){ //Start Menu
 		
 		printBorder();
 		borderText("View Progress Report");
-		cout << "\"Progress Report\" Under Construction!\n";
+		//cout << "\"Progress Report\" Under Construction!\n";
+		Progress_Report::printReport(*A, *B);
 		continuePrompt();		
 		break; //Case 3 Break
 		} //End Case 3

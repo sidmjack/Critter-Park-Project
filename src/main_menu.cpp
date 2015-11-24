@@ -153,7 +153,7 @@ void printManual(){
 
 
 // do everything the user wants, given a vector full of critters
-bool mainMenu(std::map<std::string, Critter> *critters){ //Start Menu
+bool mainMenu(std::map<std::string, Critter> *critters, Progress_Report *A, Progress_Report *B){ //Start Menu
 	
         char menuChoice = 0;
 		
@@ -218,7 +218,7 @@ bool mainMenu(std::map<std::string, Critter> *critters){ //Start Menu
 		bool quit = false; 
 		 while(!quit) {
 			refreshScreen();
-  	 		quit = progressMenu(critters);
+  	 		quit = progressMenu(A, B);
  	 	}	
 		continuePrompt();		
 		break; //Case 4 Break
