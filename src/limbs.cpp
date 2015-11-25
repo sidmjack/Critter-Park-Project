@@ -31,8 +31,6 @@ Limbs::Limbs() {
 	limbs_map["number"] = {"two","four","six","eight"};
 	limbs_map["shape"] = {"spindles","tentacles","forelegs","stubs"};
 
-	//The Feature's Trait
-	feature_trait;
 	//The Vector of Trait Strings
 	std::vector<std::string> string_traits = {number, shape};
 	//The function that sets the Feature Trair.
@@ -59,8 +57,13 @@ void Limbs::decode (const Binary &genotype, unsigned &offset) {
   	SHAPE_descriptor = genotype.getBitField(offset, 2);
   	offset += 2;
 	this->shape = limbs_map["shape"][SHAPE_descriptor]; 
+	
+	this->updateTrait();
 }
 
+void Limbs::updateTrait(){
+  this->feature_trait.setTraits(std::vector<std::string>{this->number, this->shape});
+}
 /*****************************************************************************/
 
 //UNIT TEST:

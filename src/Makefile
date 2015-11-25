@@ -30,7 +30,7 @@
 # Set to 1 for debugging flags on,
 # Set to 0 for debugging flags off
 ###############################
-DEBUG_MODE = 0
+DEBUG_MODE = 1
 
 # set a default target
 default: test

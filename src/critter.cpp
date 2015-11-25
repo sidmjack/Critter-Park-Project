@@ -68,10 +68,10 @@ void Critter::setBinary(Binary genotype){
   this->digits.decode(genotype, offset);
   this->eyes.decode(genotype, offset);
   this->limbs.decode(genotype, offset);
-}
+} 
 
 // Prints Critter Description
-void Critter :: printCritter() {
+void Critter :: printCritter() { 
         using std::cout;
 	cout << "********************************************";
 	cout << "********************************************\n";
