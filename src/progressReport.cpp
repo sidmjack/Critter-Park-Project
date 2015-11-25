@@ -29,23 +29,30 @@ std::string Progress_Report::netChange(T A, T B)
 	std::string sign;
 
 	T value = A-B;
-	int val = std::abs(value);
+	double val = fabs(value);
 	
-	if (val < 0){
+	if (val == 0){
 		net_string = ("   NET: " + std::to_string(0) );
 		return net_string;
 	}
 
-	if (value >= 0){
+	if (value >= 0) {
 		sign = "+";
 	} else {
 		sign = "-";
 	}
 
-	net_string = ( "   NET: " + sign + std::to_string((val)));
-
+	//Beware, hackish doings beyond this point.
+	std::string net_num;
+	net_num = std::to_string(val);
+	net_num.erase(net_num.find_last_not_of('0') + 1, std::string::npos);
+	net_num += "0";
+			
+	net_string = ("   NET: " + sign + net_num );
 	return net_string;
+
 }
+
 
 void Progress_Report::colorOutput(double input){
 	if (input < 0){
