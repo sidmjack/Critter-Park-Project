@@ -96,6 +96,7 @@ void Progress_Report::printReport(Progress_Report A, Progress_Report B)
 	colorOutput(A.strangeRep-B.strangeRep);
 	std::cout << "\t Strange Critter Reputation: " << A.strangeRep;	
 	std::cout << netChange(A.strangeRep, B.strangeRep) << "\n\n";
+	std::cout << A.strangeRep << "vs" << B.strangeRep << "\n\n";
 	resetOutput();
 
 	std::cout << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n";
@@ -338,8 +339,7 @@ void Progress_Report::percentVisitor(Progress_Report *input)
 }
 
 void Progress_Report::simulateWeek(Progress_Report *A, Progress_Report *B){
-for (int i = 0; i < 7; i++)
-{		
+		
 	assign(A); //Assigns needed randos...WILL NOT REMAIN
 	percentVisitor(A);
 	parkRep(A, B);
@@ -350,7 +350,7 @@ for (int i = 0; i < 7; i++)
 	getIncomePercentage(A, B);
 	fail(*A);
 	reload(A, B);	
-}
+
 		return;
 }
 
