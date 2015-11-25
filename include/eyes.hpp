@@ -44,6 +44,9 @@ class Eyes{
 	 void encode(Binary &genotype, unsigned &offset) const;
          void decode(const Binary &genotype, unsigned &offset);
 
+	 /* updatees local Trait */
+	void updateTrait();
+	 
 	 static void unitTest();
 
 

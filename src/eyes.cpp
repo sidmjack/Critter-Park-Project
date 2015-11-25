@@ -35,8 +35,6 @@ Eyes::Eyes() {
 	eyes_map["color"] = {"blood-shot","azure","emerald","golden"};
 	eyes_map["number"] = {"one","two","four","eight"};
 
-	//The Feature's Trait
-	feature_trait;
 	//The Vector of Trait Strings
 	std::vector<std::string> string_traits = {size, pupil, color ,number};
 	//The function that sets the Feature Trair.
@@ -76,9 +74,14 @@ void Eyes::decode (const Binary &genotype, unsigned &offset) {
   	NUMBER_descriptor = genotype.getBitField(offset, 2);
   	offset += 2;
 	this->number = eyes_map["number"][NUMBER_descriptor]; 
+	
+	this->updateTrait();
 
 }
 
+void Eyes::updateTrait(){
+  this->feature_trait.setTraits(std::vector<std::string>{this->size, this->pupil, this->color, this->number});
+}
 /*****************************************************************************/
 
 //UNIT TEST:

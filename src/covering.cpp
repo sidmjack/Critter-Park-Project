@@ -12,6 +12,7 @@
  * 
  * Last Modified: November 2, 2015
  * *****************************************************************************/
+
 //#include "trait.hpp"
 #include "binary.hpp"
 #include "covering.hpp"
@@ -30,11 +31,9 @@ Covering::Covering() {
 	covering_map["coat"] = {"pelt","set of scales","layer of plumes","leather hide"};
 	covering_map["texture"] = {"smooth","course","slimy","bristly"};
 
-	//The Feature's Trait
-	feature_trait;
 	//The Vector of Trait Strings
 	std::vector<std::string> string_traits = {coat, texture};
-	//The function that sets the Feature Trair.
+	//The function that sets the Feature Trait.
 	feature_trait.setTraits(std::vector<std::string>{this->coat, this->texture});
 
 }

@@ -32,8 +32,6 @@ Digits::Digits() {
 	digits_map["type"] = {"toes","claws","fingers","talons"};
 	digits_map["amount"] = {"two","three","five","seven"};
 
-	//The Feature's Trait
-	feature_trait;
 	//The Vector of Trait Strings
 	std::vector<std::string> string_traits = {type, amount};
 	//The function that sets the Feature Trair.
@@ -60,8 +58,13 @@ void Digits::decode (const Binary &genotype, unsigned &offset) {
   	AMOUNT_descriptor = genotype.getBitField(offset, 2);
   	offset += 2;
 	this->amount = digits_map["amount"][AMOUNT_descriptor]; 
+	
+	this->updateTrait();
 }
 
+void Digits::updateTrait(){
+  this->feature_trait.setTraits(std::vector<std::string>{this->type, this->amount});
+}
 /*****************************************************************************/
 
 //UNIT TEST:
