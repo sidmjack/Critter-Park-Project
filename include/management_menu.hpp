@@ -18,6 +18,8 @@
 
 #include "main_menu.hpp"
 #include "critter.hpp"
+#include "binary.hpp"
+#include "progressReport.hpp"
 #include <iostream>
 #include <string>
 #include <cstdbool>
@@ -27,7 +29,7 @@
 
 /*********** Menu Handling Functions **************/
 
-bool managementMenu(std::map<std::string, Critter> *critters);
+bool managementMenu(std::map<std::string, Critter> *barnCritters, std::map<std::string, Critter> *showCritters, std::vector<std::string> *displays, Progress_Report *A, Progress_Report *B);
 
 /************* Print Functions ********************/
 
@@ -37,6 +39,20 @@ void printManagementMenu();
 //Prints the Player Manual
 void printManagementManual();
 
-/***************************************************/
+//Prints the General Management Report
+void printManagementReport(Progress_Report *A);
+
+//Prints the Legal Investement Options Available to the Player
+void printInvestmentOptions();
+
+//Prints the Illegal Investement Options Available to the Player
+void printBlackMarketOptions();
+
+/************* Helper Functions **********************/
+
+//A Randomized "Punishing" Function used when the user dabbles in the Black Market.
+void negativePublicity(Progress_Report *A);
+
+/*****************************************************/
 
 #endif

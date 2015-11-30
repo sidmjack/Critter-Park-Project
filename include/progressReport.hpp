@@ -48,9 +48,6 @@ static void printReport(Progress_Report A, Progress_Report B);
 /*Test Helper Function*/
 static double rando();
 
-/*Random Assignment Function*/
-static void assign(Progress_Report *input);
-
 /**************************** SIMULATOR FUNCTIONS ****************************/
 
 //Deterimines the net change between any two values fed to it.
@@ -70,7 +67,7 @@ static void getResultingBalance(Progress_Report *A);
 static void reload(Progress_Report *A, Progress_Report *B);
 
 //Determines whether Critter Park has gone Bankrupt
-static void fail(Progress_Report A);
+static void fail(Progress_Report *A);
 
 //Determines Park Reputation for the most recent Progress Report 
 static void parkRep(Progress_Report *A, Progress_Report *B);
@@ -84,41 +81,52 @@ static void calcIncome(Progress_Report *input);
 //Calculates the percentage of each type of visitor at Critter Park
 static void percentVisitor(Progress_Report *input); 
 
+//Determines the number of vistors dependent on the park's fee.
+static void visitorFactor(Progress_Report *A); 
+
+//Allows user to set the Critter Park Admission/Ticket Price
+static void setTicketPrice(double cost_of_admission, Progress_Report *A); 
+
 //Runs a combination of the abov
 static void simulateWeek(Progress_Report *A, Progress_Report *B);
 
+//Determines whether the Report should be updated of not.
+static void update(Progress_Report *A, Progress_Report *B);
+
+
 /*****************************************************************************/
 
-private:
+//protected:
 
-	int parkReputation = 0;
+	int parkReputation = 10;
 	
 	/*The character reputations are just a sum of the met expectations
 	 * of all the visitors for the particular interest they had*/
 
 	//These will be set by looping "visitors" through the critters in CP.
-	double cuteRep = 0;
-	double scaryRep = 0;
-	double strangeRep = 0;
+	double cuteRep = 1;
+	double scaryRep = 1;
+	double strangeRep = 1;
 	
 	//Calculated by "weight multiplying" old num of visitors by the prak reputation
-	int totalVisitors = 0;
+	int maxVisitors = 10; 
+	int totalVisitors = 0; //po
 	//Percentages of visitors interests at the park. (Helps calculate the people vector)
 	double cuteVisitors = 0;
 	double scaryVisitors = 0;
 	double strangeVisitors = 0;
 	
 	//Where fiscal biz is dealt with...
-	float initialParkBalance = 0;
+	float initialParkBalance = 10000;
 	float parkInvestments = 0;
 	float parkIncome = 0;
 	float maintenanceFees = 0;
-	float resultingBalance = 1000.00;
+	float resultingBalance = 10000;
 	float incomePercentage = 0;
 
 	//Ticket Fee, this is something that should be set by the player.
-	//For now, it'll just be set to 10 dollores!
-	double ticketPrice = 10.00;
+	//For now, it'll just be set to 5 dollores!
+	double ticketPrice = 5.00;
 	
 	//Keeps track of how many timelaspes have occured.
 	int timelapse = 0;
@@ -126,19 +134,5 @@ private:
 /*****************************************************************************/
 
 };
-
-/*int main(){
-
-	pr A, B;	
-
-	//Tests Progress Report
-	bool quit = false; 
-       	while(!quit) {
-		//assign(&A);
-  	 	quit = reportMenu(&A, &B);
- 	 }
-
-	return 0;
-}*/
 
 #endif

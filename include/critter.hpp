@@ -61,6 +61,9 @@ class Critter{
 
   // Mutation Mechanism
   void mutate(float severity);
+
+  //EnGENEering Mechanism 
+  void engineer(long int magic_number);
   
   // Assess Critter characteristic scores
   std::vector<int> getTraitScores();

@@ -86,9 +86,9 @@ bool progressMenu(Progress_Report *A, Progress_Report *B){ //Start Menu
 		printBorder();
 		borderText("View Progress Report");
 		//cout << "\"Progress Report\" Under Construction!\n";
-		Progress_Report::reload(A, B);	
 		Progress_Report::printReport(*A, *B);
-	
+		//Determines whether the Progress Report needs to be updated.
+		Progress_Report::update(A, B);	
 		continuePrompt();		
 		break; //Case 3 Break
 		} //End Case 3

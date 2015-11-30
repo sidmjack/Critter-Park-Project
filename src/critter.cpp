@@ -83,7 +83,7 @@ void Critter :: printCritter() {
 	cout << " pupils, and " << this->limbs.number << " ";
 	cout << this->limbs.shape << ", each ending in ";
 	cout << this->digits.amount << " " << this->digits.type;
-	cout << "." << "\n";
+	cout << "." << "\n\n";
 	//Assuming we give Critter a Trait and create a critter function that 
 	//makes "Critter Trait" by summing the feature traits...Uncomment Below.
 	cout << "Characteristic Scores: \n";
@@ -98,8 +98,12 @@ void Critter :: printCritter() {
 std::vector<int> Critter::getTraitScores() {
   std::vector<int> scores = {0,0,0};
   // sum the scores from all four body parts
+  covering.updateTrait();
+  digits.updateTrait();
+  eyes.updateTrait();
+  limbs.updateTrait();
   for(int i = 0; i < 3; i++){
-    covering.updateTrait();
+    //covering.updateTrait();
     scores.at(i) += covering.feature_trait.rate().at(i);
     scores.at(i) += digits.feature_trait.rate().at(i);
     scores.at(i) += eyes.feature_trait.rate().at(i);
@@ -163,6 +167,20 @@ void Critter::mutate(float severity){
   limbs.decode(genotype, offset);
   return;
 }
+
+//More sketcky function adding...
+void Critter::engineer(long int magic_number){
+    
+    this->genotype.genome = magic_number;
+
+    unsigned offset = 0;
+    covering.decode(genotype, offset);
+    digits.decode(genotype, offset);
+    eyes.decode(genotype, offset);
+    limbs.decode(genotype, offset);
+    return;
+}
+//
 
 // Print a name for this critter in an ostream
 std::ostream & operator<< (std::ostream & os, const Critter& c) {

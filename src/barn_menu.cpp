@@ -27,7 +27,7 @@ void printBarnMenu(){
 	cout << "\t3) Describe Critter\n";
 	cout << "\t4) Display Critter Genome\n";
 	cout << "\t5) Display List of Critter Park Creatures\n";
-	cout << "\t6) Remove Critter from park\n";
+	cout << "\t6) Remove Critter from Park\n";
 	cout << "\t7) Leave \"Critter Park Barn\"\n\n";
 	cout << "**************************************************";
 	cout << "****************************\n";
@@ -61,10 +61,29 @@ void printBarnManual(){
 
    }
 
+void initialCritters(std::map<std::string, Critter> *critters) {
 
+	Binary b;
+	Critter c;
+
+	//START
+	static bool first_run = true;
+	if (first_run == true) {	
+		for (int i = 0; i < 3; i++){
+			std::string generic_name = "Critter_" + std::to_string(i+1);
+			(*critters)[generic_name].mutate(0.5+(i*.1));
+			c.setName(generic_name);
+			(*critters)[generic_name] = c;
+
+		} 
+		first_run = false;
+	}
+	//END
+	return;
+}
 
 // do everything the user wants, given a vector full of critters
-bool barnMenu(std::map<std::string, Critter> *critters){ //Start Menu
+bool barnMenu(std::map<std::string, Critter> *critters, Progress_Report *A){ //Start Menu
 	
         char menuChoice = 0;
 	int counter = 0;
@@ -74,6 +93,8 @@ bool barnMenu(std::map<std::string, Critter> *critters){ //Start Menu
 	        
 	std::map<std::string, Critter>::iterator it;
 	
+	initialCritters(critters); //Generates 3 initial critters
+
 	float jitter; // number for some function parameters
 	
 	printBarnMenu(); //Prints the Menu
@@ -103,7 +124,7 @@ bool barnMenu(std::map<std::string, Critter> *critters){ //Start Menu
 		
 		char choice;
 
-		cout << "a) Would you like to create a random critter? [Random]\n";
+		cout << "a) Would you like to purchase a new critter? [Random]\n";
 		cout << "b) Would you like to breed two critters? [Mate]\n";
 		cout << "c) Would you like to create/rename a \"BLANK\" critter? [Make]\n\n";	
 		cout << "Enter \"Create\" Option: ";
@@ -117,6 +138,14 @@ bool barnMenu(std::map<std::string, Critter> *critters){ //Start Menu
 				string name_r = " "; 
 
 				printBorder();
+				
+				double price = 35000;
+				if (price > A->initialParkBalance || A->parkInvestments > A->initialParkBalance){
+				    std::cout << "Critter Park Can't Afford this right now!\n";
+					break;
+				}
+				
+				A->parkInvestments += price;
 
 				cout << "\nGive your Random critter a Name!\n";
 				cout << "Name: ";
@@ -125,7 +154,7 @@ bool barnMenu(std::map<std::string, Critter> *critters){ //Start Menu
 				//rename the Critter, store by name
 				c.setName(name_r);
 				// see if a critter by this name exists already
-				it = critters->find(name_r); //THIS IS USELESS FOR SOME REASON ASK BEN
+				it = critters->find(name_r); //This doesn't do anything for some reason, ask Ben.
 				if(it != critters->end()){
 					cout << "A critter by the name " << name_r << " already exists!" << endl;
 					break;
@@ -133,7 +162,7 @@ bool barnMenu(std::map<std::string, Critter> *critters){ //Start Menu
 				// if there isn't one, add it
 				(*critters)[name_r] = c;
 				(*critters)[name_r].mutate(0.5);
-				cout << "Generated a new critter!\n";				
+				cout << "Congrats, you've adopted a new critter!\n";				
 				break;
 				} //End Case A
 			

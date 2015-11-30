@@ -22,13 +22,14 @@
 #include "main_menu.hpp"
 #include "binary.hpp"
 #include "critter.hpp"
+#include "progressReport.hpp"
 
 //public:
 
 /*********** Menu Handling Functions **************/
 
 // Repeatedly calls the Menu Function
-bool barnMenu(std::map<std::string, Critter> *critters);
+bool barnMenu(std::map<std::string, Critter> *critters, Progress_Report *A);
 
 /************* Print Functions ********************/
 

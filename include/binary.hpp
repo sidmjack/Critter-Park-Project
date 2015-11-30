@@ -63,6 +63,8 @@ class Binary{
   // Wrapper for the mutate function
   void mutate(float severity);
 
+  //Engineer a critter!
+  //void engineer(long int magic_number);
 
   /***************** FUNCTIONS USED BY OTHER FUNCTIONS ***********************/
   
