@@ -61,26 +61,7 @@ void printBarnManual(){
 
    }
 
-void initialCritters(std::map<std::string, Critter> *critters) {
 
-	Binary b;
-	Critter c;
-
-	//START
-	static bool first_run = true;
-	if (first_run == true) {	
-		for (int i = 0; i < 3; i++){
-			std::string generic_name = "Critter_" + std::to_string(i+1);
-			(*critters)[generic_name].mutate(0.5+(i*.1));
-			c.setName(generic_name);
-			(*critters)[generic_name] = c;
-
-		} 
-		first_run = false;
-	}
-	//END
-	return;
-}
 
 // do everything the user wants, given a vector full of critters
 bool barnMenu(std::map<std::string, Critter> *critters, Progress_Report *A){ //Start Menu
@@ -93,7 +74,7 @@ bool barnMenu(std::map<std::string, Critter> *critters, Progress_Report *A){ //S
 	        
 	std::map<std::string, Critter>::iterator it;
 	
-	initialCritters(critters); //Generates 3 initial critters
+	
 
 	float jitter; // number for some function parameters
 	
