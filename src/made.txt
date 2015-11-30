@@ -1,0 +1,8 @@
+User_Interface.cpp: In function ‘int main()’:
+User_Interface.cpp:16:2: error: ‘global’ was not declared in this scope
+  global Progress_Report A;
+  ^
+User_Interface.cpp:29:64: error: ‘A’ was not declared in this scope
+      quit = mainMenu(&barnCritters, &showCritters, &displays, &A, &B, &numDisplays);
+                                                                ^
+make: *** [obj/./User_Interface.o] Error 1

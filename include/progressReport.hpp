@@ -121,7 +121,7 @@ static void update(Progress_Report *A, Progress_Report *B);
 	float parkInvestments = 0;
 	float parkIncome = 0;
 	float maintenanceFees = 0;
-	float resultingBalance = 10000;
+	float resultingBalance = 250000;
 	float incomePercentage = 0;
 
 	//Ticket Fee, this is something that should be set by the player.

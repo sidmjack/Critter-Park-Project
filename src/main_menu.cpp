@@ -429,7 +429,7 @@ bool mainMenu(std::map<std::string, Critter> *barnCritters, std::map<std::string
 		
 		printBorder();
 		borderText("CRITTER PARK MANAGEMENT");
-		cout << "\"Critter Park Management\" Under Construction!\n";
+		//cout << "\"Critter Park Management\" Under Construction!\n";
 		//PLACE CRITTER PARK MANAGEMENT MENU HERE!	
 		bool quit = false; 
 		 while(!quit) {
@@ -445,7 +445,7 @@ bool mainMenu(std::map<std::string, Critter> *barnCritters, std::map<std::string
 
 		printBorder();
 		borderText("CRITTER PARK PROGRESS REPORT");
-		cout << "\"Critter Park Progress Report\" Under Construction!\n";
+		//cout << "\"Critter Park Progress Report\" Under Construction!\n";
 		//PLACE CRITTER PARK PROGRESS REPORT MENU HERE!
 		bool quit = false; 
 		 while(!quit) {
