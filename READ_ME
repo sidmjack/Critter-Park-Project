@@ -11,23 +11,58 @@
 				READ_ME FILE:
 *******************************************************************************
 
-SUMMARY (Assignment 9):
+SUMMARY (Assignment 11):
    
-	We accidently completed half of this week's project last week so that
-was a nice surprise considering that the User Interface was basically 
-complete. The only changed made in our program was the change in file name
-for the user interface as well as the inclusion of another file containing
-more of the menu handling functions, in an attempt to make the menu 
-look a bit cleaner. We also had to chnage the printCritter function
-which describes the critter to include the new characteristic scores.
-Finally, we added a characteristic class which contains a map of the numerical
-impact of each trait on the characteristics (scary, cute, strange) of the 
-critter. The sum of these characteristics were calculated by overloading 
-the += and + operator for characteristics (which contained the values
-of each characteristic that defined the critters). All the other
-classes didn't change much at all, since most of the interface was already
-completed and since the new class is contained most of the "updating" 
-of our Critter Park Program for this week's assignment.
+	EXTRA FEATURES WE ADDED:
+
+		Main Menu Starting Screen:
+		Okay, so we admit, this doesn't really impact active game play, 
+		BUT! We argue that it serves as a strategic hook to get the 
+		player excited about playing the game. Further, it increases
+		the aesthetic appeal of the Critter Park.
+
+		Bankrupt Feature: When you're in the negatives for more than
+		3 weeks, Critter Park closes down for a year and you start out
+		with you initial cash. (It's sort of the equivalent of a game
+		over since you lose all of your reputation, with a hint of 
+		mercy since you get to keep your critters)
+
+		Marketing Feature:
+		You can improve the reputation of Critter Park by paying
+		for advertisements that boost Critter Parks rep, thus 
+		increasing visitors and earning the player more money/income.
+
+		BlackMarket Feature:
+		Given that the Player can afford it, the player can get
+		involved in the Critter Park Black Market to purchase
+		wither fake guests/blogger to boost the parks reputation, 
+		an Alien Critter, Mutant Critter, or Hopkins Bioenigneered
+		Critter.
+
+		Busted Feature:
+		The Blackmarket doesn't come free of risk however! There
+		is a 1/4 chance that the player will get caught involving 
+		Critter Park in the Black Market, cuasing a blow to the 
+		Parks reputation and forcing the park to regain its rep 
+		by dishing out a ton of money for fiscal reparations.
+
+		Though most of the main features of the game work, we
+		admit that there are several parts that are broken. It was
+		difficult to keep track of which values incremented which 
+		variables which made it hard to create a cohesive report.
+		The game, however, is definitely playable. Is it fair and
+		does it make sense? Perhap? Most likely not! BUT! It does
+		the basics and you can have fun with it...Which is really 
+		all a game is about, we think, so we're happy with it mostly.
+		We hope you agree. More time would be appreciated (JK).
+
+		We struggled with making the menu's increment variables amongst
+		a shared class (Progress_Report). Further, we ran into a few 
+		problems passing necessary objects to the menu's to get anything
+		to work ever, but we worked around it to the best of our ability.
+	
+		Ultimately, it was fun. It was hard. Not sure if we'd do it again.
+		 
 
 *******************************************************************************
 Classes and Driver:
