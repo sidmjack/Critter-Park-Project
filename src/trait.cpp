@@ -162,9 +162,16 @@ std::vector<int> Trait::rate(){
       return std::vector<int> { };
     }
     // otherise, keep summing scores
-    output.at(0) += this->getTraits().at(i).at(0);
+    // FORMER
+    /*output.at(0) += this->getTraits().at(i).at(0);
     output.at(1) += this->getTraits().at(i).at(1);
-    output.at(2) += this->getTraits().at(i).at(2);
+    output.at(2) += this->getTraits().at(i).at(2);*/
+
+    //NEW_EXPERIMENTING
+    output.at(0) += index.at(this->getTraits().at(i)).at(0);
+    output.at(1) += index.at(this->getTraits().at(i)).at(1);
+    output.at(2) += index.at(this->getTraits().at(i)).at(2);
+
 
   }
   // return the total sum
@@ -209,6 +216,13 @@ void Trait::operator+=(Trait other){
     this->current.push_back(other.getTraits().at(i));
   }
 }
+
+
+
+
+
+
+
 
 /*****************************************************************************/
 //UNIT TEST:

@@ -96,7 +96,6 @@ void Progress_Report::printReport(Progress_Report A, Progress_Report B)
 	colorOutput(A.strangeRep-B.strangeRep);
 	std::cout << "\t Strange Critter Reputation: " << A.strangeRep;	
 	std::cout << netChange(A.strangeRep, B.strangeRep) << "\n\n";
-	std::cout << A.strangeRep << "vs" << B.strangeRep << "\n\n";
 	resetOutput();
 
 	std::cout << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n";
@@ -120,6 +119,11 @@ void Progress_Report::printReport(Progress_Report A, Progress_Report B)
 	
 	std::cout << "Park Visting Statistics: \n";
 	
+	colorOutput(A.maxVisitors-B.maxVisitors);
+	std::cout << "\tMaximum Possible Visitors to Park: " << A.maxVisitors;
+	std::cout << netChange(A.maxVisitors, B.maxVisitors) << "\n";
+	resetOutput();
+
 	colorOutput(A.totalVisitors-B.totalVisitors);
 	std::cout << "\tTotal Visitors to Park: " << A.totalVisitors;
 	std::cout << netChange(A.totalVisitors, B.totalVisitors) << "\n";
@@ -187,7 +191,7 @@ void Progress_Report::printReport(Progress_Report A, Progress_Report B)
 	}
 	resetOutput();
 	
-	if (B.incomePercentage != 0) {
+	if ((B.incomePercentage != 0) && (A.timelapse > 1)) {
 	colorOutput(A.incomePercentage);
 	std::cout << "\tPercent Income Increase/Decrease: " << (A.incomePercentage) << "%";
 	colorOutput(A.incomePercentage - B.incomePercentage);
@@ -199,6 +203,7 @@ void Progress_Report::printReport(Progress_Report A, Progress_Report B)
 
 	std::cout << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n";
 	std::cout << "\x1b[0m";
+
 
 }
 
@@ -213,16 +218,9 @@ void Progress_Report::getIncomePercentage(Progress_Report *A, Progress_Report *B
 	return;
 }
 
-//Random Assignment Function
-void Progress_Report::assign(Progress_Report *input)
-{
-	input->cuteRep = rando(); //Critter Park Decides
-	input->scaryRep = rando(); //Critter Park Decides
-	input->strangeRep = rando(); //Critter Park Decides
-		
-	input->parkInvestments = rando();  //User decides!
-	input->maintenanceFees = rando() + 250; //Critter Count Decides
-	
+//Allows user to set the ticket price...
+void Progress_Report::setTicketPrice(double cost_of_admission, Progress_Report *A) {
+	A->ticketPrice = cost_of_admission;
 	return;
 }
 
@@ -239,15 +237,47 @@ void Progress_Report::getResultingBalance(Progress_Report *A){
 void Progress_Report::reload(Progress_Report *A, Progress_Report *B)
 {
 //B equals former timelapse data
-//A equals current timelapse data
-*B = *A;
-A->timelapse++;
+//A equals current data
+
+//Variables to RELOAD
+	B->cuteRep = A->cuteRep;
+	B->scaryRep = A->scaryRep;
+	B->strangeRep = A->strangeRep;
+	
+	B->maxVisitors = A->maxVisitors; 
+	B->totalVisitors = A->totalVisitors;
+	B->cuteVisitors = A->cuteVisitors;
+	B->scaryVisitors = A->scaryVisitors;
+	B->strangeVisitors = A->strangeVisitors;
+	
+	B->initialParkBalance = A->initialParkBalance;
+	B->parkInvestments = A->parkInvestments;
+	B->parkIncome =	A->parkIncome;
+	B->maintenanceFees = A->maintenanceFees;
+ 	B->resultingBalance = A->resultingBalance;
+	B->incomePercentage = A->incomePercentage;
+
+//Variables Reloaded
+
+//A->timelapse++;
 return;
 }
 
-void Progress_Report::fail(Progress_Report A){
+/*NEW FUNCTION*/
+//Non-complicated linear visitor estimator...
+void Progress_Report::visitorFactor(Progress_Report *A) {
+	
+
+	double num_visitors;
+	num_visitors = (((A->parkReputation*.25))/(A->ticketPrice))*A->maxVisitors;
+	
+	A->totalVisitors = (int)num_visitors;
+}
+
+
+void Progress_Report::fail(Progress_Report *A){
 	static int bankrupt = 0;
-	if (A.resultingBalance < 0){
+	if (A->resultingBalance < 0){
 		bankrupt++;
 	} else {
 		bankrupt = 0;
@@ -262,10 +292,29 @@ void Progress_Report::fail(Progress_Report A){
 
 		//Simulate a year passing then...
 		//RESET EVERYTHING TO INITIAL STATS...
+		A->parkReputation = 10;
+
+		A->cuteRep = 1;
+		A->scaryRep = 1;
+		A->strangeRep = 1;
+	
+		A->maxVisitors = 10;
+		A->totalVisitors = 0;
+		A->cuteVisitors = 0;
+		A->scaryVisitors = 0;
+		A->strangeVisitors = 0; 	
+		
+		A->initialParkBalance = 10000.00; 
+		A->parkInvestments = 0;
+		A->parkIncome =	0;
+		A->maintenanceFees = 0;
+		A->resultingBalance = 10000.00;
+		A->incomePercentage = 0;
+
 		Progress_Report BANKRUPT;
-		for (int i = 0; i < 365; i++){
-			reload(&A, &BANKRUPT);
-		}
+		reload(A, &BANKRUPT);
+		A->timelapse += 365;
+		
 		return;
 	} else {
 		return;
@@ -277,8 +326,15 @@ void Progress_Report::parkRep(Progress_Report *A, Progress_Report *B)
 	int impression = 0;
 	//Calculates the general impression of the park from most recent visitors.
 	impression += (A->cuteRep)*(A->cuteVisitors*.01);
-	impression += (A->scaryRep)*(A->cuteVisitors*.01);
-	impression += (A->strangeRep)*(A->cuteVisitors*.01);
+	A->cuteRep = (B->cuteRep*.75)+(A->cuteRep*.25);
+
+	impression += (A->scaryRep)*(A->scaryVisitors*.01);
+	A->scaryRep = (B->scaryRep*.75)+(A->scaryRep*.25);
+
+	impression += (A->strangeRep)*(A->strangeVisitors*.01);
+	A->strangeRep = (B->strangeRep*.75)+(A->strangeRep*.25);
+
+	//A->Reputations will be passed to incremented in another function.
 
 	//Combines old and/to current impression for an overall park reputation.
 	A->parkReputation = ((.75*B->parkReputation)+(.25*impression));
@@ -290,7 +346,8 @@ void Progress_Report::parkVisitors(Progress_Report *A, Progress_Report *B){
 	
 	double randomIncrement = (((rand()%20)/100.0) - ((rand()%20)/100.0));
 
-	A->totalVisitors = ((.65*B->totalVisitors)+(.35*A->parkReputation*(1.0 + randomIncrement)));
+	A->maxVisitors = ((.65*B->maxVisitors)+(.35*A->parkReputation*(1.0 + randomIncrement)));
+	
 	return;
 }
 
@@ -339,20 +396,33 @@ void Progress_Report::percentVisitor(Progress_Report *input)
 }
 
 void Progress_Report::simulateWeek(Progress_Report *A, Progress_Report *B){
-		
-	assign(A); //Assigns needed randos...WILL NOT REMAIN
+	
 	percentVisitor(A);
 	parkRep(A, B);
 	parkVisitors(A, B);
+	visitorFactor(A); 
 	initialBalance(A, B);
 	calcIncome(A);
 	getResultingBalance(A);
 	getIncomePercentage(A, B);
-	fail(*A);
-	reload(A, B);	
+	fail(A);
+
+	A->timelapse++;	
 
 		return;
 }
 
+//New Function
+void Progress_Report::update(Progress_Report *A, Progress_Report *B){
+	static int timeLapse = -1;
+	if (timeLapse == A->timelapse){
+		return;
+	} else {
+		timeLapse = A->timelapse;
+		reload(A, B);
+		return;
+	}
+	return; //Just in case?
+}
 
 

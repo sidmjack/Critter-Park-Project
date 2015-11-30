@@ -23,6 +23,7 @@
 #include "progressReport.hpp"
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <cstdbool>
 #include <map>
 
@@ -33,7 +34,7 @@
 // Repeatedly calls the Menu Function
 int main();
 
-bool mainMenu(std::map<std::string, Critter> *critters, Progress_Report *A, Progress_Report *B);
+bool mainMenu(std::map<std::string, Critter> *barnCritters, std::map<std::string, Critter> *showCritters, std::vector<std::string> *displays, Progress_Report *A, Progress_Report *B);
 
 //"Refreshes Screen"
 void refreshScreen();
@@ -42,6 +43,10 @@ void refreshScreen();
 void continuePrompt();
 
 /************* Print Functions ********************/
+
+// makes a neatly formatted dialog box
+std::string messageBox(std::string s, std::string h);
+
 
 //Critter Park Welcome "Page"
 void printWelcome();
@@ -72,12 +77,6 @@ void printManual();
 
 //Print the "About Us" Page
 void printAboutUs();
-
-//Prints a "graphic"... critter?
-//void print_Critter();
-
-//Prints a "graphic" Critter Park Logo.
-//void print_Logo();
 
 /***************************************************/
 
