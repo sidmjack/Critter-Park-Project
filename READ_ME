@@ -1,0 +1,162 @@
+*******************************************************************************
+***Sidney Jackson & Florian Pontani***
+***sjacks85@jhu.edu flo@jhu.edu***
+***(917) 454-8493 & (386) 956-5577***
+***EN.600.120***
+***Intermediate Programming***
+***Homework #9***
+***Last Modified: November 9, 2015***
+
+*******************************************************************************
+				READ_ME FILE:
+*******************************************************************************
+
+SUMMARY (Assignment 9):
+   
+	We accidently completed half of this week's project last week so that
+was a nice surprise considering that the User Interface was basically 
+complete. The only changed made in our program was the change in file name
+for the user interface as well as the inclusion of another file containing
+more of the menu handling functions, in an attempt to make the menu 
+look a bit cleaner. We also had to chnage the printCritter function
+which describes the critter to include the new characteristic scores.
+Finally, we added a characteristic class which contains a map of the numerical
+impact of each trait on the characteristics (scary, cute, strange) of the 
+critter. The sum of these characteristics were calculated by overloading 
+the += and + operator for characteristics (which contained the values
+of each characteristic that defined the critters). All the other
+classes didn't change much at all, since most of the interface was already
+completed and since the new class is contained most of the "updating" 
+of our Critter Park Program for this week's assignment.
+
+*******************************************************************************
+Classes and Driver:
+
+[Classes with the "***" are classes that have either been updated 
+or added to the Critter Park Program for this week's assignment.]
+
+***Driver- The Driver Class contains functions that serve as the menu
+implementation and handling funcitons. This class defines several useful
+print functions and menu functions that make the user interface clean,
+fairly dynamic, and interesting. Our menu is primarily a giant switch
+statement with other nested switch statements and print functions that allow
+the user to navigate and play the game (create random critters, name
+critters, breed critters, etc.). To summarize, the menu provides a player
+manual, info on the game creation, the option to create new critters via
+a randomize function (using mutate) or breeding, the option to rename 
+critters, list critters, view critters genome, and remove critters.
+
+***Critter Class- The critter class defines all of the functions that
+are called using simple prompts to the user through the menu/user interface.
+These functions include, of course, creating a critter objects (which 
+cotains the features, the genome, and the name of the critter. The functions
+also allow us to randomly set the genome of the critter (when creating a 
+random critter), allow the user to change the name, allow the user to 
+breed critters, view the genome, and remove critters.
+ 
+Binary Class- The Binary class contains the set and get bit field 
+functions that are integral to manipulating the genome of the critter.
+Additionally, it contains all the functions that manipulate the critter
+genome and contains the critter genome. The functions include the breed
+function which mimic gene cross-over by taking two critter's binary's, 
+a mutate function that randomly flips bits, and printBinary function
+for easy viewing of the critter's binary. 
+
+***Traits- The traits class contains the map that describes the impact of
+each trait on the overall characteristics of the critter. These characteristics
+are then summed together to produce the total "Strangeness", "Cuteness", and
+"Scariness".
+
+FEATURE CLASSES:
+The Feature Classes in general contain the traits associated with the
+feature it describes, and the map of string traits that desrcribe the
+critter through the decode function. Each also contains and Encode
+and Decode Function. Though we have an encode function, it's not
+used at all. We found that decode is capable of handling everything
+we need to have our program run as expected.
+
+Covering Class- This feature contains the 2 "covering traits" that describe 
+the texture and coat of the critter.
+Digits Class- This feature contains the 2 "digits traits" that descrie 
+the type of digits (fingers) and the number of fingers.
+Eyes Class- This feature contains the 4 "eye traits" that describe the size, 
+amount, the color, and pupil of the critter.
+Limbs Class- This feature contains the 2 "limbs traits" that define the
+shape and the number of limbs that the critter has.
+
+Unit Tests- The Unit Tests thoroughly test the critter and binary functions.
+Though the unit test also test the features, we weren't entirely sure
+how to test the encode function. We fed it variables and it compiled, so
+we're certain it probably does work. However, becuase we do not use the
+encode function, we didn't find it necessary to test it since it's
+ultimately not needed in our program. The driver class is also not 
+thoroughly tested becuase we found that all of the integral functions 
+needed within the driver class had already been tested. Further, the
+only other functions we included simply involved printing text to the user
+and using switch statements and user input to direct the user through out user
+interface, none of which can really be tested without actually running
+the programming and testing it by hand.
+
+***PLEASE NOTE***:
+
+Due to the set up of our user interface/ driver class, it was nearly 
+impossible to test. To check for error and bugs we ran the code, feeding
+all input prompts from the user for all menu features/choices presented
+through our menu to the user, we tested "ideal" and "much-less-than-ideal" 
+input form the user. Most error we've encountered that crashed our program, we
+placed error handling functions. Though, we will admit, some of these
+error handling bugs have bugs themselves (for example, when you enter 
+several wrong characters, for each invalid character that is entered
+an "invalid input" message is printed). It's more ideal than a program that 
+crashes, but it's not pretty. If we had more time, we'd address this.
+Due to the number of switch statements (and nested switch statements), and
+due to the number of print funcitons used in our driver, we found it 
+less helpful to produce unit tests for the driver/user_Interface classes
+and simply opted to test these classes by hand (running the program and
+playing with Critter Park ourselves).
+
+That being said, pleeease don't take off unit test points
+for this class because it wasn't really feasible and becuase we 
+extensively tested everything else (especially the functions that
+are actually used by the menu) in the other classes.
+
+*******************************************************************************
+Issues/Frustration:
+Keeping track of the several functions we created proved to be a little
+annoying, but not impossible to deal with. Overloading operators, also 
+not fun.
+
+We encountered several issues with handling static variables and 
+functions. Literally the bane of our existence, considering that we 
+85% of the time we spent working on this assignment was soley degubbing 
+static and scope related errors using very unhelpful compiler messages.
+Alas, we got everything to compile.
+
+*******************************************************************************
+
+Overall Outcome:
+So far so good, we're satisfied with the code we've produced so far.
+It compiles, so that's good.
+(Not Complete Yet However)
+
+*******************************************************************************
+
+ASSIGNMENT FEEDBACK:
+
+A little more guidance would be much appreciated. It was difficult going from
+completely structures and planned out programming to "Here's a game, make it."
+However, we can't deny it was necessary. Maybe just a more progressive way
+of assigning projects that made us rely on our ability to plan out an entire
+program over time instead of being the first and last 6 week C++ project would
+have made the transition a bit easier.
+
+*This assignment seemed a lot less demanding then the last assignment (which is
+much appreciated). Building off of the program we made last week proved 
+a little more complicated than expected. As the code kept growing, the 
+importance of good orginization and readable code became more important.
+At times, it was difficult to remember where exactly a function was defined
+or which class had a specific function we were looking for. Note:
+Will now consider adding a Table of Content.
+
+*******************************************************************************
+
