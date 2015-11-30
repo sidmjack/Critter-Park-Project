@@ -324,6 +324,25 @@ void Progress_Report::fail(Progress_Report *A){
 void Progress_Report::parkRep(Progress_Report *A, Progress_Report *B)
 {
 	int impression = 0;
+	
+	if (A->cuteVisitors > A->scaryVisitors) {
+		A->cuteRep += 2;
+	} else {
+		A->scaryRep += 2;
+	} 
+
+	if (A->scaryVisitors > A->strangeVisitors) {
+		A-> scaryRep += 2;
+	} else {
+		A-> strangeRep += 2;
+	}
+
+	if (A->strangeVisitors > A->cuteVisitors) {
+		A->strangeRep += 2;
+	} else {
+		A->cuteRep += 2;
+	}
+	
 	//Calculates the general impression of the park from most recent visitors.
 	impression += (A->cuteRep)*(A->cuteVisitors*.01);
 	A->cuteRep = (B->cuteRep*.75)+(A->cuteRep*.25);
