@@ -15,6 +15,8 @@ int main(){
 	//Set up Time-Lapse Progress Reports
 	Progress_Report A;
 	Progress_Report B;
+	// keep track of the user's assests
+	int numDisplays = 4;
 	
 	//Prints Welcome
 	printWelcome();
@@ -24,7 +26,7 @@ int main(){
 	bool quit = false; 
 	 while(!quit) {
 		refreshScreen();
-  	 	quit = mainMenu(&barnCritters, &showCritters, &displays, &A, &B);
+  	 	quit = mainMenu(&barnCritters, &showCritters, &displays, &A, &B, &numDisplays);
  	 }
 
 	return 0;

@@ -34,7 +34,7 @@
 // Repeatedly calls the Menu Function
 int main();
 
-bool mainMenu(std::map<std::string, Critter> *barnCritters, std::map<std::string, Critter> *showCritters, std::vector<std::string> *displays, Progress_Report *A, Progress_Report *B);
+bool mainMenu(std::map<std::string, Critter> *barnCritters, std::map<std::string, Critter> *showCritters, std::vector<std::string> *displays, Progress_Report *A, Progress_Report *B, int *numDisplays);
 
 //"Refreshes Screen"
 void refreshScreen();

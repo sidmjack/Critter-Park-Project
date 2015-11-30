@@ -117,7 +117,7 @@ static void update(Progress_Report *A, Progress_Report *B);
 	double strangeVisitors = 0;
 	
 	//Where fiscal biz is dealt with...
-	float initialParkBalance = 10000;
+	float initialParkBalance = 250000;
 	float parkInvestments = 0;
 	float parkIncome = 0;
 	float maintenanceFees = 0;

@@ -29,7 +29,7 @@
 
 /*********** Menu Handling Functions **************/
 
-bool managementMenu(std::map<std::string, Critter> *barnCritters, std::map<std::string, Critter> *showCritters, std::vector<std::string> *displays, Progress_Report *A, Progress_Report *B);
+bool managementMenu(std::map<std::string, Critter> *barnCritters, std::map<std::string, Critter> *showCritters, std::vector<std::string> *displays, Progress_Report *A, Progress_Report *B, int *numDisplays);
 
 /************* Print Functions ********************/
 

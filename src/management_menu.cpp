@@ -17,8 +17,6 @@
 #include <ctime>
 #include <cstdlib>
 
-#define MAX_DISPLAYS 8
-
 using namespace std;
 
 // Prints list of menu options.
@@ -91,7 +89,7 @@ void printBlackMarketOptions(){
 
 }
 
-void printDisplayList(std::map<std::string, Critter> *barnCritters, std::vector<std::string> *displays){
+void printDisplayList(std::map<std::string, Critter> *barnCritters, std::vector<std::string> *displays, int *numDisplays){
   printBorder();
   //print the disply critters and barn critters
   std::cout << "\nCritters currently in the Barn:\n";
@@ -114,7 +112,7 @@ void printDisplayList(std::map<std::string, Critter> *barnCritters, std::vector<
   // then print the ones on display
   std::cout << "\nCritters currently on display:\n";
   std::cout << "--------------------------------\n";
-  for(int i = 0; i < displays->size(); i++){
+  for(unsigned int i = 0; i < displays->size(); i++){
     std::cout << "\t";
     if(counter < 10){
      std::cout << " ";
@@ -122,7 +120,7 @@ void printDisplayList(std::map<std::string, Critter> *barnCritters, std::vector<
     std::cout<<counter<<" -- "<< displays->at(i) << "\n";
     counter++;
   }
-  std::cout << "\n";
+  std::cout << "\n\nCritter displays remaining: " << *numDisplays << "\n";
 
 }
 
@@ -146,7 +144,7 @@ void negativePublicity(Progress_Report *A){
 }
 
 //Will need to pass critter map and display map to do anything...
-bool managementMenu(std::map<std::string, Critter> *barnCritters, std::map<std::string, Critter> *showCritters, std::vector<std::string> *displays, Progress_Report *A, Progress_Report *B){ //Start Menu
+bool managementMenu(std::map<std::string, Critter> *barnCritters, std::map<std::string, Critter> *showCritters, std::vector<std::string> *displays, Progress_Report *A, Progress_Report *B, int *numDisplays){ //Start Menu
 
     
 	char menuChoice = 0;
@@ -186,9 +184,10 @@ bool managementMenu(std::map<std::string, Critter> *barnCritters, std::map<std::
 		printBorder();
 		borderText("MANAGE DISPLAYS/CRITTER PARK EXHIBITS");
 		//cout << "\"Critter Park Displays/Exhibits\" Under Construction!\n";
-		printDisplayList(barnCritters, displays);
+		printDisplayList(barnCritters, displays, numDisplays);
 		cout << "\na) move critter [name] from BARN to DISPLAY\n";
 		cout << "b) move critter [name] from DISPLAY to BARN\n";
+		cout << "c) purchase more displays\n";
 		cout << "Enter choice: ";
 		std::string toMove = "";
 		char mvOption = ' ';
@@ -206,7 +205,7 @@ bool managementMenu(std::map<std::string, Critter> *barnCritters, std::map<std::
 		      break;
 		    }
 		    // otherwise, see if there is display space left
-		    if(!(showCritters->size() < MAX_DISPLAYS) ){
+		    if(!(showCritters->size() < (unsigned int)*numDisplays) ){
 		      cout << "\nSorry, you haven't any space left in your displays!\n";
 		      break;
 		    }
@@ -235,7 +234,7 @@ bool managementMenu(std::map<std::string, Critter> *barnCritters, std::map<std::
 		    showCritters->erase(toMove);
 		    
 		    // find and delete a critter with the given name
-		    for(int i = 0; i < displays->size(); i++){
+		    for(unsigned int i = 0; i < displays->size(); i++){
 		      if( displays->at(i) == toMove ){
 			displays->erase(displays->begin() + i);
 			break;
@@ -244,6 +243,28 @@ bool managementMenu(std::map<std::string, Critter> *barnCritters, std::map<std::
 		    cout << "\n\nSucessfully returned \"" << toMove << "\" to the Barn.\n";
 		    break;
 		  }
+		  
+		  case 'c':
+		  {
+		    cout << "\nPURCHASE DISPLAY SPACE" << "\n\nDisplays cose $5,000 a pop. Enter the number of you wish to purchase:\n";
+		    int toBuy;
+		    cin >> toBuy;
+		    // make sure they're buying
+		    if(toBuy < 0){
+		      cout << "Due to a complicated license agreement, the resale of Critter displays is not permitted.\n";
+		      break;
+		    }
+		    // see if the user has the cash
+		    if( (toBuy*5000) > A->initialParkBalance ){
+		      cout << "You can't afford that many displays!";
+		      break;
+		    }
+		    // if it's all good, buy the displays
+		    A->resultingBalance = A->initialParkBalance - (toBuy*5000);
+		    numDisplays += toBuy;
+		    cout << "\nSucessfully purchased " << toBuy << " new Critter displays. Make it rain!\n";
+		    break;
+		  }//end case c
 		  
 		}//end mvOption switch
 		

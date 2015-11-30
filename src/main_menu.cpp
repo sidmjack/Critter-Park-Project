@@ -15,7 +15,7 @@
 #include "main_menu.hpp"
 
 using namespace std;
-
+/*
 // prints a message, which the user can close by pressing enter
 // s is the message, h is the header
 // returns user input from end of prompt as a string
@@ -177,6 +177,7 @@ std::string messageBox(std::string s, std::string h){
   cout << "\033[u";
   return output_str;
 }
+*/
 
 void print_Critter(){
 	
@@ -384,7 +385,7 @@ void printManual(){
 
 
 // do everything the user wants, given a vector full of critters
-bool mainMenu(std::map<std::string, Critter> *barnCritters, std::map<std::string, Critter> *showCritters, std::vector<std::string> *displays, Progress_Report *A, Progress_Report *B){ //Start Menu
+bool mainMenu(std::map<std::string, Critter> *barnCritters, std::map<std::string, Critter> *showCritters, std::vector<std::string> *displays, Progress_Report *A, Progress_Report *B, int *numDisplays){ //Start Menu
 	
         char menuChoice = 0;
 		
@@ -433,7 +434,7 @@ bool mainMenu(std::map<std::string, Critter> *barnCritters, std::map<std::string
 		bool quit = false; 
 		 while(!quit) {
 			refreshScreen();
-  	 		quit = managementMenu(barnCritters, showCritters, displays, A, B);
+  	 		quit = managementMenu(barnCritters, showCritters, displays, A, B, numDisplays);
  	 	}	
 		continuePrompt();		
 		break; //Case 3 Break
